@@ -22,10 +22,10 @@ export default function LandingLayout () {
             <li className="hover:text-red-800 cursor-pointer">
               Contacto
             </li>
-            <LandingButton type="primary" toPath="/login">
+            <LandingButton variant="primary" toPath="/login">
               Inicia Sesión
             </LandingButton>
-            <LandingButton type="secondary" toPath="/register">
+            <LandingButton variant="secondary" toPath="/register">
               Regístrate
               <RedirectArrow className="fill-current text-gray-50 w-5 h-5 ml-1"/>
             </LandingButton>

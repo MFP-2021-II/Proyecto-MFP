@@ -1,5 +1,6 @@
 import Logo from 'components/Icons/Logo'
 import FormField from 'components/Fields/FormField'
+import NavButton from 'components/Buttons/NavButton'
 import LandingButton from 'components/Buttons/LandingButton'
 import Sample from 'components/InfoBoxes/Sample'
 
@@ -26,17 +27,17 @@ export default function Login () {
         >
         </FormField>
         <a href="/" className="cursor-pointer font-semibold underline text-gray-500 my-8">¿Olvidaste tu contraseña?</a>
-        <LandingButton 
-          type="secondary" 
+        <NavButton 
+          variant="secondary" 
           toPath="/"
           className="mb-4">
           Iniciar sesión
-        </LandingButton>
-        <LandingButton
-          type="primary"
+        </NavButton>
+        <NavButton
+          variant="primary"
           toPath="/register">
-          Regístrate
-        </LandingButton>
+          Crear una cuenta
+        </NavButton>
       </div>
       <Sample></Sample>
     </>

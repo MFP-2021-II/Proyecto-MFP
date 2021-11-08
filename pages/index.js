@@ -16,7 +16,7 @@ export default function Home() {
           Viaja a cualquier lugar sin
           <br />preocuparte por el alojamiento 🏠
         </p>
-        <LandingButton type="secondary" className="mt-10" toPath="/register">
+        <LandingButton variant="secondary" className="mt-10" toPath="/register">
           ¡Reservar ahora!
         </LandingButton>
       </section>
