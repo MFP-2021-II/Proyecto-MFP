@@ -1,29 +1,32 @@
 import Logo from 'components/Icons/Logo'
 import LandingButton from 'components/Buttons/LandingButton'
+import RedirectArrow from 'components/Icons/RedirectArrow'
 
 export default function LandingLayout () {
+  //se modificó el classname add: abolute w-full para solucionar lo del espaciado 
   return(
     <>
-      <nav className="font-sans font-bold w-auto">
-        <ul className="flex justify-between w-auto p-7">
-          <a>
+      <nav className="absolute w-full text-lg font-sans font-bold bg-gray-100">
+        <ul className="flex justify-between p-7">
+          <a className="transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
             <Logo />
           </a>
           <div className="flex flex-wrap space-x-20 items-center justify-end">
-            <li>
+            <li className="hover:text-red-800 cursor-pointer">
               Home
             </li>
-            <li>
+            <li className="hover:text-red-800 cursor-pointer">
               Nosotros
             </li>
-            <li>
+            <li className="hover:text-red-800 cursor-pointer">
               Contacto
             </li>
-            <LandingButton className="text-gray-900 ">
+            <LandingButton className="text-gray-900">
               Inicia Sesión
             </LandingButton>
             <LandingButton className="bg-gray-900 text-gray-50">
               Regístrate
+              <RedirectArrow className="fill-current text-gray-50 w-5 h-5 ml-1"/>
             </LandingButton>
           </div>
         </ul>
