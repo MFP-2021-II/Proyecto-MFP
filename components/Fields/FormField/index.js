@@ -7,7 +7,7 @@ export default function FormField ({type ,upperText, innerText, children, classN
       <input 
         type={type} 
         placeholder={innerText} 
-        className={`${className} border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal`}/>
+        className={`${className} border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal transition duration-500 ease-in-out hover:shadow-md`}/>
       {children}
     </div>
   )
