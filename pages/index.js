@@ -16,12 +16,12 @@ export default function Home() {
           Viaja a cualquier lugar sin
           <br />preocuparte por el alojamiento 🏠
         </p>
-        <LandingButton className="bg-gray-900 text-gray-50 mt-10">
+        <LandingButton type="secondary" className="mt-10" toPath="/register">
           ¡Reservar ahora!
         </LandingButton>
       </section>
       <div className="flex flex-col justify-center">
-        <LandingIllustration/>
+        <LandingIllustration />
       </div>
     </main>
   )

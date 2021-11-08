@@ -4,6 +4,7 @@ import RedirectArrow from 'components/Icons/RedirectArrow'
 
 export default function LandingLayout () {
   //se modificó el classname add: abolute w-full para solucionar lo del espaciado 
+  //bg-gray-900 text-gray-50
   return(
     <>
       <nav className="absolute w-full text-lg font-sans font-bold bg-gray-100">
@@ -13,7 +14,7 @@ export default function LandingLayout () {
           </a>
           <div className="flex flex-wrap space-x-20 items-center justify-end">
             <li className="hover:text-red-800 cursor-pointer">
-              Home
+              Inicio
             </li>
             <li className="hover:text-red-800 cursor-pointer">
               Nosotros
@@ -21,10 +22,10 @@ export default function LandingLayout () {
             <li className="hover:text-red-800 cursor-pointer">
               Contacto
             </li>
-            <LandingButton className="text-gray-900">
+            <LandingButton type="primary" toPath="/login">
               Inicia Sesión
             </LandingButton>
-            <LandingButton className="bg-gray-900 text-gray-50">
+            <LandingButton type="secondary" toPath="/register">
               Regístrate
               <RedirectArrow className="fill-current text-gray-50 w-5 h-5 ml-1"/>
             </LandingButton>
