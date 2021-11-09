@@ -1,3 +1,7 @@
+const theme = {
+  primary: "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal transition duration-500 ease-in-out hover:shadow-md"
+}
+
 export default function TextInput({
   className = "",
   variant = "primary",
@@ -11,14 +15,13 @@ export default function TextInput({
 }) {
   return (
     <>
-      <label className="mt-4 mb-2" htmlFor={name}>
+      <label className="font-medium text-gray-500 pb-2" htmlFor={name}>
         {label}
       </label>
       <input
         id={name}
         disabled={disabled}
-        className={`w-full px-2 py-1 text-gray-700 bg-white shadow-sm border border-gray-300
-          rounded focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:bg-gray-200 disabled:text-gray-400
+        className={`${theme[variant]}
             ${
               errors &&
               errors?.message &&

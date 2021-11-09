@@ -55,21 +55,24 @@ export default function Login() {
           label="Correo electrónico"
           type="email"
           name="email"
+          variant="primary"
+          className="mb-5"
           register={register}
         />
         <TextInput
           label="Contraseña"
           type="password"
           name="password"
+          variant="primary"
           register={register}
         />
         <a
           href="/"
-          className="my-8 font-semibold text-gray-500 underline cursor-pointer"
+          className="my-8 font-semibold text-green-600 underline cursor-pointer"
         >
           ¿Olvidaste tu contraseña?
         </a>
-        <Button type="submit">Iniciar sesión</Button>
+        <Button type="submit" variant="quinary">Iniciar sesión</Button>
         {/* <NavButton variant="secondary" toPath="/" className="mb-4">
           Iniciar sesión
         </NavButton>
