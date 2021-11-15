@@ -5,6 +5,7 @@ import AuthLayout from "components/Layouts/AuthLayout";
 import AppLayout from "components/Layouts/AppLayout";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const AUTH_PAGES = {
   "/register": "Registro",
@@ -21,10 +22,11 @@ const APP_PAGES = {
   "/app": "App",
   "/app/announcement": "Mis anuncios",
   "/app/announcement/create": "Crear anuncios",
-  "/app/announcement/edit": "Editar anuncio"
+  "/app/announcement/edit": "Editar anuncio",
 };
 
 function MyApp({ Component, pageProps }) {
+  const [user, setUser] = useState(null);
   const { pathname } = useRouter();
   console.log(pathname);
 
@@ -58,10 +60,9 @@ function MyApp({ Component, pageProps }) {
       )}
       {APP_PAGES[pathname] && (
         <>
-          <AppLayout />
-          <Component {...pageProps} />
+          <AppLayout Component={Component} pageProps={pageProps} />
         </>
-      )}  
+      )}
     </>
   );
 }

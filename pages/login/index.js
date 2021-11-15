@@ -16,7 +16,7 @@ export default function Login() {
   const onSubmit = (data) => {
     console.log(data);
     window
-      .fetch("http://localhost:3001/api/users/login", {
+      .fetch("http://localhost:3001/api/usuarios/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function Login() {
           throw new Error(data.message);
         }
         console.log(data);
-        window.localStorage.setItem("user", JSON.stringify(data.user));
+        window.localStorage.setItem("user", JSON.stringify(data));
         router.push("/app");
       })
       .catch((err) => console.error(err));
@@ -54,7 +54,7 @@ export default function Login() {
         <TextInput
           label="Correo electrónico"
           type="email"
-          name="email"
+          name="correo"
           variant="primary"
           className="mb-5"
           register={register}
@@ -62,7 +62,7 @@ export default function Login() {
         <TextInput
           label="Contraseña"
           type="password"
-          name="password"
+          name="contraseña"
           variant="primary"
           register={register}
         />
@@ -72,13 +72,19 @@ export default function Login() {
         >
           ¿Olvidaste tu contraseña?
         </a>
-        <Button type="submit" variant="quinary">Iniciar sesión</Button>
-        {/* <NavButton variant="secondary" toPath="/" className="mb-4">
+        <Button type="submit" variant="quinary">
           Iniciar sesión
-        </NavButton>
-        <NavButton variant="primary" toPath="/register">
-          Crear una cuenta
-        </NavButton> */}
+        </Button>
+
+        <div className="my-8 font-semibold">
+          <span className="text-gray-500">¿Aun no tienes una cuenta?{` `}</span>
+          <a
+            href="/register"
+            className="font-semibold text-green-600 underline cursor-pointer"
+          >
+            Regístrate
+          </a>
+        </div>
       </form>
       <Sample></Sample>
     </>

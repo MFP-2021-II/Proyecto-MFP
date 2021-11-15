@@ -1,9 +1,6 @@
 import Logo from "components/Icons/Logo";
-import FormField from "components/Fields/FormField";
-import NavButton from "components/Buttons/NavButton";
 import Sample from "components/InfoBoxes/Sample";
-import VisibilityOn from "components/Icons/VisibilityOn";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "components/Buttons/Button";
 import TextInput from "ui/TextInput";
@@ -15,9 +12,8 @@ export default function Register() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
     window
-      .fetch("http://localhost:3001/api/users/register", {
+      .fetch("http://localhost:3001/api/usuarios/registro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,9 +21,8 @@ export default function Register() {
         body: JSON.stringify(data),
       })
       .then((res) => res.json())
-      .then((data) => {
-        window.localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/app");
+      .then(() => {
+        router.push("/login");
       })
       .catch((err) => console.error(err));
   };
@@ -50,26 +45,26 @@ export default function Register() {
         <span className="mb-10 text-2xl font-semibold">Crear una cuenta</span>
         <div className="flex flex-row flex-wrap justify-between mb-5">
           <div className="flex flex-col">
-            <TextInput 
+            <TextInput
               label="Nombre"
-              name="firstName" 
+              name="nombre"
               variant="primary"
-              register={register} 
+              register={register}
             />
           </div>
           <div className="flex flex-col">
-            <TextInput 
-              label="Apellido" 
-              name="lastName"
-              variant="primary" 
-              register={register} 
+            <TextInput
+              label="Apellidos"
+              name="apellidos"
+              variant="primary"
+              register={register}
             />
           </div>
         </div>
         <TextInput
           label="Correo electrónico"
           type="email"
-          name="email"
+          name="correo"
           variant="primary"
           className="mb-5"
           register={register}
@@ -77,7 +72,7 @@ export default function Register() {
         <TextInput
           label="Contraseña"
           type="password"
-          name="password"
+          name="contraseña"
           variant="primary"
           register={register}
         />
@@ -90,7 +85,9 @@ export default function Register() {
             Inicia sesión
           </a>
         </div>
-        <Button type="submit" variant="quinary">Registrarse</Button>
+        <Button type="submit" variant="quinary">
+          Registrarse
+        </Button>
         {/* <NavButton variant="secondary" type="submit" toPath="/register">
           Registrarse
         </NavButton> */}
