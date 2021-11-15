@@ -19,6 +19,9 @@ const LANDING_PAGES = {
 
 const APP_PAGES = {
   "/app": "App",
+  "/app/announcement": "Mis anuncios",
+  "/app/announcement/create": "Crear anuncios",
+  "/app/announcement/edit": "Editar anuncio"
 };
 
 function MyApp({ Component, pageProps }) {

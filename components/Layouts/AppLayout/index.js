@@ -3,7 +3,6 @@ import Button from "components/Buttons/Button";
 import TextInputBrowse from 'ui/TextInputBrowse';
 import User from 'components/Icons/User';
 import ArrowDown from 'components/Icons/ArrowDown';
-import House from 'components/Icons/House';
 import Filter from 'components/Icons/Filter';
 import Search from 'components/Icons/Search';
 import IconButton from 'components/Buttons/IconButton';
@@ -60,7 +59,7 @@ export default function AppLayout () {
               </div>
             </div>
             <i className="pl-2 cursor-pointer" onClick={()=>setOpen(!open)}>
-              <ArrowDown />
+              <ArrowDown className={`${open?"transition duration-300":"transition duration-300 transform rotate-180"}`}/>
             </i>
             <Dropdown open={open}>
               <DropdownListItem className={`lg:hidden ${click?"hidden":""}`} onClick={()=>setClick(true)}>
@@ -68,11 +67,15 @@ export default function AppLayout () {
               </DropdownListItem>
               {
                 click && (
-                  <LinkedDropdownListItem>
-                    Mis anuncios
-                  </LinkedDropdownListItem>
-                )
-              }
+                  <>
+                    <LinkedDropdownListItem toPath="/app/announcement">
+                      Mis anuncios
+                    </LinkedDropdownListItem>
+                    <LinkedDropdownListItem toPath="/app/announcement/create">
+                      Crear anuncio
+                    </LinkedDropdownListItem>
+                  </>
+              )}
             </Dropdown>
           </div>
         </div>

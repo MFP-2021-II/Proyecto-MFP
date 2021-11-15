@@ -85,10 +85,6 @@ export default function App() {
       price: "50",
       rating: "4.1"
     }];
-  
-    // const [open, setOpen] = useState(false);
-
-    // const [click, setClick] = useState(false);
 
     //Prevent double click
     // document.addEventListener('mousedown', function (event) {
@@ -98,89 +94,6 @@ export default function App() {
     // }, false);
 
   return (
-    /*<div className="App">
-      <h1>Hola, estos son tus datos personales:</h1>
-      <ul>
-        <li>Nombre: {user?.firstName}</li>
-        <li>Apellido: {user?.lastName}</li>
-        <li>Email: {user?.email}</li>
-      </ul>
-      <div className="w-64">
-        <Button
-          onClick={() => {
-            window.localStorage.removeItem("user");
-            router.push("/login");
-          }}
-        >
-          Cerrar Sesión
-        </Button>
-      </div>
-    </div>
-    */
-    <>
-    {/* <nav className="absolute flex justify-center p-7 pr-10 w-full text-lg font-sans font-bold shadow-lg bg-[#FBEADC]">
-      <div className="w-full md:w-8/12 flex justify-between">
-        <a className="flex flex-row items-center transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
-          <Isotype className="w-11 h-11"/>
-          <span className="hidden md:flex">Homy.</span>
-        </a>
-        <div className="flex items-center">
-            <TextInputBrowse
-              label="Buscar..."
-              variant="primary"
-              className="hidden md:block md:w-3/4"
-            />
-            <IconButton className="md:hidden">
-              <Search className="fill-current text-gray-500"></Search>
-            </IconButton>
-            <IconButton>
-              <Filter className="fill-current text-gray-500"/>
-            </IconButton>
-
-        </div>
-        <div className="flex space-x-1 md:space-x-5">
-          <div className="space-x-10 hidden lg:flex items-center">
-            <Button variant="quaternary" className={`h-10 text-sm py-1 ${click?"hidden":""}`}  onClick={()=>setClick(true)}>
-              Vista <br />anfitrión
-            </Button>
-          </div>
-          <div className="flex flex-row items-center justify-center">
-            <div>
-              <User className="w-12 rounded-full border-solid border-[3px] border-red-700 mr-4"/>
-            </div>
-            <div className="flex flex-col ">
-              <span className="font-medium text-base truncate max-w-[90px]">
-                Railly Hugo Quispe
-              </span>
-              <div className="flex flex-row">
-                <Link href="#">
-                  <a className="font-normal text-base text-gray-500 cursor-pointer hover:underline">
-                    Perfil
-                  </a>
-                </Link>
-              </div>
-            </div>
-            <i className="pl-2 cursor-pointer" onClick={()=>setOpen(!open)}>
-              <ArrowDown />
-            </i>
-            <Dropdown open={open}>
-              <DropdownListItem className={`lg:hidden ${click?"hidden":""}`} onClick={()=>setClick(true)}>
-                Vista anfitrión
-              </DropdownListItem>
-              {
-                click && (
-                  <LinkedDropdownListItem>
-                    Mis anuncios
-                  </LinkedDropdownListItem>
-                )
-              }
-            </Dropdown>
-          </div>
-        </div>
-      </div>
-    </nav> */}
-          
-    
   <main className="pt-20 h-screen flex flex-col items-center justify-center">
     <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 mb-10">
       <div className="flex flex-row items-center">
@@ -203,6 +116,5 @@ export default function App() {
       ))}
     </div>
   </main>
-  </>
   );
 }
