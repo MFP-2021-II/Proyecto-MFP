@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function NavButton ({ children, variant, className, onClick }) {
   const types = {
     'primary': 'text-gray-900',

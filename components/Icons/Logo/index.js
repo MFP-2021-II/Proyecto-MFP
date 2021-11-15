@@ -1,4 +1,4 @@
-export default function Logo (props) {
+export default function Logo (props, className) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +6,7 @@ export default function Logo (props) {
       width="133"
       height="46"
       fill="none"
+      className={className}
       viewBox="0 0 264 119"
       {...props}
     >

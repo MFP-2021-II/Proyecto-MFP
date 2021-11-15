@@ -3,8 +3,8 @@ const theme = {
   cancel: "text-white bg-red-500 hover:bg-red-700",
   copy: "text-white bg-purple-500 hover:bg-purple-700",
   terciary: "text-white bg-green-500 hover:bg-green-700",
-  quaternary: 'text-gray-900 font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg',
-  quinary: 'bg-gray-900 text-gray-50 font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg',
+  quaternary: "text-gray-900 font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg",
+  quinary: "bg-gray-900 text-gray-50 font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg",
   white: "text-gray-700 bg-white hover:bg-gray-200 border-2 border-gray-200",
   light: "text-gray-700 bg-blue-100 hover:bg-blue-200 border-2 border-blue-200",
   outline:
@@ -35,9 +35,9 @@ export default function Button({
   return (
     <button
       disabled={disabled}
-      className={`w-full font-bold transition-colors flex justify-center items-center rounded shadow-md
-       ${className} ${sizes[size]}
-       ${theme[variant]}
+      className={`w-full font-bold flex justify-center items-center
+      ${className} ${sizes[size]}
+      ${theme[variant]}
       ${disabled && disabledStyle[variant]}`}
       {...props}
     >

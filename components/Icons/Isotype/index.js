@@ -1,4 +1,4 @@
-export default function Isotype (props) {
+export default function Isotype (props, className) {
   return(
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ export default function Isotype (props) {
       height="119"
       fill="none"
       viewBox="0 0 119 119"
+      className = {className}
       {...props}
     >
       <g filter="url(#filter0_f_11:34)">

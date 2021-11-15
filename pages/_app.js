@@ -2,6 +2,7 @@ import "tailwindcss/tailwind.css";
 import "styles/global.css";
 import LandingLayout from "components/Layouts/LandingLayout";
 import AuthLayout from "components/Layouts/AuthLayout";
+import AppLayout from "components/Layouts/AppLayout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -52,7 +53,12 @@ function MyApp({ Component, pageProps }) {
           </AuthLayout>
         </>
       )}
-      {APP_PAGES[pathname] && <Component {...pageProps} />}
+      {APP_PAGES[pathname] && (
+        <>
+          <AppLayout />
+          <Component {...pageProps} />
+        </>
+      )}  
     </>
   );
 }
