@@ -4,7 +4,7 @@ export default function AuthLayout ({ children, type }) {
     'Iniciar Sesion': 'bg-gradient-to-r from-green-600 to-yellow-100'
   }
   return(
-    <div className={`${types[type]} h-screen flex flex-row justify-between`}>
+    <div className={`${types[type]} h-screen flex flex-row lg:justify-between justify-center`}>
       {children}
     </div>  
   )

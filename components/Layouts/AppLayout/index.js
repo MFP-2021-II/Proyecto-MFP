@@ -72,7 +72,7 @@ export default function AppLayout({ Component, pageProps }) {
             </div>
             <div className="flex flex-row items-center justify-center">
               <div>
-                <User className="w-12 rounded-full border-solid border-[3px] border-red-700 mr-4" />
+                <User className="bg-[#FEAC4C] w-12 h-12 rounded-full border-solid border-[3px] border-red-700 mr-4" />
               </div>
               <div className="flex flex-col ">
                 <span title ={`${user?.data?.nombre} ${user?.data?.apellidos.split(" ")[0]}`} className="font-medium text-base truncate max-w-[90px]">
@@ -102,7 +102,7 @@ export default function AppLayout({ Component, pageProps }) {
                 >
                   Vista anfitrión
                 </DropdownListItem>
-                {click && (
+                {/* {click && (
                   <>
                     <LinkedDropdownListItem toPath="/app/announcement">
                       Mis anuncios
@@ -111,7 +111,7 @@ export default function AppLayout({ Component, pageProps }) {
                       Crear anuncio
                     </LinkedDropdownListItem>
                   </>
-                )}
+                )} */}
               </Dropdown>
             </div>
           </div>

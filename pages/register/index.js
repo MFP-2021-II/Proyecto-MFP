@@ -5,9 +5,13 @@ import { useForm } from "react-hook-form";
 import Button from "components/Buttons/Button";
 import TextInput from "ui/TextInput";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import VisibilityOn from "components/Icons/VisibilityOn";
+import VisibilityOff from "components/Icons/VisibilityOff";
 
 export default function Register() {
   const router = useRouter();
+  const [visible, setVisible] = useState(false);
   const [user, setUser] = useState(null);
   const { register, handleSubmit } = useForm();
 
@@ -37,14 +41,16 @@ export default function Register() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center w-6/12 px-48 bg-white pb-14"
+        className="flex flex-col justify-center px-10 lg:px-20 xl:px-28 2xl:px-48 bg-white pb-5 xl:pb-14 mt-16 mb-16 sm:mt-32 sm:mb-32 w-10/12 sm:max-w-lg lg:w-8/12 rounded-xl lg:rounded-none lg:m-0 xl:min-w-[38%]"
       >
-        <div className="flex flex-row justify-center pr-4 mb-7">
-          <Logo className="w-56 h-32" />
+        <div className="flex flex-row justify-center pr-4 mb-2 lg:mb-10 transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
+          <Link href="/" passHref>
+            <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
+          </Link>
         </div>
-        <span className="mb-10 text-2xl font-semibold">Crear una cuenta</span>
+        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">Crear una cuenta</span>
         <div className="flex flex-row flex-wrap justify-between mb-5">
-          <div className="flex flex-col">
+          <div className="flex flex-col max-w-[45%]">
             <TextInput
               label="Nombre"
               name="nombre"
@@ -52,7 +58,7 @@ export default function Register() {
               register={register}
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col max-w-[45%]">
             <TextInput
               label="Apellidos"
               name="apellidos"
@@ -69,14 +75,27 @@ export default function Register() {
           className="mb-5"
           register={register}
         />
-        <TextInput
-          label="Contraseña"
-          type="password"
-          name="contraseña"
-          variant="primary"
-          register={register}
-        />
-        <div className="my-8 font-semibold">
+        <div className="flex flex-col justify-center relative">
+          <TextInput
+            label="Contraseña"
+            type={!visible ? "password":"text"}
+            name="contraseña"
+            variant="primary"
+            register={register}
+          />
+          {!visible ? (
+              <VisibilityOn 
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+            ):(
+              <VisibilityOff 
+                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+                onClick={() => setVisible(!visible)}
+              />
+          )}
+        </div>
+        <div className="text-sm md:text-base my-2 sm:my-5 lg:my-8 font-semibold">
           <span className="text-gray-500">¿Ya tienes una cuenta?{` `}</span>
           <a
             href="/login"
