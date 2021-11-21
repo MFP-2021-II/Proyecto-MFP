@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link' 
 
 export default function LandingButton ({ children, toPath, variant, className, type }) {
   const types = {
