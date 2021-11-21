@@ -45,7 +45,7 @@ export default function Login() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center w-6/12 px-48 bg-white pb-14"
+        className="flex flex-col justify-center w-6/12 px-48 bg-white pb-14 absolute lg:relative"
       >
         <div className="flex flex-row justify-center pr-4 mb-7">
           <Logo className="w-56 h-32" />

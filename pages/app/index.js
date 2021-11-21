@@ -87,7 +87,7 @@ export default function App({ user }) {
   ];
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
+    <main className="h-almost-screen flex flex-col items-center justify-center">
       <div className="w-11/12 mb-10 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
           <i>

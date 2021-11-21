@@ -10,7 +10,7 @@ import Isotype from "components/Icons/Isotype";
 import Dropdown from "components/Dropdown";
 import DropdownListItem from "ui/DropdownListItem";
 import LinkedDropdownListItem from "ui/LinkedDropdownListItem";
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function AppLayout({ Component, pageProps }) {
@@ -54,7 +54,7 @@ export default function AppLayout({ Component, pageProps }) {
             <div className="items-center hidden space-x-10 lg:flex">
               {pathname === "/app/announcement" ? (
                 <Button
-                  variant="quaternary"
+                  variant="quinary"
                   className="h-10 py-1 text-sm"
                   onClick={() => router.push("/app/")}
                 >
@@ -75,7 +75,7 @@ export default function AppLayout({ Component, pageProps }) {
                 <User className="w-12 rounded-full border-solid border-[3px] border-red-700 mr-4" />
               </div>
               <div className="flex flex-col ">
-                <span className="font-medium text-base truncate max-w-[90px]">
+                <span title ={`${user?.data?.nombre} ${user?.data?.apellidos.split(" ")[0]}`} className="font-medium text-base truncate max-w-[90px]">
                   {user?.data?.nombre} {user?.data?.apellidos.split(" ")[0]}
                 </span>
                 <div className="flex flex-row">

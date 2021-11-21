@@ -5,7 +5,7 @@ import Menu from 'components/Icons/Menu'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export default function LandingLayout () {
+export default function LandingLayout ({ children }) {
   //se modificó el classname add: abolute w-full para solucionar lo del espaciado 
   //bg-gray-900 text-gray-50
   const router = useRouter();
@@ -17,13 +17,13 @@ export default function LandingLayout () {
 
   return(
     <>
-      <nav className={`absolute flex justify-between p-7 pr-10 w-full text-lg font-sans font-bold shadow-lg  ${current_page("/")==="active" ? type["home_color"] : type["rem_color"] }`}>
+      <nav className={`flex justify-between p-7 pr-10 w-full text-lg font-sans font-bold shadow-lg  ${current_page("/")==="active" ? type["home_color"] : type["rem_color"] }`}>
         <a className="flex items-center transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
           <Logo />
         </a>
         <div className="flex flex-row justify-center pr-4">
           <ul className="flex items-center lg:pr-20 pr-0">
-            <div className="flex-wrap space-x-20 items-center justify-end hidden md:flex">
+            <div className="flex-wrap space-x-10 lg:space-x-12 xl:space-x-28 items-center justify-end hidden md:flex">
               <li>
               <Link href="/">
                 <a className="hover:text-red-800 cursor-pointer">
@@ -34,7 +34,7 @@ export default function LandingLayout () {
               <li>
               <Link href="/about-us">
                   <a className="hover:text-red-800 cursor-pointer">
-                    Nosostros
+                    Nosotros
                   </a>
                 </Link>
               </li>
@@ -61,6 +61,7 @@ export default function LandingLayout () {
           <Menu />
         </a>
       </nav>
+      {children}
     </>
   )
 }

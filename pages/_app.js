@@ -47,8 +47,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {LANDING_PAGES[pathname] && (
         <>
-          <LandingLayout />
-          <Component {...pageProps} />
+          <LandingLayout>
+            <Component {...pageProps} />
+          </LandingLayout>
         </>
       )}
       {AUTH_PAGES[pathname] && (
@@ -59,9 +60,7 @@ function MyApp({ Component, pageProps }) {
         </>
       )}
       {APP_PAGES[pathname] && (
-        <>
-          <AppLayout Component={Component} pageProps={pageProps} />
-        </>
+        <AppLayout Component={Component} pageProps={pageProps} />
       )}
     </>
   );
