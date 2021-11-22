@@ -175,9 +175,9 @@ export default function CreateAnnouncement({ user }) {
             register={register}
           />
         </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col justify-end relative">
+        <div className="flex flex-row">
+          <section className="flex items-center justify-between relative">
+            <div className="flex flex-col justify-end">
               <TextInput 
                 label="Subir imágenes"
                 name="name"
@@ -186,52 +186,79 @@ export default function CreateAnnouncement({ user }) {
                 register={register}
               />
               <input
-                className="bg-red-900 absolute top-0 w-64 px-4 py-3 my-2 text-black border cursor-pointer"
+                className="opacity-0 bg-red-900 absolute w-17 h-10 px-4 text-black border cursor-pointer flex flex-wrap text-[0.6rem]"
                 type="file"
                 name="file"
                 {...register("file")}
                 onChange={(e) => handleFileChange(e, "file", setFileImage)}
               />
             </div>
-            {/* info de subida */}
-          </div>
-          <div>
-
-          </div>
-
-
-        </div>
-          
-          <span className="w-64 px-4 py-4 my-2 text-center bg-black border border-green-500 rounded-full text-gray-50">
-            Subir imagen
-          </span>
-          {fileImage && (
-            <span className="text-sm text-gray-300">
-              {`${fileImage.name} (${Math.round(fileImage.size / 1024)} KB)`}
+            <span className="absolute w-17 h-7 px-4 bottom-[0.5%]  my-2 text-center bg-black rounded-lg text-gray-50 ">
+              Subir
             </span>
-          )}
-        <Select
-          label="Tipo de alojamiento"
-          options={tipoAlojamientos.map((el) => ({
-            value: el?.id,
-            label: el?.descripcion,
-          }))}
-          disabled={false}
-          {...register("id_tipo_alojamiento")}
-        />
-
-        <TextInput
-          label="Nro de huéspedes"
-          name="huespedes"
-          register={register}
-        />
-        <TextInput
-          label="Nro de habitaciones"
-          name="habitaciones"
-          register={register}
-        />
-        <TextInput label="Nro de baños" name="baños" register={register} />
-        <TextInput label="Precio (S/.)" name="precio" register={register} />
+            <div className="">
+              {fileImage && (
+                <span className="text-sm text-gray-300">
+                  {`${fileImage.name} (${Math.round(fileImage.size / 1024)} KB)`}
+                </span>
+              )}
+            </div>
+          </section>
+          <div className="flex flex-row border-l-2">
+            <div className="flex flex-col pl-4">
+              <Select
+                label="Tipo de alojamiento"
+                options={tipoAlojamientos.map((el) => ({
+                  value: el?.id,
+                  label: el?.descripcion,
+                }))}
+                disabled={false}
+                {...register("id_tipo_alojamiento")}
+              />
+              <TextInput
+                label="Nro de huéspedes"
+                name="huespedes"
+                register={register}
+              />
+              <TextInput
+                label="Nro de habitaciones"
+                name="habitaciones"
+                register={register}
+              />
+            </div>
+            <section className="p-4">
+              <div>
+                <div className="flex flex-col">
+                  <span>Facilidades</span>
+                  <span>
+                    Piscina
+                    <input type="checkbox" />
+                  </span>
+                  <span>
+                    Estacinamiento
+                    <input type="checkbox"/>
+                  </span>
+                  <span>
+                    Jaccuzi
+                    <input type="checkbox"/>
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col">
+              <TextInput 
+                label="Nro de baños" 
+                name="baños" 
+                register={register} 
+              />
+              <TextInput 
+                label="Precio (S/.)" 
+                name="precio" 
+                register={register} 
+              />
+              </div>
+            </section>
+          </div>
+        </div>
         <label className="flex flex-col font-semibold">
           Descripcion
           <textarea
