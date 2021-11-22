@@ -8,7 +8,7 @@ export default function LandingButton ({ children, toPath, variant, className, t
   
   return(
     <Link href={toPath}>
-      <button type={type} className={`${types[variant]} font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg ${className}`}>
+      <button type={type} className={`${types[variant]} font-bold rounded-md border-solid border-2 border-gray-900 px-9 py-2 transition duration-500 ease-in-out hover:scale-[101%] hover:shadow-lg ${className}`}>
         <a className="flex flex-row items-center justify-center">{children}</a>
       </button>
     </Link>  

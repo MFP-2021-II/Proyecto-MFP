@@ -27,38 +27,18 @@ export default function Announcement({ user }) {
 
   const test = [
     {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
+      imagen: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      name: "Casa1"
     },
     {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
+      imagen: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      name: "Casa1"
+    }
   ];
 
   return (
-    <main className="flex flex-col items-center justify-center ">
-      <div className="flex justify-between w-11/12 mb-10 md:w-4/6 lg:w-5/6 xl:w-8/12">
+    <main className="h-almost-screen flex flex-col items-center justify-center ">
+      <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
           <i>
             <Ballot className="text-red-700 fill-current" />
@@ -93,6 +73,15 @@ export default function Announcement({ user }) {
               rating="4.1"
             />
           ))}
+          {/* {
+            test.map((valor) => (
+              <AdCard
+                edit={true}
+                image={valor.imagen}
+                name={valor.name}
+              />
+            ))
+          } */}
       </div>
     </main>
   );

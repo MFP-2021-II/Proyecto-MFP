@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function Dropdown({ children, open }) {
+export default function Dropdown({ children, open, className }) {
   const router = useRouter();
   const styles = {
     not_style:
@@ -16,7 +16,7 @@ export default function Dropdown({ children, open }) {
     <div
       className={`fixed right-0 md:right-[18vmax] top-[98px] w-full mt-2 rounded-md shadow-lg md:w-48 ${
         open ? "" : "hidden"
-      }`}
+      } ${className}`}
     >
       <div className="flex flex-col items-center px-2 py-2 bg-white rounded-md shadow">
         {children}

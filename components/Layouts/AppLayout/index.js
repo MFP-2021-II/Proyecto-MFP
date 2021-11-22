@@ -37,19 +37,7 @@ export default function AppLayout({ Component, pageProps }) {
             <Isotype className="w-11 h-11" />
             <span className="hidden md:flex">Homy.</span>
           </a>
-          <div className="flex items-center">
-            <TextInputBrowse
-              label="Buscar..."
-              variant="primary"
-              className="hidden md:block md:w-3/4"
-            />
-            <IconButton className="md:hidden">
-              <Search className="text-gray-500 fill-current"></Search>
-            </IconButton>
-            <IconButton>
-              <Filter className="text-gray-500 fill-current" />
-            </IconButton>
-          </div>
+          {/* barra de buscar */}
           <div className="flex space-x-1 md:space-x-5">
             <div className="items-center hidden space-x-10 lg:flex">
               {pathname === "/app/announcement" ? (
@@ -95,7 +83,7 @@ export default function AppLayout({ Component, pageProps }) {
                   }`}
                 />
               </i>
-              <Dropdown open={open}>
+              <Dropdown open={open} className="z-10">
                 <DropdownListItem
                   className={`lg:hidden ${click ? "hidden" : ""}`}
                   onClick={() => setClick(true)}

@@ -1,7 +1,10 @@
 import Button from "components/Buttons/Button";
 import router from "next/router";
 import AdCard from "components/Card/AdCard";
-
+import IconButton from "components/Buttons/IconButton";
+import Search from "components/Icons/Search";
+import Filter from "components/Icons/Filter";
+import TextInputBrowse from "ui/TextInputBrowse";
 import House from "components/Icons/House";
 
 import { useEffect, useState } from "react";
@@ -88,12 +91,28 @@ export default function App({ user }) {
 
   return (
     <main className="h-almost-screen flex flex-col items-center justify-center">
-      <div className="w-11/12 mb-10 md:w-4/6 lg:w-5/6 xl:w-8/12">
+      <div className="w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12 flex justify-between">
         <div className="flex flex-row items-center">
           <i>
             <House className="text-red-700 fill-current" />
           </i>
           <span className="pl-2 text-xl font-bold text-left">Alojamientos</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex flex-row justify-end relative">
+            <TextInputBrowse
+              label="Buscar..."
+              variant="primary"
+              className="hidden md:block md:w-3/4 pl-9"
+              />
+            <Search className="hidden md:block absolute left-[28%] top-2 fill-current text-gray-500"/>
+          </div>
+          <IconButton className="md:hidden">
+            <Search className="text-gray-500 fill-current" />
+          </IconButton>
+          <IconButton >
+            <Filter className="text-gray-500 fill-current" />
+          </IconButton>
         </div>
         <div className="hidden">Espacio para filtros</div>
       </div>

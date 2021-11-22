@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "ui/Select";
 import TextInput from "ui/TextInput";
+import BorderlessInput from "ui/BorderlessInput";
 
 export default function CreateAnnouncement({ user }) {
   const { register, handleSubmit } = useForm();
@@ -141,34 +142,66 @@ export default function CreateAnnouncement({ user }) {
   }, [user]);
 
   return (
-    <main className="pt-10 mx-20">
-      <h1 className="mb-4 text-2xl font-bold text-center">Crear Anuncio</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
+    <main className="h-almost-screen flex flex-col items-center justify-center">
+      <div className="mb-5 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 border-b-2 pb-2">
+        <span className="text-xl font-bold text-left">Crear Anuncio</span>
+        {/* icono */}
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12">
+        {/* <input
           className="w-full p-2 text-2xl font-bold border-0 focus:outline-none"
           type="text"
           placeholder="Agrega un titulo"
           name="nombre"
           {...register("nombre")}
-        />
-        <input
+        /> */}
+        {/* <input
           className="w-full p-2 border-0 text-md focus:outline-none"
           type="text"
           placeholder="Agrega la localización"
           name="direccion"
           {...register("direccion")}
-        />
-        <label className="flex flex-col font-semibold">
-          Foto de portada:
-          <div className="relative">
-            <input
-              className="absolute top-0 right-0 w-64 px-4 py-3 my-2 text-black border border-gray-400 rounded-full opacity-0 cursor-pointer"
-              type="file"
-              name="file"
-              {...register("file")}
-              onChange={(e) => handleFileChange(e, "file", setFileImage)}
-            />
+        /> */}
+        <div className="flex flex-col space-y-1">
+          <BorderlessInput 
+            label="Agrega un título"
+            name="nombre"
+            register={register}
+          />
+          <BorderlessInput 
+            label="Agrega una localización"
+            name="direccion"
+            variant="secondary"
+            register={register}
+          />
+        </div>
+        <div>
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col justify-end relative">
+              <TextInput 
+                label="Subir imágenes"
+                name="name"
+                disabled= {true}
+                variant="inactive"
+                register={register}
+              />
+              <input
+                className="bg-red-900 absolute top-0 w-64 px-4 py-3 my-2 text-black border cursor-pointer"
+                type="file"
+                name="file"
+                {...register("file")}
+                onChange={(e) => handleFileChange(e, "file", setFileImage)}
+              />
+            </div>
+            {/* info de subida */}
           </div>
+          <div>
+
+          </div>
+
+
+        </div>
+          
           <span className="w-64 px-4 py-4 my-2 text-center bg-black border border-green-500 rounded-full text-gray-50">
             Subir imagen
           </span>
@@ -177,7 +210,6 @@ export default function CreateAnnouncement({ user }) {
               {`${fileImage.name} (${Math.round(fileImage.size / 1024)} KB)`}
             </span>
           )}
-        </label>
         <Select
           label="Tipo de alojamiento"
           options={tipoAlojamientos.map((el) => ({
