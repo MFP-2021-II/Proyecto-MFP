@@ -1,7 +1,9 @@
 const theme = {
-  primary: "w-full bg-gray-900 text-2xl font-bold border-0 rounded-lg py-1 outline-none font-medium transition duration-500 hover:bg-red-900 hover:shadow-lg",
-  secondary: "w-full bg-gray-900 text-md font-bold border-0 rounded-lg py-1 outline-none font-normal transition duration-500 hover:bg-gray-900 hover:shadow-lg"
-}
+  primary:
+    "w-full bg-gray-100 text-2xl font-bold border-0 rounded-lg py-1 outline-none font-medium transition duration-500 hover:shadow-lg",
+  secondary:
+    "w-full bg-gray-100 text-md font-bold border-0 rounded-lg py-1 outline-none font-normal transition duration-500 hover:bg-gray-900 hover:shadow-lg",
+};
 
 export default function BorderlessInput({
   className = "",

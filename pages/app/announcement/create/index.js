@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import Select from "ui/Select";
 import TextInput from "ui/TextInput";
 import BorderlessInput from "ui/BorderlessInput";
+import { useRouter } from "next/router";
 
 export default function CreateAnnouncement({ user }) {
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
   const [file, setFile] = useState(null);
   const [fileImage, setFileImage] = useState(null);
@@ -16,114 +18,76 @@ export default function CreateAnnouncement({ user }) {
     register(field).onChange(e);
   };
 
-  const onSubmit = (data) => {
-    const dataAlojamiento = {
-      direccion: data.direccion,
-      id_tipo_alojamiento: data.id_tipo_alojamiento,
+  const toBase64 = async (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const onSubmit = async (data) => {
+    const fileBase64 = await toBase64(data.file[0]);
+    const newFileBase64 = fileBase64.split("data:image/jpeg;base64,")[1];
+    console.log(newFileBase64);
+
+    const formData = {
+      alojamiento: {
+        direccion: data.direccion,
+        id_tipo_alojamiento: +data.id_tipo_alojamiento,
+      },
+      anuncio: {
+        descripcion: data.descripcion,
+        precio: data.precio,
+        nombre: data.nombre,
+      },
+      caracteristicas: [
+        {
+          descripcion: "Huespedes",
+          cantidad: data.huespedes,
+        },
+        {
+          descripcion: "Habitaciones",
+          cantidad: data.habitaciones,
+        },
+        {
+          descripcion: "Baños",
+          cantidad: data.baños,
+        },
+        {
+          descripcion: "Piscina",
+          cantidad: +data.piscina,
+        },
+        {
+          descripcion: "Estacionamiento",
+          cantidad: +data.estacionamiento,
+        },
+        {
+          descripcion: "Jaccuzi",
+          cantidad: +data.jaccuzi,
+        },
+      ],
+      imagen: newFileBase64,
     };
 
-    const dataCaracteristicas = [
-      {
-        descripcion: "Baños",
-        cantidad: data["baños"],
-        id_alojamiento: data.id_alojamiento,
-      },
-      {
-        descripcion: "Habitaciones",
-        cantidad: data.habitaciones,
-        id_alojamiento: data.id_alojamiento,
-      },
-      {
-        descripcion: "Huespedes",
-        cantidad: data.huespedes,
-        id_alojamiento: data.id_alojamiento,
-      },
-    ];
+    console.log(formData);
 
-    const dataAnuncios = {
-      descripcion: data.descripcion,
-      precio: data.precio,
-      nombre: data.nombre,
-      id_alojamiento: data.id_alojamiento,
-    };
-
-    handleCreateAlojamiento(dataAlojamiento)
-      .then((res) => {
-        const id_alojamiento = res.data.id_alojamiento;
-        handleCreateCaracteristicas(dataCaracteristicas, id_alojamiento)
-          .then((res) => {
-            handleCreateAnuncio(dataAnuncios, id_alojamiento).catch((err) => {
-              console.log(err);
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    window
+      .fetch("http://localhost:3001/api/alojamiento", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify(formData),
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // const dataImagenes = {
-  //   imagen: data.imagen,
-  //   id_anuncio: data.id_anuncio,
-  // }
-
-  const handleCreateAlojamiento = (data) => {
-    return fetch("http://localhost:3000/api/alojamiento", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify(data),
-    })
       .then((res) => res.json())
       .then((res) => {
+        router.push("/app/announcement");
         console.log(res);
-      });
-  };
-
-  const handleCreateCaracetiristica = (data) => {
-    return fetch("http://localhost:3000/api/caracteristicas", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-  };
-
-  const handleCreateAnuncio = (data) => {
-    return fetch("http://localhost:3000/api/anuncio", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
-  };
-
-  const handleCreateImagen = (data) => {
-    return fetch("http://localhost:3000/api/imagenes_anuncio", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -142,12 +106,15 @@ export default function CreateAnnouncement({ user }) {
   }, [user]);
 
   return (
-    <main className="h-almost-screen flex flex-col items-center justify-center">
-      <div className="mb-5 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 border-b-2 pb-2">
+    <main className="flex flex-col items-center justify-center h-almost-screen">
+      <div className="w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <span className="text-xl font-bold text-left">Crear Anuncio</span>
         {/* icono */}
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12"
+      >
         {/* <input
           className="w-full p-2 text-2xl font-bold border-0 focus:outline-none"
           type="text"
@@ -163,12 +130,12 @@ export default function CreateAnnouncement({ user }) {
           {...register("direccion")}
         /> */}
         <div className="flex flex-col space-y-1">
-          <BorderlessInput 
+          <BorderlessInput
             label="Agrega un título"
             name="nombre"
             register={register}
           />
-          <BorderlessInput 
+          <BorderlessInput
             label="Agrega una localización"
             name="direccion"
             variant="secondary"
@@ -176,30 +143,34 @@ export default function CreateAnnouncement({ user }) {
           />
         </div>
         <div className="flex flex-row">
-          <section className="flex items-center justify-between relative">
+          <section className="relative flex items-center justify-between">
             <div className="flex flex-col justify-end">
-              <TextInput 
+              <TextInput
                 label="Subir imágenes"
                 name="name"
-                disabled= {true}
+                disabled={true}
                 variant="inactive"
                 register={register}
               />
-              <input
-                className="opacity-0 bg-red-900 absolute w-17 h-10 px-4 text-black border cursor-pointer flex flex-wrap text-[0.6rem]"
-                type="file"
-                name="file"
-                {...register("file")}
-                onChange={(e) => handleFileChange(e, "file", setFileImage)}
-              />
+              <div className=" w-17 h-10 relative px-4 bottom-[0.5%]  my-2 text-center bg-black rounded-lg text-gray-50 ">
+                <input
+                  className="absolute opacity-0 bg-red-900 w-17 px-4 text-black border cursor-pointer flex flex-wrap text-[0.6rem]"
+                  type="file"
+                  name="file"
+                  {...register("file")}
+                  onChange={(e) => handleFileChange(e, "file", setFileImage)}
+                />
+                <span className="flex items-center justify-center h-10 px-4 cursor-pointer w-17 text-md">
+                  Subir
+                </span>
+              </div>
             </div>
-            <span className="absolute w-17 h-7 px-4 bottom-[0.5%]  my-2 text-center bg-black rounded-lg text-gray-50 ">
-              Subir
-            </span>
             <div className="">
               {fileImage && (
                 <span className="text-sm text-gray-300">
-                  {`${fileImage.name} (${Math.round(fileImage.size / 1024)} KB)`}
+                  {`${fileImage.name} (${Math.round(
+                    fileImage.size / 1024
+                  )} KB)`}
                 </span>
               )}
             </div>
@@ -232,29 +203,41 @@ export default function CreateAnnouncement({ user }) {
                   <span>Facilidades</span>
                   <span>
                     Piscina
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      name="piscina"
+                      {...register("piscina")}
+                    />
                   </span>
                   <span>
                     Estacinamiento
-                    <input type="checkbox"/>
+                    <input
+                      type="checkbox"
+                      name="estacionamiento"
+                      {...register("estacionamiento")}
+                    />
                   </span>
                   <span>
                     Jaccuzi
-                    <input type="checkbox"/>
+                    <input
+                      type="checkbox"
+                      name="jaccuzi"
+                      {...register("jaccuzi")}
+                    />
                   </span>
                 </div>
               </div>
               <div className="flex flex-col">
-              <TextInput 
-                label="Nro de baños" 
-                name="baños" 
-                register={register} 
-              />
-              <TextInput 
-                label="Precio (S/.)" 
-                name="precio" 
-                register={register} 
-              />
+                <TextInput
+                  label="Nro de baños"
+                  name="baños"
+                  register={register}
+                />
+                <TextInput
+                  label="Precio (S/.)"
+                  name="precio"
+                  register={register}
+                />
               </div>
             </section>
           </div>
