@@ -23,7 +23,7 @@ const Select = React.forwardRef(
     return (
       <>
         <label
-          className="mt-4 mb-2 font-semibold"
+          className="font-medium text-gray-500 pb-2"
           variant={variant}
           htmlFor={label}
         >

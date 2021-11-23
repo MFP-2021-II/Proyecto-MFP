@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 import Select from "ui/Select";
 import TextInput from "ui/TextInput";
 import BorderlessInput from "ui/BorderlessInput";
+import LandingButton from "components/Buttons/LandingButton";
+import NavButton from "components/Buttons/NavButton";
 import { useRouter } from "next/router";
+
 
 export default function CreateAnnouncement({ user }) {
   const router = useRouter();
@@ -113,7 +116,7 @@ export default function CreateAnnouncement({ user }) {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12"
+        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[70%]"
       >
         {/* <input
           className="w-full p-2 text-2xl font-bold border-0 focus:outline-none"
@@ -142,8 +145,8 @@ export default function CreateAnnouncement({ user }) {
             register={register}
           />
         </div>
-        <div className="flex flex-row">
-          <section className="relative flex items-center justify-between">
+        <section className="flex flex-row mt-5 h-[45%]">
+          <div className="relative flex items-center justify-center w-[28%]">
             <div className="flex flex-col justify-end">
               <TextInput
                 label="Subir imágenes"
@@ -174,9 +177,9 @@ export default function CreateAnnouncement({ user }) {
                 </span>
               )}
             </div>
-          </section>
-          <div className="flex flex-row border-l-2">
-            <div className="flex flex-col pl-4">
+          </div>
+          <div className="flex flex-row border-l-2 w-[72%] justify-around">
+            <div className="flex flex-col pl-4 justify-between">
               <Select
                 label="Tipo de alojamiento"
                 options={tipoAlojamientos.map((el) => ({
@@ -197,40 +200,48 @@ export default function CreateAnnouncement({ user }) {
                 register={register}
               />
             </div>
-            <section className="p-4">
+            <div className="justify-between w-56">
               <div>
                 <div className="flex flex-col">
-                  <span>Facilidades</span>
-                  <span>
-                    Piscina
-                    <input
-                      type="checkbox"
-                      name="piscina"
-                      {...register("piscina")}
-                    />
+                  <span className="font-medium text-gray-500 pb-2">
+                    Facilidades
                   </span>
-                  <span>
-                    Estacinamiento
-                    <input
-                      type="checkbox"
-                      name="estacionamiento"
-                      {...register("estacionamiento")}
-                    />
-                  </span>
-                  <span>
-                    Jaccuzi
-                    <input
-                      type="checkbox"
-                      name="jaccuzi"
-                      {...register("jaccuzi")}
-                    />
-                  </span>
+                  <div className="flex flex-row flex-wrap justify-between">
+                    <label id="piscina" className="pr-2">
+                      Piscina
+                      <input
+                        type="checkbox"
+                        name="piscina"
+                        className="ml-2"
+                        {...register("piscina")}
+                      />
+                    </label>
+                    <label id="Estacionamiento" className="pr-2">
+                      Estacinamiento
+                      <input
+                        type="checkbox"
+                        name="Estacionamiento"
+                        className="ml-2"
+                        {...register("estacionamiento")}
+                      />
+                    </label>
+                    <label id="Jaccuzi">
+                      Jaccuzi
+                      <input
+                        type="checkbox"
+                        name="Jaccuzi"
+                        className="ml-2"
+                        {...register("jaccuzi")}
+                      />
+                    </label>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col ">
                 <TextInput
                   label="Nro de baños"
                   name="baños"
+                  className="mb-2"
                   register={register}
                 />
                 <TextInput
@@ -239,22 +250,25 @@ export default function CreateAnnouncement({ user }) {
                   register={register}
                 />
               </div>
-            </section>
+            </div>
           </div>
-        </div>
-        <label className="flex flex-col font-semibold">
+        </section>
+        <label className="flex flex-col font-medium mb-2 text-gray-500">
           Descripcion
           <textarea
-            className="w-full h-24 p-2 border-2 text-md focus:outline-none "
+            className="w-full h-24 pt-2 border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none"
             {...register("descripcion")}
           ></textarea>
         </label>
-        <button
-          className="w-full p-2 text-2xl font-bold text-white bg-green-600 border-0 focus:outline-none"
-          type="submit"
-        >
-          Crear
-        </button>
+        <div className="flex flex-row justify-center w-full space-x-3 mt-5">
+          <NavButton type="submit" variant="quinary" className="w-40">
+            Crear
+          </NavButton>
+          <LandingButton toPath="/app/announcement" className="w-40">
+            Volver
+          </LandingButton>
+
+        </div>
       </form>
       {/* <span className="text-xs text-red-500">
         {errors?.file && errors?.file?.message}

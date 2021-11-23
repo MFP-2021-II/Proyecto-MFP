@@ -32,7 +32,7 @@ export default function BorderlessInput({
         {...props}
         {...register(name)}
       />
-      <p className="mt-1 text-sm font-semibold text-red-500">
+      <p className="hidden mt-1 text-sm font-semibold text-red-500">
         {errors && errors?.message}
       </p>
     </>
