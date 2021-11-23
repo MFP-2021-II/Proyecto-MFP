@@ -1,6 +1,6 @@
 import Star from "components/Icons/Star";
 import Edit from "components/Icons/Edit";
-import Close from "components/Icons/Close";
+import Delete from "components/Icons/Delete";
 import Link from "next/link";
 
 export default function AdCard({
@@ -47,21 +47,23 @@ export default function AdCard({
           )}
         </div>
         {edit ? (
-          <div className="flex flex-col pr-1">
+          <div className="flex flex-row pr-1">
             <Link href="/app/announcement/edit">
-              <span
-                className={`${text_size["m_text"]} flex flex-row justify-between hover:underline`}
+              <Edit className="flex items-center w-5 h-5 fill-current hover:text-blue-800" />
+              {/* <span
+                className={`${text_size["m_text"]} flex flex-row justify-between hover:underline hover:first:text-blue-700 hover:font-semibold`}
               >
                 Editar
                 <Edit className="flex items-center w-5 h-5" />
-              </span>
+              </span> */}
             </Link>
-            <span
-              className={`${text_size["m_text"]} flex flex-row justify-between hover:underline`}
+            <Delete className="flex items-center w-5 h-5 fill-current hover:text-red-800" />
+            {/* <span
+              className={`${text_size["m_text"]} flex flex-row justify-between hover:underline hover:text-red-600 hover:font-semibold`}
             >
               Eliminar
-              <Close className="flex items-center w-5 h-5" />
-            </span>
+              <Delete className="flex items-center w-5 h-5" />
+            </span> */}
           </div>
         ) : (
           <>

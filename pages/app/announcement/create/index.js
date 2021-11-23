@@ -116,7 +116,7 @@ export default function CreateAnnouncement({ user }) {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[70%]"
+        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[70%] px-[2%]"
       >
         {/* <input
           className="w-full p-2 text-2xl font-bold border-0 focus:outline-none"
@@ -146,7 +146,7 @@ export default function CreateAnnouncement({ user }) {
           />
         </div>
         <section className="flex flex-row mt-5 h-[45%]">
-          <div className="relative flex items-center justify-center w-[28%]">
+          <div className="relative flex flex-col items-center justify-center w-[28%]">
             <div className="flex flex-col justify-end">
               <TextInput
                 label="Subir imágenes"
@@ -168,9 +168,9 @@ export default function CreateAnnouncement({ user }) {
                 </span>
               </div>
             </div>
-            <div className="">
+            <div>
               {fileImage && (
-                <span className="text-sm text-gray-300">
+                <span className="text-sm text-gray-400 bg-gray-200 p-2 rounded-lg">
                   {`${fileImage.name} (${Math.round(
                     fileImage.size / 1024
                   )} KB)`}
@@ -179,29 +179,34 @@ export default function CreateAnnouncement({ user }) {
             </div>
           </div>
           <div className="flex flex-row border-l-2 w-[72%] justify-around">
-            <div className="flex flex-col pl-4 justify-between">
-              <Select
-                label="Tipo de alojamiento"
-                options={tipoAlojamientos.map((el) => ({
-                  value: el?.id,
-                  label: el?.descripcion,
-                }))}
-                disabled={false}
-                {...register("id_tipo_alojamiento")}
-              />
-              <TextInput
-                label="Nro de huéspedes"
-                name="huespedes"
-                register={register}
-              />
-              <TextInput
-                label="Nro de habitaciones"
-                name="habitaciones"
-                register={register}
-              />
-            </div>
-            <div className="justify-between w-56">
+            <div className="flex flex-col justify-between w-[28%]">
               <div>
+                <Select
+                  label="Tipo de alojamiento"
+                  options={tipoAlojamientos.map((el) => ({
+                    value: el?.id,
+                    label: el?.descripcion,
+                  }))}
+                  disabled={false}
+                  {...register("id_tipo_alojamiento")}
+                />
+              </div>
+              <div className="flex flex-col pb-2">
+                <TextInput
+                  label="Nro de huéspedes"
+                  name="huespedes"
+                  className="mb-2"
+                  register={register}
+                />
+                <TextInput
+                  label="Nro de habitaciones"
+                  name="habitaciones"
+                  register={register}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col justify-between w-56">
+              <div >
                 <div className="flex flex-col">
                   <span className="font-medium text-gray-500 pb-2">
                     Facilidades
@@ -237,7 +242,7 @@ export default function CreateAnnouncement({ user }) {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col ">
+              <div className="flex flex-col pb-2">
                 <TextInput
                   label="Nro de baños"
                   name="baños"
