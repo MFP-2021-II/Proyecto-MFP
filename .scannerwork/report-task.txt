@@ -1,0 +1,6 @@
+projectKey=Homy
+serverUrl=http://localhost:9000
+serverVersion=9.2.1.49989
+dashboardUrl=http://localhost:9000/dashboard?id=Homy
+ceTaskId=AX1o2TYA-3ZJjGQLeQOn
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX1o2TYA-3ZJjGQLeQOn
