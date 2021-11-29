@@ -12,7 +12,6 @@ import VisibilityOff from "components/Icons/VisibilityOff";
 export default function Register() {
   const router = useRouter();
   const [visible, setVisible] = useState(false);
-  const [user, setUser] = useState(null);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -48,7 +47,9 @@ export default function Register() {
             <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
           </Link>
         </div>
-        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">Crear una cuenta</span>
+        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">
+          Crear una cuenta
+        </span>
         <div className="flex flex-row flex-wrap justify-between mb-5">
           <div className="flex flex-col max-w-[45%]">
             <TextInput
@@ -78,21 +79,21 @@ export default function Register() {
         <div className="flex flex-col justify-center relative">
           <TextInput
             label="Contraseña"
-            type={!visible ? "password":"text"}
+            type={!visible ? "password" : "text"}
             name="contraseña"
             variant="primary"
             register={register}
           />
           {!visible ? (
-              <VisibilityOn 
-                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
-                onClick={() => setVisible(!visible)}
-              />
-            ):(
-              <VisibilityOff 
-                className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
-                onClick={() => setVisible(!visible)}
-              />
+            <VisibilityOn
+              className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+              onClick={() => setVisible(!visible)}
+            />
+          ) : (
+            <VisibilityOff
+              className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+              onClick={() => setVisible(!visible)}
+            />
           )}
         </div>
         <div className="text-sm md:text-base my-2 sm:my-5 lg:my-8 font-semibold">
@@ -107,9 +108,6 @@ export default function Register() {
         <Button type="submit" variant="quinary">
           Registrarse
         </Button>
-        {/* <NavButton variant="secondary" type="submit" toPath="/register">
-          Registrarse
-        </NavButton> */}
       </form>
       <Sample></Sample>
     </>

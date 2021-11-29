@@ -1,15 +1,10 @@
 import Link from "next/link";
 import Button from "components/Buttons/Button";
-import TextInputBrowse from "ui/TextInputBrowse";
 import User from "components/Icons/User";
 import ArrowDown from "components/Icons/ArrowDown";
-import Filter from "components/Icons/Filter";
-import Search from "components/Icons/Search";
-import IconButton from "components/Buttons/IconButton";
 import Isotype from "components/Icons/Isotype";
 import Dropdown from "components/Dropdown";
 import DropdownListItem from "ui/DropdownListItem";
-import LinkedDropdownListItem from "ui/LinkedDropdownListItem";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -20,10 +15,11 @@ export default function AppLayout({ Component, pageProps }) {
   const { pathname } = router;
   const [open, setOpen] = useState(false);
 
+  //Permite que no se pueda acceder al app desde la url sin estar logeado
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
+    const userFunction = localStorage.getItem("user");
+    if (userFunction) {
+      setUser(JSON.parse(userFunction));
     } else {
       router.push("/login");
     }
@@ -63,7 +59,12 @@ export default function AppLayout({ Component, pageProps }) {
                 <User className="bg-[#FEAC4C] w-12 h-12 rounded-full border-solid border-[3px] border-red-700 mr-4" />
               </div>
               <div className="flex flex-col ">
-                <span title ={`${user?.data?.nombre} ${user?.data?.apellidos.split(" ")[0]}`} className="font-medium text-base truncate max-w-[90px]">
+                <span
+                  title={`${user?.data?.nombre} ${
+                    user?.data?.apellidos.split(" ")[0]
+                  }`}
+                  className="font-medium text-base truncate max-w-[90px]"
+                >
                   {user?.data?.nombre} {user?.data?.apellidos.split(" ")[0]}
                 </span>
                 <div className="flex flex-row">
@@ -90,16 +91,6 @@ export default function AppLayout({ Component, pageProps }) {
                 >
                   Vista anfitrión
                 </DropdownListItem>
-                {/* {click && (
-                  <>
-                    <LinkedDropdownListItem toPath="/app/announcement">
-                      Mis anuncios
-                    </LinkedDropdownListItem>
-                    <LinkedDropdownListItem toPath="/app/announcement/create">
-                      Crear anuncio
-                    </LinkedDropdownListItem>
-                  </>
-                )} */}
               </Dropdown>
             </div>
           </div>

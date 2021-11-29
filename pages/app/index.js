@@ -1,5 +1,3 @@
-import Button from "components/Buttons/Button";
-import router from "next/router";
 import AdCard from "components/Card/AdCard";
 import IconButton from "components/Buttons/IconButton";
 import Search from "components/Icons/Search";
@@ -11,7 +9,6 @@ import { useEffect, useState } from "react";
 
 export default function App({ user }) {
   const [anuncios, setAnuncios] = useState([]);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -30,65 +27,6 @@ export default function App({ user }) {
     }
   }, [user]);
 
-  const test = [
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-    {
-      img: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1",
-      location: "Lima, Surco",
-      price: "50",
-      rating: "4.1",
-    },
-  ];
-
   return (
     <main className="h-almost-screen flex flex-col items-center justify-center">
       <div className="w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12 flex justify-between">
@@ -104,13 +42,13 @@ export default function App({ user }) {
               label="Buscar..."
               variant="primary"
               className="hidden md:block md:w-3/4 pl-9"
-              />
-            <Search className="hidden md:block absolute left-[28%] top-2 fill-current text-gray-500"/>
+            />
+            <Search className="hidden md:block absolute left-[28%] top-2 fill-current text-gray-500" />
           </div>
           <IconButton className="md:hidden">
             <Search className="text-gray-500 fill-current" />
           </IconButton>
-          <IconButton >
+          <IconButton>
             <Filter className="text-gray-500 fill-current" />
           </IconButton>
         </div>

@@ -25,17 +25,6 @@ export default function Announcement({ user }) {
     }
   }, [user]);
 
-  const test = [
-    {
-      imagen: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1"
-    },
-    {
-      imagen: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      name: "Casa1"
-    }
-  ];
-
   return (
     <main className="h-almost-screen flex flex-col items-center justify-center ">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
@@ -73,15 +62,6 @@ export default function Announcement({ user }) {
               rating="4.1"
             />
           ))}
-          {/* {
-            test.map((valor) => (
-              <AdCard
-                edit={true}
-                image={valor.imagen}
-                name={valor.name}
-              />
-            ))
-          } */}
       </div>
     </main>
   );

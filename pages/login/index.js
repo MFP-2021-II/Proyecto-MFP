@@ -1,17 +1,13 @@
 import Logo from "components/Icons/Logo";
-import FormField from "components/Fields/FormField";
-import NavButton from "components/Buttons/NavButton";
-import LandingButton from "components/Buttons/LandingButton";
 import Sample from "components/InfoBoxes/Sample";
 import Button from "components/Buttons/Button";
 import TextInput from "ui/TextInput";
-import Link from 'next/link';
+import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -29,12 +25,12 @@ export default function Login() {
         body: JSON.stringify(data),
       })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "Invalid email or password!") {
-          throw new Error(data.message);
+      .then((data_parsed) => {
+        if (data_parsed.message === "Invalid email or password!") {
+          throw new Error(data_parsed.message);
         }
-        console.log(data);
-        window.localStorage.setItem("user", JSON.stringify(data));
+        console.log(data_parsed);
+        window.localStorage.setItem("user", JSON.stringify(data_parsed));
         router.push("/app");
       })
       .catch((err) => console.error(err));
@@ -57,7 +53,9 @@ export default function Login() {
             <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
           </Link>
         </div>
-        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">Inicia sesión</span>
+        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">
+          Inicia sesión
+        </span>
         <TextInput
           label="Correo electrónico"
           type="email"
@@ -69,18 +67,18 @@ export default function Login() {
         <div className="flex flex-col justify-center relative">
           <TextInput
             label="Contraseña"
-            type={!visible ? "password":"text"}
+            type={!visible ? "password" : "text"}
             name="contraseña"
             variant="primary"
             register={register}
           />
           {!visible ? (
-            <VisibilityOn 
+            <VisibilityOn
               className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
               onClick={() => setVisible(!visible)}
             />
-            ):(
-            <VisibilityOff 
+          ) : (
+            <VisibilityOff
               className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
               onClick={() => setVisible(!visible)}
             />

@@ -7,11 +7,9 @@ import LandingButton from "components/Buttons/LandingButton";
 import NavButton from "components/Buttons/NavButton";
 import { useRouter } from "next/router";
 
-
 export default function CreateAnnouncement({ user }) {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
-  const [file, setFile] = useState(null);
   const [fileImage, setFileImage] = useState(null);
   const [tipoAlojamientos, setTipoAlojamientos] = useState([]);
 
@@ -118,20 +116,6 @@ export default function CreateAnnouncement({ user }) {
         onSubmit={handleSubmit(onSubmit)}
         className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[70%] px-[2%]"
       >
-        {/* <input
-          className="w-full p-2 text-2xl font-bold border-0 focus:outline-none"
-          type="text"
-          placeholder="Agrega un titulo"
-          name="nombre"
-          {...register("nombre")}
-        /> */}
-        {/* <input
-          className="w-full p-2 border-0 text-md focus:outline-none"
-          type="text"
-          placeholder="Agrega la localización"
-          name="direccion"
-          {...register("direccion")}
-        /> */}
         <div className="flex flex-col space-y-1">
           <BorderlessInput
             label="Agrega un título"
@@ -206,7 +190,7 @@ export default function CreateAnnouncement({ user }) {
               </div>
             </div>
             <div className="flex flex-col justify-between w-56">
-              <div >
+              <div>
                 <div className="flex flex-col">
                   <span className="font-medium text-gray-500 pb-2">
                     Facilidades
@@ -272,7 +256,6 @@ export default function CreateAnnouncement({ user }) {
           <LandingButton toPath="/app/announcement" className="w-40">
             Volver
           </LandingButton>
-
         </div>
       </form>
       {/* <span className="text-xs text-red-500">

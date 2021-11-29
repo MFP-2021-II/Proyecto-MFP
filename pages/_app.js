@@ -5,7 +5,6 @@ import AuthLayout from "components/Layouts/AuthLayout";
 import AppLayout from "components/Layouts/AppLayout";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 const AUTH_PAGES = {
   "/register": "Registro",
@@ -26,7 +25,6 @@ const APP_PAGES = {
 };
 
 function MyApp({ Component, pageProps }) {
-  const [user, setUser] = useState(null);
   const { pathname } = useRouter();
   console.log(pathname);
 
