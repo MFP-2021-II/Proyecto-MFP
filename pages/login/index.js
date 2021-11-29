@@ -25,12 +25,12 @@ export default function Login() {
         body: JSON.stringify(data),
       })
       .then((res) => res.json())
-      .then((data_parsed) => {
-        if (data_parsed.message === "Invalid email or password!") {
-          throw new Error(data_parsed.message);
+      .then((parsedData) => {
+        if (parsedData.message === "Invalid email or password!") {
+          throw new Error(parsedData.message);
         }
-        console.log(data_parsed);
-        window.localStorage.setItem("user", JSON.stringify(data_parsed));
+        console.log(parsedData);
+        window.localStorage.setItem("user", JSON.stringify(parsedData));
         router.push("/app");
       })
       .catch((err) => console.error(err));
