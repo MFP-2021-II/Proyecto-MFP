@@ -1,4 +1,9 @@
-export default function Close (props) {
+/**
+ * Icono de cerrar
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Close
+ */
+export default function Close(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

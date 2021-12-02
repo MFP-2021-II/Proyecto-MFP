@@ -1,5 +1,10 @@
-export default function LandingIllustration (props) {
-  return(
+/**
+ * Illustracion del landing page
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} LandingIllustration
+ */
+export default function LandingIllustration(props) {
+  return (
     <svg
       width={886}
       height={627}
@@ -65,5 +70,5 @@ export default function LandingIllustration (props) {
         />
       </defs>
     </svg>
-  )
+  );
 }

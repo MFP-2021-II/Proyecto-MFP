@@ -1,4 +1,9 @@
-export default function Search (props) {
+/**
+ * Icono de buscar
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Search
+ */
+export default function Search(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

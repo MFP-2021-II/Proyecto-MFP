@@ -1,4 +1,9 @@
-export default function Menu (props) {
+/**
+ * Icono de menu
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Menu
+ */
+export default function Menu(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,5 +37,5 @@ export default function Menu (props) {
         rx="3"
       ></rect>
     </svg>
-  )
+  );
 }

@@ -3,6 +3,16 @@ import Edit from "components/Icons/Edit";
 import Delete from "components/Icons/Delete";
 import Link from "next/link";
 
+/**
+ * Compontente para mostrar una tarjeta de anuncio
+ * @param {string} image Imagen del anuncio
+ * @param {string} name Nombre del anuncio
+ * @param {string} location Ubicacion del anuncio
+ * @param {string} price Precio del anuncio
+ * @param {string} rating Valoracion del anuncio
+ * @param {string} edit Propiedad para establecer tipo de la tarjeta
+ * @returns {JSX} AdCard
+ */
 export default function AdCard({
   image,
   name,
@@ -11,7 +21,15 @@ export default function AdCard({
   rating,
   edit = false,
 }) {
+  /**
+   * Agrega animación a la tarjeta
+   * @type {string}
+   */
   const event_card = "transition duration-500 ease-in-out hover:shadow-md";
+  /**
+   * Agrega estilos responsive a las tarjetas
+   * @type {{u_text: string, m_text: string, b_text: string, r_text: string}}
+   */
   const text_size = {
     u_text: "font-bold text-sm md:text-base",
     m_text: "font-normal text-gray-400 text-xs md:text-sm",

@@ -1,9 +1,26 @@
 import React from "react";
 
+/**
+ * Define los estilos de select.
+ * @type {{styles: string}}
+ */
 const styles = {
   disabled: "disabled:bg-gray-200 text-gray-500",
 };
-
+/**
+ * Componente atomico de input de tipo select.
+ * @param {string} className Clases adicionales para el componente.
+ * @param {object} option Propiedades del componente.
+ * @param {string} label Texto del label
+ * @param {string} value Valor del input
+ * @param {string} name Nombre del input
+ * @param {object} errors Errores del input
+ * @param {string} variant Tipo de estilo del input
+ * @param {boolean} disabled Determina si el input esta deshabilitado
+ * @param {onChange} onChange Funcion para cambiar el valor del input
+ * @param {onBlur} onBlur Funcion para cambiar el valor del input
+ * @returns {JSX} Select
+ */
 const Select = React.forwardRef(
   (
     {

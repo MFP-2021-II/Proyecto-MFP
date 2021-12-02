@@ -4,12 +4,22 @@ import Search from "components/Icons/Search";
 import Filter from "components/Icons/Filter";
 import TextInputBrowse from "ui/TextInputBrowse";
 import House from "components/Icons/House";
-
 import { useEffect, useState } from "react";
-
+/**
+ * @param {object} user Usuario de la aplicación
+ * @returns {JSX} Página de la aplicación
+ */
 export default function App({ user }) {
+  /**
+   * useState para establecer nuevos anuncios
+   * @type {Array}
+   * @param {Array} anuncios Anuncios
+   */
   const [anuncios, setAnuncios] = useState([]);
 
+  /**
+   * useEffect para obtener los anuncios del API
+   */
   useEffect(() => {
     if (user) {
       window

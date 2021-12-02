@@ -6,23 +6,41 @@ import AppLayout from "components/Layouts/AppLayout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+/**
+ * Rutas de autentificacion
+ * @type {{'/register': string, '/login': string}}
+ */
 const AUTH_PAGES = {
   "/register": "Registro",
   "/login": "Iniciar Sesion",
 };
 
+/**
+ * Rutas del Landing Page
+ * @type {{'/': string, '/about-us': string, '/contact': string}}
+ */
 const LANDING_PAGES = {
   "/": "Inicio",
   "/about-us": "Nosotros",
   "/contact": "Contacto",
 };
 
+/**
+ * Rutas de la aplicacion
+ * @type {{'/app': string, 'app/announcement': string, '/app/announcement/create': string, '/app/announcement/edit': string}}
+ */
 const APP_PAGES = {
   "/app": "App",
   "/app/announcement": "Mis anuncios",
   "/app/announcement/create": "Crear anuncios",
   "/app/announcement/edit": "Editar anuncio",
 };
+
+/**
+ * @param {Component} Component Componente a renderizar
+ * @param {Object} pageProps Propiedades de la pagina
+ * @returns {JSX} Renderizado de la pagina
+ */
 
 function MyApp({ Component, pageProps }) {
   const { pathname } = useRouter();

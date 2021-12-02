@@ -1,3 +1,8 @@
+/**
+ * Icono de editar
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Edit
+ */
 export default function Edit(props) {
   return (
     <svg

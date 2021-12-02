@@ -1,4 +1,9 @@
-export default function Logo (props, className) {
+/**
+ * Logotipo de la aplicación
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Logo
+ */
+export default function Logo(props, className) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -110,5 +115,5 @@ export default function Logo (props, className) {
         ></image>
       </defs>
     </svg>
-  )
+  );
 }

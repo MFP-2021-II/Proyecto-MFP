@@ -1,3 +1,8 @@
+/**
+ * Icono de flecha arriba
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} ArrowDown
+ */
 export default function ArrowDown(props) {
   return (
     <svg

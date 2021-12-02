@@ -1,4 +1,9 @@
-export default function Filter (props) {
+/**
+ * Icono de filtrar
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Filter
+ */
+export default function Filter(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

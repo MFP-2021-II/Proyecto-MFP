@@ -3,10 +3,28 @@ import Ballot from "components/Icons/Ballot";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+/**
+ * @param {object} user Usuario de la aplicación
+ * @returns {JSX} Página de anuncios del usuario
+ */
 export default function Announcement({ user }) {
+  /**
+   * Use router para redireccionar a la página de creación de anuncios
+   * @type {Router}
+   */
   const router = useRouter();
+  /**
+   * Use state para manejar el estado de los anuncios
+   * @type {Array}
+   * @default []
+   */
   const [anuncios, setAnuncios] = useState([]);
 
+  /**
+   * Use effect para obtener los anuncios del usuario
+   * @param {object} user Usuario de la aplicación
+   * @returns {void}
+   */
   useEffect(() => {
     if (user) {
       window

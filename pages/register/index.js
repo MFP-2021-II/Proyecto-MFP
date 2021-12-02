@@ -9,11 +9,37 @@ import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 
+/**
+ * Componente de la página de registro de usuarios
+ * @returns {JSX} Registro de usuarios
+ */
 export default function Register() {
+  /**
+   * Use router para redireccionar a la página de inicio de sesión
+   * @type {Router}
+   */
   const router = useRouter();
+  /**
+   * Estado de la contraseña
+   * @type {boolean}
+   * @default false
+   * @description Estado de la contraseña
+   */
   const [visible, setVisible] = useState(false);
+  /**
+   * Hooks de formulario de registro de usuarios
+   * @type {Object}
+   * @property {Object} register - Función para registrar los datos del formulario
+   * @property {Object} handleSubmit - Función para enviar los datos del formulario
+   */
   const { register, handleSubmit } = useForm();
 
+  /**
+   * Función para enviar los datos del formulario
+   * @param {Object} data - Datos del formulario
+   * @returns {void}
+   * @description Función para enviar los datos del formulario y redireccionar a la página de inicio de sesión
+   */
   const onSubmit = (data) => {
     window
       .fetch("http://localhost:3001/api/usuarios/registro", {
@@ -30,6 +56,11 @@ export default function Register() {
       .catch((err) => console.error(err));
   };
 
+  /**
+   * useEffect para proteger rutas
+   * @returns {void}
+   * @description Función para evitar que el usuario entre por ruta "/app" sin estar registrados.
+   */
   useEffect(() => {
     if (window.localStorage.getItem("user")) {
       router.push("/app");

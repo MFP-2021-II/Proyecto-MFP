@@ -1,4 +1,9 @@
-export default function Ballot (props) {
+/**
+ * Icono de Alojamiento
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Ballot
+ */
+export default function Ballot(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

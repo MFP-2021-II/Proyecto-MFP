@@ -1,7 +1,21 @@
 import { useRouter } from "next/router";
-
+/**
+ * Componente de lista desplegable
+ * @param {children} children - Contenido del componente
+ * @param {className} className - Clase del componente
+ * @param {boolean} open - Estado de la lista desplegable
+ * @returns {JSX} Dropdown
+ */
 export default function Dropdown({ children, open, className }) {
+  /**
+   * Router redireccionar a la pagina de inicio de sesion
+   * @returns {void}
+   */
   const router = useRouter();
+  /**
+   * Estilo para los items de la lista desplegable
+   * @type {{not_style: string, def_style: string, end_style: string}}
+   */
   const styles = {
     not_style:
       "flex flex-row items-center px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b",

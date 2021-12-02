@@ -7,18 +7,48 @@ import LandingButton from "components/Buttons/LandingButton";
 import NavButton from "components/Buttons/NavButton";
 import { useRouter } from "next/router";
 
+/**
+ * @param {object} user Usuario de la aplicación
+ * @returns {JSX} Página de creación de anuncios
+ */
 export default function CreateAnnouncement({ user }) {
+  /**
+   * Use router para redireccionar a la página de anuncios
+   * @type {Router}
+   */
   const router = useRouter();
+  /**
+   * Hook para manejar el formulario
+   * @type {object}
+   * @param {object} register Funciones para manejar el formulario
+   * @param {object} handleSubmit Funcion para enviar el formulario
+   */
   const { register, handleSubmit } = useForm();
+  /**
+   * useState para manejar el estado de las imagenes de los anuncios
+   * @type {array}
+   */
   const [fileImage, setFileImage] = useState(null);
+  /**
+   * useState para manejar el estado los alojamientos
+   * @type {array}
+   */
   const [tipoAlojamientos, setTipoAlojamientos] = useState([]);
-
+  /**
+   * Manejo de imagenes de los anuncios
+   * @param {object} e
+   * @param {*} field
+   * @param {*} setFile
+   */
   const handleFileChange = (e, field, setFile) => {
     const _file = e.target.files[0];
     setFile(_file);
     register(field).onChange(e);
   };
-
+  /**
+   * Función asincrona para renderizar la imagen seleccionada como URL
+   * @param {object} file Imagen seleccionada
+   */
   const toBase64 = async (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -28,6 +58,10 @@ export default function CreateAnnouncement({ user }) {
     });
   };
 
+  /**
+   * Función asincrona para convertir la imagen a base64
+   * @param {object} data Dato de URL de la imagen
+   */
   const onSubmit = async (data) => {
     const fileBase64 = await toBase64(data.file[0]);
     const newFileBase64 = fileBase64.split("data:image/jpeg;base64,")[1];
@@ -90,7 +124,9 @@ export default function CreateAnnouncement({ user }) {
       })
       .catch((err) => console.log(err));
   };
-
+  /**
+   * useEffect para obtener los alojamientos
+   */
   useEffect(() => {
     if (user)
       window
@@ -109,8 +145,8 @@ export default function CreateAnnouncement({ user }) {
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
-        <span className="text-xl font-bold text-left">Crear Anuncio</span>
         {/* icono */}
+        <span className="text-xl font-bold text-left">Crear Anuncio</span>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}

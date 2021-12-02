@@ -1,3 +1,10 @@
+/**
+ * Componente atomico de un item de una lista desplegable.
+ * @param {children} children - Contenido del componente.
+ * @param {onClick} onClick - Función a ejecutar al hacer click sobre el componente.
+ * @param {className} className - Nombre de la clase a aplicar.
+ * @returns {JSX} DropdownListItem
+ */
 export default function DropdownListItem({ children, className, onClick }) {
   return (
     <button

@@ -1,3 +1,7 @@
+/**
+ * Componente de la página de contacto
+ * @returns {JSX} Contacto
+ */
 export default function Contact() {
   return (
     <main className="grid grid-cols-1 md:grid-cols-3 p-8 gap-8">

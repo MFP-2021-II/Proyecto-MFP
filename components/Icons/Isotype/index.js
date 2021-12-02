@@ -1,5 +1,10 @@
-export default function Isotype (props, className) {
-  return(
+/**
+ * Isotipo de la página
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Isotype
+ */
+export default function Isotype(props, className) {
+  return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -7,7 +12,7 @@ export default function Isotype (props, className) {
       height="119"
       fill="none"
       viewBox="0 0 119 119"
-      className = {className}
+      className={className}
       {...props}
     >
       <g filter="url(#filter0_f_11:34)">
@@ -76,5 +81,5 @@ export default function Isotype (props, className) {
         ></image>
       </defs>
     </svg>
-  )
+  );
 }

@@ -1,10 +1,17 @@
+/**
+ * @file index.js archivo principal
+ * @author Carlos Tarmeño Noriega
+ */
+
 import Isotype from "components/Icons/Isotype";
 import LandingButton from "components/Buttons/LandingButton";
 
+/**
+ * Componente del Landing page
+ * @returns {JSX} LandingPage
+ */
 export default function Home() {
   return (
-    //Problemas con el espaciado en el landing
-    //md al j-around
     <main className="h-almost-screen flex justify-center lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
       <section className="flex flex-col justify-center items-center pb-20">
         <Isotype className="w-48 h-48" />
@@ -23,7 +30,6 @@ export default function Home() {
         </LandingButton>
       </section>
       <div className="flex flex-col justify-center">
-        {/* <LandingIllustration className="w-auto hidden lg:inline-block"/> */}
         <img
           src="/Landing-image.png"
           alt="ilustración"

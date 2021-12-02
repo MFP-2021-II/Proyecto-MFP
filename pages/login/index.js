@@ -9,11 +9,37 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+/**
+ * Componente de la página de incio de sesión
+ * @returns {JSX} Login
+ */
 export default function Login() {
+  /**
+   * Use router para redireccionar a la página de la aplicación
+   * @type {Router}
+   */
   const router = useRouter();
+  /**
+   * Estado de la contraseña
+   * @type {boolean}
+   * @default false
+   * @description Estado de la contraseña
+   */
   const [visible, setVisible] = useState(false);
+  /**
+   * Hooks de formulario de inicio de sesión
+   * @type {Object}
+   * @property {Object} register - Función para registrar los datos del formulario
+   * @property {Object} handleSubmit - Función para enviar los datos del formulario
+   */
   const { register, handleSubmit } = useForm();
 
+  /**
+   * useEffect para enviar los datos del formulario
+   * @param {Object} data - Datos del formulario
+   * @returns {void}
+   * @description Función para enviar los datos del formulario y redireccionar a la página de la aplicación
+   */
   const onSubmit = (data) => {
     console.log(data);
     window
@@ -35,7 +61,11 @@ export default function Login() {
       })
       .catch((err) => console.error(err));
   };
-
+  /**
+   * useEffect para proteger rutas
+   * @returns {void}
+   * @description Función para evitar que el usuario entre por ruta "/app" sin estar registrados.
+   */
   useEffect(() => {
     if (window.localStorage.getItem("user")) {
       router.push("/app");

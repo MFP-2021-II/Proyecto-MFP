@@ -5,17 +5,44 @@ import ArrowDown from "components/Icons/ArrowDown";
 import Isotype from "components/Icons/Isotype";
 import Dropdown from "components/Dropdown";
 import DropdownListItem from "ui/DropdownListItem";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+/**
+ * Componente que renderiza el layout de la aplicación
+ * @param {pageProps} pageProps Propiedades de la página
+ * @param {Component} Componente Componente que se renderiza
+ * @returns {JSX} AppLayout
+ */
 export default function AppLayout({ Component, pageProps }) {
+  /**
+   * useState para el estado del usuario
+   * @type {Array}
+   */
   const [user, setUser] = useState(null);
+  /**
+   * useState para el estado del boton para cambiar de vista
+   * @type {Array}
+   */
   const [click, setClick] = useState(false);
+  /**
+   * router para redireccionar a la pagina de login
+   * @type {Object}
+   */
   const router = useRouter();
+  /**
+   * Deestructuración del router para obtener la url actual
+   * @type {string}
+   */
   const { pathname } = router;
+  /**
+   * useState para el estado del dropdown
+   * @type {Array}
+   */
   const [open, setOpen] = useState(false);
 
-  //Permite que no se pueda acceder al app desde la url sin estar logeado
+  /**
+   * Permite que no se pueda acceder al app desde la url sin estar logeado
+   */
   useEffect(() => {
     const userFunction = localStorage.getItem("user");
     if (userFunction) {

@@ -1,4 +1,9 @@
-export default function House (props) {
+/**
+ * Icono de casa
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} House
+ */
+export default function House(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,9 @@
-export default function User (props) {
+/**
+ * Icono de usuario por defecto
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} User
+ */
+export default function User(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,5 +24,5 @@ export default function User (props) {
         data-name="Capa 3"
       />
     </svg>
-  )
+  );
 }

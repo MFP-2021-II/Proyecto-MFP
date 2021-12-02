@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 
+/**
+ * Componente atomico de input de archivo
+ * @param {string} label Texto del label
+ * @param {string} name Nombre del input
+ * @param {object} errors Errores del input
+ * @param {boolean} disabled Determina si el input esta deshabilitado
+ * @param {onChange} onChange Funcion para cambiar el valor del input
+ * @param {onBlur} onBlur Funcion para cambiar el valor del input
+ * @returns {JSX} FileInput
+ */
 const FileInput = React.forwardRef(
   ({ label, onChange, onBlur, name, errors, disabled }, ref) => {
     const [file, setFile] = useState(null);
