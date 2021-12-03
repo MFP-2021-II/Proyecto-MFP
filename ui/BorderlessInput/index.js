@@ -4,9 +4,9 @@
  */
 const theme = {
   primary:
-    "w-full bg-gray-100 text-2xl font-bold border-0 rounded-lg py-1 outline-none font-medium transition duration-500 hover:shadow-lg",
+    "w-full border-b-2 pl-3 text-2xl font-bold border-0 rounded-lg py-1 outline-none font-medium transition duration-500 hover:bg-gray-100",
   secondary:
-    "w-full bg-gray-100 text-md font-bold border-0 rounded-lg py-1 outline-none font-normal transition duration-500 hover:bg-gray-900 hover:shadow-lg",
+    "w-full border-b-2 pl-3 text-md font-bold border-0 rounded-lg py-1 outline-none font-normal transition duration-500 hover:bg-gray-100",
 };
 
 /**
@@ -42,14 +42,14 @@ export default function BorderlessInput({
             ${
               errors &&
               errors?.message &&
-              "border-red-500 focus:ring-red-400 focus:border-transparent"
+              "border-red-500 bg-red-100 focus:ring-red-400"
             } ${className}`}
         placeholder={label}
         type={type}
         {...props}
         {...register(name)}
       />
-      <p className="hidden mt-1 text-sm font-semibold text-red-500">
+      <p className="mt-1 text-sm font-semibold text-red-500">
         {errors && errors?.message}
       </p>
     </>

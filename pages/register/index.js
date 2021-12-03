@@ -5,10 +5,20 @@ import { useForm } from "react-hook-form";
 import Button from "components/Buttons/Button";
 import TextInput from "ui/TextInput";
 import { useRouter } from "next/router";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 
+const schema = yup
+  .object({
+    nombre: yup.string().required("Nombre requerido"),
+    apellido: yup.string().required("Apellido requerido"),
+    correo: yup.string().email().required("El correo es requerido"),
+    contraseña: yup.string().min(8).required("La contraseña es requerida"),
+  })
+  .required();
 /**
  * Componente de la página de registro de usuarios
  * @returns {JSX} Registro de usuarios
@@ -32,7 +42,11 @@ export default function Register() {
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
    */
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   /**
    * Función para enviar los datos del formulario
@@ -81,13 +95,14 @@ export default function Register() {
         <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">
           Crear una cuenta
         </span>
-        <div className="flex flex-row flex-wrap justify-between mb-5">
+        <div className="flex flex-row flex-wrap justify-between">
           <div className="flex flex-col max-w-[45%]">
             <TextInput
               label="Nombre"
               name="nombre"
               variant="primary"
               register={register}
+              errors={errors.nombre}
             />
           </div>
           <div className="flex flex-col max-w-[45%]">
@@ -96,6 +111,7 @@ export default function Register() {
               name="apellidos"
               variant="primary"
               register={register}
+              errors={errors.apellido}
             />
           </div>
         </div>
@@ -104,8 +120,8 @@ export default function Register() {
           type="email"
           name="correo"
           variant="primary"
-          className="mb-5"
           register={register}
+          errors={errors.correo}
         />
         <div className="flex flex-col justify-center relative">
           <TextInput
@@ -114,6 +130,7 @@ export default function Register() {
             name="contraseña"
             variant="primary"
             register={register}
+            errors={errors.contraseña}
           />
           {!visible ? (
             <VisibilityOn
@@ -127,7 +144,7 @@ export default function Register() {
             />
           )}
         </div>
-        <div className="text-sm md:text-base my-2 sm:my-5 lg:my-8 font-semibold">
+        <div className="text-sm md:text-base mb-2 sm:mb-5 lg:mb-8 font-semibold">
           <span className="text-gray-500">¿Ya tienes una cuenta?{` `}</span>
           <a
             href="/login"

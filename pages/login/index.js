@@ -6,9 +6,17 @@ import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
+const schema = yup
+  .object({
+    correo: yup.string().email().required(),
+    contraseña: yup.string().min(8).required(),
+  })
+  .required();
 /**
  * Componente de la página de incio de sesión
  * @returns {JSX} Login
@@ -32,7 +40,11 @@ export default function Login() {
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
    */
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
 
   /**
    * useEffect para enviar los datos del formulario
@@ -88,10 +100,10 @@ export default function Login() {
         </span>
         <TextInput
           label="Correo electrónico"
-          type="email"
+          type="text"
           name="correo"
           variant="primary"
-          className="mb-2 sm:mb-5"
+          errors={errors.correo}
           register={register}
         />
         <div className="flex flex-col justify-center relative">
@@ -100,6 +112,7 @@ export default function Login() {
             type={!visible ? "password" : "text"}
             name="contraseña"
             variant="primary"
+            errors={errors.contraseña}
             register={register}
           />
           {!visible ? (
@@ -116,7 +129,7 @@ export default function Login() {
         </div>
         <a
           href="/"
-          className="text-sm md:text-base my-2 sm:my-5 lg:my-8 font-semibold text-green-600 underline cursor-pointer"
+          className="text-sm md:text-base mb-2 sm:mb-5 lg:mb-8 font-semibold text-green-600 underline cursor-pointer"
         >
           ¿Olvidaste tu contraseña?
         </a>

@@ -46,6 +46,8 @@ module.exports = {
     "tailwind.config.js",
     "jest.config.js",
     "postcss.config.js",
+    "docs",
+    "jsdoc.json",
   ],
   coverageDirectory: "<rootDir>/coverage/",
 };

@@ -45,14 +45,18 @@ export default function TextInput({
             ${
               errors &&
               errors?.message &&
-              "border-red-500 focus:ring-red-400 focus:border-transparent"
+              "border-red-500 bg-red-100 focus:ring-red-400"
             } ${className}`}
         placeholder={label}
         type={type}
         {...props}
         {...register(name)}
       />
-      <p className="mt-1 text-sm font-semibold text-red-500">
+      <p
+        className={`mb-2 sm:mb-5 text-sm font-semibold text-red-500 ${
+          errors && errors?.message && "mt-0 sm:mt-0"
+        }`}
+      >
         {errors && errors?.message}
       </p>
     </>

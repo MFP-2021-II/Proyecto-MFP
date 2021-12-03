@@ -9,6 +9,7 @@
     "docs": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.3",
     "jsdoc": "^3.6.7",
     "next": "11.0.0",
     "react": "^17.0.2",

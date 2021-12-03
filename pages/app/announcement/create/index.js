@@ -6,7 +6,55 @@ import BorderlessInput from "ui/BorderlessInput";
 import LandingButton from "components/Buttons/LandingButton";
 import NavButton from "components/Buttons/NavButton";
 import { useRouter } from "next/router";
+import Add from "components/Icons/Add";
+import FormPhoto from "components/Fields/FormPhoto";
+import CheckBox from "ui/CheckBox";
+import TextArea from "ui/TextArea";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
+const FILE_SIZE = 60000;
+const SUPPORTED_FORMATS = ["image/jpeg", "image/png", "image/jpg"];
+
+const schema = yup
+  .object({
+    nombre: yup.string().required("Titulo requerido"),
+    direccion: yup.string().required("Direccion requerida"),
+    //yup validate an image file minor than 60KB and of type jpeg, jpg, png
+    file: yup
+      .mixed()
+      .required("A file is required")
+      .test(
+        "fileSize",
+        "File Size is too large",
+        (value) => value.size <= FILE_SIZE
+      )
+      .test("fileType", "Unsupported File Format", (value) =>
+        SUPPORTED_FORMATS.includes(value.type)
+      ),
+    huespedes: yup
+      .number("number")
+      .positive()
+      .required("Requerido")
+      .typeError("La cantidad deber ser un numero"),
+    habitaciones: yup
+      .number("number")
+      .positive()
+      .required("Requerido")
+      .typeError("La cantidad deber ser un numero"),
+    baños: yup
+      .number("number")
+      .positive()
+      .required("Requerido")
+      .typeError("Debe ser un numero"),
+    precio: yup
+      .number("number")
+      .positive()
+      .required("Requerido")
+      .typeError("Debe ser un numero"),
+    descripcion: yup.string().min(25).required("Campo requerido"),
+  })
+  .required();
 /**
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de creación de anuncios
@@ -23,7 +71,11 @@ export default function CreateAnnouncement({ user }) {
    * @param {object} register Funciones para manejar el formulario
    * @param {object} handleSubmit Funcion para enviar el formulario
    */
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
   /**
    * useState para manejar el estado de las imagenes de los anuncios
    * @type {array}
@@ -144,159 +196,105 @@ export default function CreateAnnouncement({ user }) {
 
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
-      <div className="w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
-        {/* icono */}
-        <span className="text-xl font-bold text-left">Crear Anuncio</span>
+      <div className="w-11/12 flex flex-row items-center pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
+        <i>
+          <Add className="text-red-700 fill-current" />
+        </i>
+        <span className="pl-2 text-xl font-bold text-left">Crear Anuncio</span>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[70%] px-[2%]"
+        className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 h-[85%] sm:h-[80%] lg:h-[75%] px-[2%]"
       >
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col justify-center">
           <BorderlessInput
             label="Agrega un título"
             name="nombre"
             register={register}
+            errors={errors.nombre}
           />
           <BorderlessInput
             label="Agrega una localización"
             name="direccion"
             variant="secondary"
+            className="mt-2"
             register={register}
+            errors={errors.direccion}
           />
         </div>
-        <section className="flex flex-row mt-5 h-[45%]">
-          <div className="relative flex flex-col items-center justify-center w-[28%]">
-            <div className="flex flex-col justify-end">
-              <TextInput
-                label="Subir imágenes"
-                name="name"
-                disabled={true}
-                variant="inactive"
-                register={register}
-              />
-              <div className=" w-17 h-10 relative px-4 bottom-[0.5%]  my-2 text-center bg-black rounded-lg text-gray-50 ">
-                <input
-                  className="absolute opacity-0 bg-red-900 w-17 px-4 text-black border cursor-pointer flex flex-wrap text-[0.6rem]"
-                  type="file"
-                  name="file"
-                  {...register("file")}
-                  onChange={(e) => handleFileChange(e, "file", setFileImage)}
-                />
-                <span className="flex items-center justify-center h-10 px-4 cursor-pointer w-17 text-md">
-                  Subir
-                </span>
-              </div>
-            </div>
-            <div>
-              {fileImage && (
-                <span className="text-sm text-gray-400 bg-gray-200 p-2 rounded-lg">
-                  {`${fileImage.name} (${Math.round(
-                    fileImage.size / 1024
-                  )} KB)`}
-                </span>
-              )}
-            </div>
+        {/* Empieza grid */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-2 h-[70%] lg:h-[55%] overflow-y-auto">
+          <div className="flex flex-col items-center justify-center w-full">
+            <FormPhoto
+              type="file"
+              name="file"
+              register={register}
+              onChange={(e) => handleFileChange(e, "file", setFileImage)}
+              fileImage={fileImage}
+              errors={errors.file}
+            />
           </div>
-          <div className="flex flex-row border-l-2 w-[72%] justify-around">
-            <div className="flex flex-col justify-between w-[28%]">
-              <div>
-                <Select
-                  label="Tipo de alojamiento"
-                  options={tipoAlojamientos.map((el) => ({
-                    value: el?.id,
-                    label: el?.descripcion,
-                  }))}
-                  disabled={false}
-                  {...register("id_tipo_alojamiento")}
-                />
-              </div>
-              <div className="flex flex-col pb-2">
-                <TextInput
-                  label="Nro de huéspedes"
-                  name="huespedes"
-                  className="mb-2"
-                  register={register}
-                />
-                <TextInput
-                  label="Nro de habitaciones"
-                  name="habitaciones"
-                  register={register}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col justify-between w-56">
-              <div>
-                <div className="flex flex-col">
-                  <span className="font-medium text-gray-500 pb-2">
-                    Facilidades
-                  </span>
-                  <div className="flex flex-row flex-wrap justify-between">
-                    <label id="piscina" className="pr-2">
-                      Piscina
-                      <input
-                        type="checkbox"
-                        name="piscina"
-                        className="ml-2"
-                        {...register("piscina")}
-                      />
-                    </label>
-                    <label id="Estacionamiento" className="pr-2">
-                      Estacinamiento
-                      <input
-                        type="checkbox"
-                        name="Estacionamiento"
-                        className="ml-2"
-                        {...register("estacionamiento")}
-                      />
-                    </label>
-                    <label id="Jaccuzi">
-                      Jaccuzi
-                      <input
-                        type="checkbox"
-                        name="Jaccuzi"
-                        className="ml-2"
-                        {...register("jaccuzi")}
-                      />
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col pb-2">
+          <div className="flex flex-col px-[10%] justify-center">
+            <TextInput
+              label="Nro de huéspedes"
+              name="huespedes"
+              register={register}
+              errors={errors.huespedes}
+            />
+            <TextInput
+              label="Nro de habitaciones"
+              name="habitaciones"
+              register={register}
+              errors={errors.habitaciones}
+            />
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col max-w-[51%]">
                 <TextInput
                   label="Nro de baños"
                   name="baños"
-                  className="mb-2"
                   register={register}
+                  errors={errors.baños}
                 />
+              </div>
+              <div className="flex flex-col max-w-[44%]">
                 <TextInput
                   label="Precio (S/.)"
                   name="precio"
                   register={register}
+                  errors={errors.precio}
                 />
               </div>
             </div>
           </div>
+          <div className="flex flex-col col-auto sm:col-span-2 lg:col-span-1 px-[10%] justify-center">
+            <CheckBox register={register} />
+            <Select
+              label="Tipo de alojamiento"
+              options={tipoAlojamientos.map((el) => ({
+                value: el?.id,
+                label: el?.descripcion,
+              }))}
+              disabled={false}
+              {...register("id_tipo_alojamiento")}
+            />
+            <div className="mt-2 w-full h-24">
+              <TextArea
+                name="descripcion"
+                register={register}
+                errors={errors.descripcion}
+              />
+            </div>
+          </div>
         </section>
-        <label className="flex flex-col font-medium mb-2 text-gray-500">
-          Descripcion
-          <textarea
-            className="w-full h-24 pt-2 border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none"
-            {...register("descripcion")}
-          ></textarea>
-        </label>
-        <div className="flex flex-row justify-center w-full space-x-3 mt-5">
-          <NavButton type="submit" variant="quinary" className="w-40">
-            Crear
-          </NavButton>
-          <LandingButton toPath="/app/announcement" className="w-40">
+        <div className="flex flex-row justify-center lg:w-full space-x-6 mt-5">
+          <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
             Volver
           </LandingButton>
+          <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
+            Crear
+          </NavButton>
         </div>
       </form>
-      {/* <span className="text-xs text-red-500">
-        {errors?.file && errors?.file?.message}
-      </span> */}
     </main>
   );
 }
