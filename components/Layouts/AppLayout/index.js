@@ -3,7 +3,7 @@ import Button from "components/Buttons/Button";
 import User from "components/Icons/User";
 import ArrowDown from "components/Icons/ArrowDown";
 import Isotype from "components/Icons/Isotype";
-import Dropdown from "components/Dropdown";
+import Dropdown from "@/components/Dropdowns/Dropdown";
 import DropdownListItem from "ui/DropdownListItem";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";

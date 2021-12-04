@@ -95,7 +95,7 @@ export default function Login() {
             <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
           </Link>
         </div>
-        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">
+        <span className="mb-4 font-semibold sm:mb-8 lg:mb-10 text-lg md:text-2xl ">
           Inicia sesión
         </span>
         <TextInput
@@ -106,7 +106,7 @@ export default function Login() {
           errors={errors.correo}
           register={register}
         />
-        <div className="flex flex-col justify-center relative">
+        <div className="relative flex flex-col justify-center">
           <TextInput
             label="Contraseña"
             type={!visible ? "password" : "text"}
@@ -146,7 +146,7 @@ export default function Login() {
           </a>
         </div>
       </form>
-      <Sample></Sample>
+      <Sample />
     </>
   );
 }

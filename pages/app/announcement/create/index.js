@@ -51,7 +51,7 @@ const schema = yup
       .number("number")
       .positive()
       .required("Requerido")
-      .typeError("Debe ser un numero"),
+      .typeError("Debe ser decimal"),
     descripcion: yup.string().min(25).required("Campo requerido"),
   })
   .required();

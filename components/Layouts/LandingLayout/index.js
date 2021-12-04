@@ -3,7 +3,9 @@ import LandingButton from "components/Buttons/LandingButton";
 import RedirectArrow from "components/Icons/RedirectArrow";
 import Menu from "components/Icons/Menu";
 import Link from "next/link";
+import LandingDropdown from "components/Dropdowns/LandingDropdown";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 /**
  * Componente del layout de la landing page
@@ -16,6 +18,11 @@ export default function LandingLayout({ children }) {
    * @type {object}
    */
   const router = useRouter();
+  /**
+   * useState para el estado del dropdown
+   * @type {Array}
+   */
+  const [open, setOpen] = useState(false);
   /**
    * Funcion para verificar si la url actual es la landing page
    * @param {string} path Ruta actual
@@ -73,9 +80,17 @@ export default function LandingLayout({ children }) {
             </LandingButton>
           </div>
         </div>
-        <a href="#" className="flex items-center pr-4 md:hidden">
+        <a
+          className={`flex items-center pr-4 md:hidden cursor-pointer ${
+            open
+              ? "transition duration-300"
+              : "transition duration-300 transform rotate-180"
+          }`}
+          onClick={() => setOpen(!open)}
+        >
           <Menu />
         </a>
+        <LandingDropdown open={open} setOpen={setOpen} />
       </nav>
       {children}
     </>

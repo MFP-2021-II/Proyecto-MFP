@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/index.js</title>
+    <title>JSDoc: Source: ui/CheckBox/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/index.js</h1>
+    <h1 class="page-title">Source: ui/CheckBox/index.js</h1>
 
     
 
@@ -27,44 +27,44 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @file index.js archivo principal
- * @author Carlos Tarmeño Noriega
+ * Componente atomico de input tipo checkbox
+ * @param {object} register Referencia al register
+ * @returns {JSX} CheckBox
  */
-
-import Isotype from "components/Icons/Isotype";
-import LandingButton from "components/Buttons/LandingButton";
-
-/**
- * Componente del Landing page
- * @returns {JSX} LandingPage
- */
-export default function Home() {
+export default function CheckBox({ register }) {
   return (
-    &lt;main className="h-almost-screen flex justify-center lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
-      &lt;section className="flex flex-col justify-center items-center pb-20">
-        &lt;Isotype className="w-48 h-48" />
-        &lt;h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl text-red-900 text-center mt-10">
-          ¿Ya decidiste en
-          &lt;br />
-          dónde alojarte?
-        &lt;/h1>
-        &lt;p className="font-medium text-lg lg:text-xl xl:text-2xl text-center mt-10">
-          Viaja a cualquier lugar sin
-          &lt;br />
-          preocuparte por el alojamiento 🏠
-        &lt;/p>
-        &lt;LandingButton variant="secondary" className="mt-10" toPath="/register">
-          ¡Reservar ahora!
-        &lt;/LandingButton>
-      &lt;/section>
-      &lt;div className="flex flex-col justify-center">
-        &lt;img
-          src="/Landing-image.png"
-          alt="ilustración"
-          className="w-full hidden lg:inline-block"
-        />
+    &lt;>
+      &lt;span className="font-medium text-gray-500 pb-1">Facilidades&lt;/span>
+      &lt;div className="flex flex-row flex-wrap justify-between mb-6">
+        &lt;label id="piscina" className="pr-2">
+          Piscina
+          &lt;input
+            type="checkbox"
+            name="piscina"
+            className="ml-2"
+            {...register("piscina")}
+          />
+        &lt;/label>
+        &lt;label id="Estacionamiento" className="pr-2">
+          Estacinamiento
+          &lt;input
+            type="checkbox"
+            name="Estacionamiento"
+            className="ml-2"
+            {...register("estacionamiento")}
+          />
+        &lt;/label>
+        &lt;label id="Jaccuzi">
+          Jaccuzi
+          &lt;input
+            type="checkbox"
+            name="Jaccuzi"
+            className="ml-2"
+            {...register("jaccuzi")}
+          />
+        &lt;/label>
       &lt;/div>
-    &lt;/main>
+    &lt;/>
   );
 }
 </code></pre>
