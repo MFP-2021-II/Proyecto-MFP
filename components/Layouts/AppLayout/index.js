@@ -4,7 +4,7 @@ import User from "components/Icons/User";
 import ArrowDown from "components/Icons/ArrowDown";
 import Isotype from "components/Icons/Isotype";
 import Dropdown from "@/components/Dropdowns/Dropdown";
-import DropdownListItem from "ui/DropdownListItem";
+import LinkedDropdownListItem from "ui/LinkedDropdownListItem";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 /**
@@ -111,13 +111,20 @@ export default function AppLayout({ Component, pageProps }) {
                   }`}
                 />
               </i>
-              <Dropdown open={open} className="z-10">
-                <DropdownListItem
-                  className={`lg:hidden ${click ? "hidden" : ""}`}
+              <Dropdown open={open} setOpen={setOpen} className="z-10">
+                <LinkedDropdownListItem
+                  className={`lg:hidden ${click && "hidden"}`}
                   onClick={() => setClick(true)}
+                  toPath={
+                    pathname === "/app/announcement"
+                      ? "/app/"
+                      : "/app/announcement"
+                  }
                 >
-                  Vista anfitrión
-                </DropdownListItem>
+                  Vista{" "}
+                  {pathname === "/app/announcement" ? "huésped" : "anfitrión"}
+                </LinkedDropdownListItem>
+                {/* Los demas items del dropdown */}
               </Dropdown>
             </div>
           </div>

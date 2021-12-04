@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 /**
  * Componente de lista desplegable
  * @param {children} children - Contenido del componente
  * @param {className} className - Clase del componente
  * @param {boolean} open - Estado de la lista desplegable
+ * @param {Function} setOpen - Función para actualizar el estado de la lista desplegable
  * @returns {JSX} Dropdown
  */
-export default function Dropdown({ children, open, className }) {
+export default function Dropdown({ children, open, className, setOpen }) {
   /**
    * Router redireccionar a la pagina de inicio de sesion
    * @returns {void}
@@ -24,11 +26,32 @@ export default function Dropdown({ children, open, className }) {
     end_style:
       "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200",
   };
+  /**
+   * Funcion para cerrar la lista desplegable
+   */
+  const handleClickOutside = (e) => {
+    if (open) {
+      if (!e.target.closest(".dropdown")) {
+        setOpen(false);
+      }
+    }
+  };
+
+  /**
+   * UseEffect para agregar el evento click a la pagina para cerrar el dropdown
+   */
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, false);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, false);
+    };
+  }, [open]);
 
   return (
     <div
+      id="dropdown"
       className={`fixed right-0 md:right-[18vmax] top-[98px] w-full mt-2 rounded-md shadow-lg md:w-48 ${
-        open ? "" : "hidden"
+        !open && "hidden"
       } ${className}`}
     >
       <div className="flex flex-col items-center px-2 py-2 bg-white rounded-md shadow">
