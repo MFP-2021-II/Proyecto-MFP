@@ -5,6 +5,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import Isotype from "components/Icons/Isotype";
 import LandingButton from "components/Buttons/LandingButton";
 import LandingDropdown from "components/Dropdowns/LandingDropdown";
+import LandingPage from "pages";
 
 /**
  * Test para validar si el componente LandingButton redirecciona a la página de resgistro
@@ -54,4 +55,8 @@ test("Comprobar el dropdown del landing page", () => {
     important: true,
   };
   render(<LandingDropdown note={note} />);
+});
+
+test("Renderizado de componente", () => {
+  render(<LandingPage />);
 });
