@@ -10,3 +10,6 @@ sonar.password=
 sonar.tests=__tests__
 sonar.test.inclusions=**/*.test.js
 sonar.sources=.
+
+#Sonar with jest
+sonar.javascript.lcov.reportPaths=coverage/lcov.info

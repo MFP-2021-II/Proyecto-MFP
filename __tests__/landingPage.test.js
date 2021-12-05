@@ -9,20 +9,29 @@ import LandingDropdown from "components/Dropdowns/LandingDropdown";
 /**
  * Test para validar si el componente LandingButton redirecciona a la página de resgistro
  */
-// test("Comprobar el boton de bienvenida del landing page redirecciona a /register", () => {
-//   const note = {
-//     content: "¡Reservar ahora!",
-//     important: true,
-//   };
-//   render(<LandingButton toPath="/register" note={note} />);
-// });
+test("Validar redireccionamiento de boton de bienvenida", () => {
+  const note = {
+    content: "/register",
+    important: true,
+  };
+  const component = render(<LandingButton toPath="/register" note={note} />);
+  waitFor(() =>
+    expect(component.container.querySelector("a")).toHaveAttribute(
+      "href",
+      "/register"
+    )
+  );
+});
+
+/**
+ * Test para validad si el texto del landing button es correcto
+ */
 describe("LandingButton", () => {
-  it("Comprobar texto del landing button", () => {
+  it("Comprobar children adecuado dentro del landing button", () => {
     render(<LandingButton toPath="/register" />);
     waitFor(() =>
       expect(screen.queryByText(/¡Reservar ahora!/i)).toBeInTheDocument()
     );
-    console.log(screen.queryByText(/¡Reservar ahora!/i));
   });
 });
 
