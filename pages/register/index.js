@@ -16,7 +16,10 @@ const schema = yup
     nombre: yup.string().required("Nombre requerido"),
     apellido: yup.string().required("Apellido requerido"),
     correo: yup.string().email().required("El correo es requerido"),
-    contraseña: yup.string().min(8).required("La contraseña es requerida"),
+    contraseña: yup
+      .string()
+      .min(8, "La contraseña debe tener al menos 8 caracteres")
+      .required("La contraseña es requerida"),
   })
   .required();
 /**
