@@ -44,9 +44,10 @@ export default function AdCard({
       }`}
     >
       <div className="bg-transparent h-36">
+        {/* Se cambió el largo de la tarjeta de full a 60 */}
         <img
           src={`data:image/jpeg;base64,${image}`}
-          className="w-full h-full rounded-md"
+          className="w-60 h-full rounded-md"
           alt="reference image"
         />
       </div>
@@ -67,21 +68,9 @@ export default function AdCard({
         {edit ? (
           <div className="flex flex-row pr-1">
             <Link href="/app/announcement/edit">
-              <Edit className="flex items-center w-5 h-5 fill-current hover:text-blue-800" />
-              {/* <span
-                className={`${text_size["m_text"]} flex flex-row justify-between hover:underline hover:first:text-blue-700 hover:font-semibold`}
-              >
-                Editar
-                <Edit className="flex items-center w-5 h-5" />
-              </span> */}
+              <Edit className="flex items-center w-5 h-5 fill-current hover:text-blue-700" />
             </Link>
-            <Delete className="flex items-center w-5 h-5 fill-current hover:text-red-800" />
-            {/* <span
-              className={`${text_size["m_text"]} flex flex-row justify-between hover:underline hover:text-red-600 hover:font-semibold`}
-            >
-              Eliminar
-              <Delete className="flex items-center w-5 h-5" />
-            </span> */}
+            <Delete className="flex items-center w-5 h-5 fill-current hover:text-red-700" />
           </div>
         ) : (
           <>

@@ -5,6 +5,8 @@ import Filter from "components/Icons/Filter";
 import TextInputBrowse from "ui/TextInputBrowse";
 import House from "components/Icons/House";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 /**
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de la aplicación
@@ -16,6 +18,7 @@ export default function App({ user }) {
    * @param {Array} anuncios Anuncios
    */
   const [anuncios, setAnuncios] = useState([]);
+  const router = useRouter();
 
   /**
    * useEffect para obtener los anuncios del API
@@ -36,6 +39,9 @@ export default function App({ user }) {
         });
     }
   }, [user]);
+
+  const CardID = router.query;
+  console.log(CardID);
 
   return (
     <main className="h-almost-screen flex flex-col items-center justify-center">
@@ -64,15 +70,20 @@ export default function App({ user }) {
         </div>
         <div className="hidden">Espacio para filtros</div>
       </div>
-      <div className="overflow-y-scroll place-items-center md:grid-cols-2 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 lg:grid-cols-3 xl:grid-cols-4 h-3/4 grid grid-cols-1 gap-10 p-10 items-center bg-[#F5F7FB] rounded-lg border-solid border">
+      <div className="overflow-y-scroll place-items-center md:grid-cols-2 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 lg:grid-cols-3 2xl:grid-cols-4 h-3/4 grid grid-cols-1 gap-10 p-10 items-center bg-[#F5F7FB] rounded-lg border-solid border">
         {anuncios.map((item) => (
-          <AdCard
-            image={item.imagen[0].imagen}
-            name={item.nombre}
-            location={item.alojamiento.direccion}
-            price={item.precio}
-            rating="4.1"
-          />
+          <Link href="app/[CardID]" as={`app/${anuncios.id}`}>
+            <a>
+              <AdCard
+                key
+                image={item.imagen[0].imagen}
+                name={item.nombre}
+                location={item.alojamiento.direccion}
+                price={item.precio}
+                rating="4.1"
+              />
+            </a>
+          </Link>
         ))}
       </div>
     </main>

@@ -13,25 +13,11 @@ import TextArea from "ui/TextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const FILE_SIZE = 60000;
-const SUPPORTED_FORMATS = ["image/jpeg", "image/png", "image/jpg"];
-
 const schema = yup
   .object({
     nombre: yup.string().required("Titulo requerido"),
     direccion: yup.string().required("Direccion requerida"),
-    //yup validate an image file minor than 60KB and of type jpeg, jpg, png
-    file: yup
-      .mixed()
-      .required("A file is required")
-      .test(
-        "fileSize",
-        "File Size is too large",
-        (value) => value.size <= FILE_SIZE
-      )
-      .test("fileType", "Unsupported File Format", (value) =>
-        SUPPORTED_FORMATS.includes(value.type)
-      ),
+    //falta validacion de imagen
     huespedes: yup
       .number("number")
       .positive()
