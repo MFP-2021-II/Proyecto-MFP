@@ -6,7 +6,7 @@
 export default function TextArea({ name, register, errors }) {
   return (
     <>
-      <label className="flex flex-col font-medium mb-2 text-gray-500">
+      <label className="flex flex-col mb-2 font-medium text-gray-500">
         Descripcion
       </label>
       <textarea
@@ -17,7 +17,7 @@ export default function TextArea({ name, register, errors }) {
         }`}
         name={name}
         {...register(name)}
-        placeHolder="Escribe una descripción..."
+        placeholder="Escribe una descripción..."
       />
       <p
         className={`mb-2 sm:mb-5 text-sm font-semibold text-red-500 ${

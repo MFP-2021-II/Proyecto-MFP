@@ -44,8 +44,8 @@ export default function App({ user }) {
   console.log(CardID);
 
   return (
-    <main className="h-almost-screen flex flex-col items-center justify-center">
-      <div className="w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12 flex justify-between">
+    <main className="flex flex-col items-center justify-center h-almost-screen">
+      <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
           <i>
             <House className="text-red-700 fill-current" />
@@ -53,7 +53,7 @@ export default function App({ user }) {
           <span className="pl-2 text-xl font-bold text-left">Alojamientos</span>
         </div>
         <div className="flex items-center justify-between">
-          <div className="flex flex-row justify-end relative">
+          <div className="relative flex flex-row justify-end">
             <TextInputBrowse
               label="Buscar..."
               variant="primary"
@@ -71,20 +71,22 @@ export default function App({ user }) {
         <div className="hidden">Espacio para filtros</div>
       </div>
       <div className="overflow-y-scroll place-items-center md:grid-cols-2 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 lg:grid-cols-3 2xl:grid-cols-4 h-3/4 grid grid-cols-1 gap-10 p-10 items-center bg-[#F5F7FB] rounded-lg border-solid border">
-        {anuncios.map((item) => (
-          <Link href="app/[CardID]" as={`app/${anuncios.id}`}>
-            <a>
-              <AdCard
-                key
-                image={item.imagen[0].imagen}
-                name={item.nombre}
-                location={item.alojamiento.direccion}
-                price={item.precio}
-                rating="4.1"
-              />
-            </a>
-          </Link>
-        ))}
+        {anuncios.map((item) => {
+          console.log(item.id);
+          return (
+            <Link href={`app/${item.id}`} key={item.id}>
+              <a>
+                <AdCard
+                  image={item.imagen[0].imagen}
+                  name={item.nombre}
+                  location={item.alojamiento.direccion}
+                  price={item.precio}
+                  rating="4.1"
+                />
+              </a>
+            </Link>
+          );
+        })}
       </div>
     </main>
   );

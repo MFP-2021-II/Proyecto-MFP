@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --coverage",
     "sonarqube": "sonar-scanner",
     "docs": "jsdoc -c jsdoc.json"
   },
@@ -21,6 +21,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "autoprefixer": "^10.2.6",
+    "jest": "^27.4.3",
     "postcss": "^8.3.5",
     "sonar-scanner": "^3.1.0",
     "tailwindcss": "^2.2.4"
