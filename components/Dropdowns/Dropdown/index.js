@@ -8,7 +8,13 @@ import { useEffect } from "react";
  * @param {Function} setOpen - Función para actualizar el estado de la lista desplegable
  * @returns {JSX} Dropdown
  */
-export default function Dropdown({ children, open, className, setOpen }) {
+export default function Dropdown({
+  children,
+  open,
+  className,
+  setOpen,
+  setOpenModal,
+}) {
   /**
    * Router redireccionar a la pagina de inicio de sesion
    * @returns {void}
@@ -20,9 +26,9 @@ export default function Dropdown({ children, open, className, setOpen }) {
    */
   const styles = {
     not_style:
-      "flex flex-row items-center px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b",
+      "flex flex-row items-center px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b cursor-pointer",
     def_style:
-      "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b",
+      "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b cursor-pointer",
     end_style:
       "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200",
   };
@@ -50,21 +56,24 @@ export default function Dropdown({ children, open, className, setOpen }) {
   return (
     <div
       id="dropdown"
-      className={`fixed right-0 md:right-[18vmax] top-[98px] w-full mt-2 rounded-md shadow-lg md:w-48 ${
+      className={`fixed right-0 md:right-[16.5vmax] top-[98px] w-full mt-2 rounded-md shadow-lg md:w-48 ${
         !open && "hidden"
       } ${className}`}
     >
       <div className="flex flex-col items-center px-2 py-2 bg-white rounded-md shadow">
         {children}
-        <a className={styles["not_style"]} href="#">
+        <a className={styles["not_style"]}>
           Notificaciones
           <span className="flex w-3 h-3">
             <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2"></span>
           </span>
         </a>
-        <a className={styles["def_style"]} href="#">
+        <button
+          className={styles["def_style"]}
+          onClick={() => setOpenModal(true)}
+        >
           Lista de favoritos
-        </a>
+        </button>
         <button
           className={styles["end_style"]}
           onClick={() => {

@@ -31,9 +31,9 @@ export default function AdCard({
    * @type {{u_text: string, m_text: string, b_text: string, r_text: string}}
    */
   const text_size = {
-    u_text: "font-bold text-sm md:text-base",
-    m_text: "font-normal text-gray-400 text-xs md:text-sm",
-    b_text: "font-light text-xs md:text-sm",
+    u_text: "font-bold text-sm md:text-base truncate w-full",
+    m_text: "font-normal text-gray-400 text-xs md:text-sm truncate w-full",
+    b_text: "font-light text-xs md:text-sm truncate w-full",
     r_text: "font-medium text-xs md:text-sm",
   };
 
@@ -52,13 +52,18 @@ export default function AdCard({
         />
       </div>
       <div className="flex flex-row items-center justify-between px-1 pt-2 rounded">
-        <div className="flex flex-col">
-          <span className={text_size["u_text"]}>{name}</span>
+        {/* Se agrego tamaño a las secciones de los texto para implementar el truncate */}
+        <div className="flex flex-col w-40 sm:w-32 lg:w-40">
+          <span title={name} className={text_size["u_text"]}>
+            {name}
+          </span>
           {edit ? (
             <></>
           ) : (
             <>
-              <span className={text_size["m_text"]}>{location}</span>
+              <span title={location} className={text_size["m_text"]}>
+                {location}
+              </span>
               <span className={text_size["b_text"]}>
                 {`S/ ${price} / noche`}
               </span>

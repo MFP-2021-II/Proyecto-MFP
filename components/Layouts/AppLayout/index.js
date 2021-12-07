@@ -6,7 +6,9 @@ import Isotype from "components/Icons/Isotype";
 import Dropdown from "components/Dropdowns/Dropdown";
 import LinkedDropdownListItem from "ui/LinkedDropdownListItem";
 import React, { useEffect, useState } from "react";
+import Modal from "components/Modals/Modal";
 import { useRouter } from "next/router";
+import ModalItem from "ui/ModalItem";
 /**
  * Componente que renderiza el layout de la aplicación
  * @param {pageProps} pageProps Propiedades de la página
@@ -40,6 +42,9 @@ export default function AppLayout({ Component, pageProps }) {
    */
   const [open, setOpen] = useState(false);
 
+  const [openModal, setOpenModal] = useState(false);
+  console.log("Modal: ", openModal);
+
   /**
    * Permite que no se pueda acceder al app desde la url sin estar logeado
    */
@@ -54,12 +59,14 @@ export default function AppLayout({ Component, pageProps }) {
 
   return (
     <>
-      <nav className="flex justify-center p-7 pr-10 w-full text-lg font-sans font-bold shadow-lg bg-[#FBEADC]">
+      <nav className="flex justify-center p-7 pr-7  w-full text-lg font-sans font-bold shadow-lg bg-[#FBEADC]">
         <div className="flex justify-between w-full md:w-8/12">
-          <a className="flex flex-row items-center transition duration-500 ease-in-out cursor-pointer hover:scale-110">
-            <Isotype className="w-11 h-11" />
-            <span className="hidden md:flex">Homy.</span>
-          </a>
+          <Link href="/app">
+            <a className="flex flex-row items-center transition duration-500 ease-in-out cursor-pointer hover:scale-110">
+              <Isotype className="w-11 h-11" />
+              <span className="hidden md:flex">Homy.</span>
+            </a>
+          </Link>
           {/* barra de buscar */}
           <div className="flex space-x-1 md:space-x-5">
             <div className="items-center hidden space-x-10 lg:flex">
@@ -92,7 +99,7 @@ export default function AppLayout({ Component, pageProps }) {
                   }`}
                   className="font-medium text-base truncate max-w-[90px]"
                 >
-                  {user?.data?.nombre} {user?.data?.apellidos.split(" ")[0]}
+                  {user?.data?.nombre}
                 </span>
                 <div className="flex flex-row">
                   <Link href="#">
@@ -111,7 +118,12 @@ export default function AppLayout({ Component, pageProps }) {
                   }`}
                 />
               </i>
-              <Dropdown open={open} setOpen={setOpen} className="z-10">
+              <Dropdown
+                open={open}
+                setOpen={setOpen}
+                setOpenModal={setOpenModal}
+                className="z-10"
+              >
                 <LinkedDropdownListItem
                   className={`lg:hidden ${click && "hidden"}`}
                   onClick={() => setClick(true)}
@@ -130,6 +142,16 @@ export default function AppLayout({ Component, pageProps }) {
           </div>
         </div>
       </nav>
+      <div
+        className={`z-10 absolute top-[0rem] backdrop-filter backdrop-blur-md bg-opacity-40 bg-gray-500 h-full w-full flex justify-center items-center ${
+          !openModal && "hidden"
+        }`}
+      >
+        <Modal className="z-20" setOpenModal={setOpenModal}>
+          {/* ModalItem para agregar nuevas listas de favorito */}
+          <ModalItem name="Ejemplo para el mongol que completará codigo mañana" />
+        </Modal>
+      </div>
       <Component {...pageProps} user={user} />
     </>
   );
