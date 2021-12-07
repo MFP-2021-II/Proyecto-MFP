@@ -21,10 +21,18 @@ export default function AppLayout({ Component, pageProps }) {
    * @type {Array}
    */
   const [user, setUser] = useState(null);
+
+  /**
+   * useState para los favoritos del usuario
+   * @type {Array}
+   */
+  const [favorites, setFavorites] = useState([]);
+
   /**
    * useState para el estado del boton para cambiar de vista
    * @type {Array}
    */
+
   const [click, setClick] = useState(false);
   /**
    * router para redireccionar a la pagina de login
@@ -56,6 +64,25 @@ export default function AppLayout({ Component, pageProps }) {
       router.push("/login");
     }
   }, []);
+
+  useEffect(async () => {
+    if (user) {
+      try {
+        const res = await fetch("http://localhost:3001/api/favoritos", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        const json = await res.json();
+        console.log("Favoritos: ", json);
+        setFavorites(json.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [user]);
 
   return (
     <>
@@ -149,7 +176,9 @@ export default function AppLayout({ Component, pageProps }) {
       >
         <Modal className="z-20" setOpenModal={setOpenModal}>
           {/* ModalItem para agregar nuevas listas de favorito */}
-          <ModalItem name="Ejemplo para el mongol que completará codigo mañana" />
+          {favorites.map((fav) => (
+            <ModalItem key={fav.id} name={fav.nombre} />
+          ))}
         </Modal>
       </div>
       <Component {...pageProps} user={user} />

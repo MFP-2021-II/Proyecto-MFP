@@ -2,6 +2,7 @@ import Star from "components/Icons/Star";
 import Edit from "components/Icons/Edit";
 import Delete from "components/Icons/Delete";
 import Link from "next/link";
+import Button from "@/components/Buttons/Button";
 
 /**
  * Compontente para mostrar una tarjeta de anuncio
@@ -14,12 +15,16 @@ import Link from "next/link";
  * @returns {JSX} AdCard
  */
 export default function AdCard({
+  id,
   image,
   name,
   location,
   price,
   rating,
   edit = false,
+  user = {},
+  setReload = () => {},
+  reload = false,
 }) {
   /**
    * Agrega animación a la tarjeta
@@ -37,6 +42,24 @@ export default function AdCard({
     r_text: "font-medium text-xs md:text-sm",
   };
 
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`http://localhost:3001/api/alojamiento/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      const data = await res.json();
+      console.log(data);
+      setReload(!reload);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className={`bg-white rounded-md border-solid border-2 p-4 max-w-md md:max-w-xl cursor-pointer ${event_card} ${
@@ -47,7 +70,7 @@ export default function AdCard({
         {/* Se cambió el largo de la tarjeta de full a 60 */}
         <img
           src={`data:image/jpeg;base64,${image}`}
-          className="w-60 h-full rounded-md"
+          className="h-full rounded-md w-60"
           alt="reference image"
         />
       </div>
@@ -72,10 +95,14 @@ export default function AdCard({
         </div>
         {edit ? (
           <div className="flex flex-row pr-1">
-            <Link href="/app/announcement/edit">
-              <Edit className="flex items-center w-5 h-5 fill-current hover:text-blue-700" />
+            <Link href={`/app/announcement/edit/${id}`}>
+              <a>
+                <Edit className="flex items-center w-5 h-5 fill-current hover:text-blue-700" />
+              </a>
             </Link>
-            <Delete className="flex items-center w-5 h-5 fill-current hover:text-red-700" />
+            <button onClick={handleDelete}>
+              <Delete className="flex items-center w-5 h-5 fill-current hover:text-red-700" />
+            </button>
           </div>
         ) : (
           <>

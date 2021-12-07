@@ -54,7 +54,8 @@ function MyApp({ Component, pageProps }) {
           Homy -{" "}
           {LANDING_PAGES[pathname] ||
             AUTH_PAGES[pathname] ||
-            APP_PAGES[pathname]}
+            APP_PAGES[pathname] ||
+            (pathname.includes("edit") ? "Editar anuncio" : "App")}
         </title>
         <meta
           name="description"
@@ -76,7 +77,7 @@ function MyApp({ Component, pageProps }) {
           </AuthLayout>
         </>
       )}
-      {APP_PAGES[pathname] && (
+      {pathname.includes("app") && (
         <AppLayout Component={Component} pageProps={pageProps} />
       )}
     </>

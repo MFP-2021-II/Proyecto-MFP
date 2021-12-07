@@ -11,7 +11,7 @@ export default function IDCard({ user }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
-  const [anuncio, setAnuncio] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(async () => {
     if (user && cardID) {
@@ -26,7 +26,9 @@ export default function IDCard({ user }) {
             },
           }
         );
-        if (res.data) {
+        const { data } = await res.json();
+        console.log(data);
+        if (data) {
           setIsFavorite(true);
         } else {
           setIsFavorite(false);
@@ -60,7 +62,7 @@ export default function IDCard({ user }) {
   useEffect(() => {
     if (cardID) {
       window
-        .fetch(`http://localhost:3001/api/anuncio/${cardID}`, {
+        .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -69,8 +71,8 @@ export default function IDCard({ user }) {
         })
         .then((res) => res.json())
         .then(({ data }) => {
-          console.log(data);
-          setAnuncio(data.anuncios[0]);
+          console.log(data.alojamientos);
+          setData(data.alojamientos);
         });
     }
   }, [cardID]);
@@ -78,68 +80,97 @@ export default function IDCard({ user }) {
   const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
   return (
-    <main className="flex flex-col items-center justify-center h-almost-screen overflow-y-auto">
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
         <div className="flex flex-col">
-          <h1 className="text-2xl lg:text-3xl font-medium">
-            {anuncio?.nombre}
-          </h1>
-          <div className="flex flex-row">
-            <div className="flex flex-row items-center">
-              <Star className="w-5 h-5 fill-current text-red-700" />
-              <span className="pl-2">4.11</span>
-            </div>
-            <div className="flex flex-row pl-4 items-center">
-              <Map className="w-5 h-5 fill-current text-red-700" />
-              <span className="pl-2">{anuncio?.alojamiento?.direccion}</span>
-            </div>
-          </div>
+          {data && (
+            <>
+              <h1 className="text-2xl font-medium lg:text-3xl">
+                {data?.anuncio[0]?.nombre}
+              </h1>
+              <div className="flex flex-row">
+                <div className="flex flex-row items-center">
+                  <Star className="w-5 h-5 text-red-700 fill-current" />
+                  <span className="pl-2">4.11</span>
+                </div>
+                <div className="flex flex-row items-center pl-4">
+                  <Map className="w-5 h-5 text-red-700 fill-current" />
+                  <span className="pl-2">{data?.direccion}</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
         <div className="flex flex-row items-center">
-          <span className="pr-2 font-semibold hidden md:flex">
+          <span className="hidden pr-2 font-semibold md:flex">
             {!isFavorite ? "Agregar a favoritos" : "Eliminar de favoritos"}
           </span>
           {isFavorite ? (
             // si es favorito}
             <Fav
-              className="fill-current text-red-700 hover:text-red-400 cursor-pointer"
+              className="text-red-700 cursor-pointer fill-current hover:text-red-400"
               onClick={handleToggleFavorite}
             />
           ) : (
             // si no es favorito
             <BoderFav
-              className="fill-current hover:text-red-700 cursor-pointer"
+              className="cursor-pointer fill-current hover:text-red-700"
               onClick={handleToggleFavorite}
             />
           )}
         </div>
       </div>
       <div className={`border-2 mb-2 rounded-lg ${screenSizes}`}>
-        <img
-          // src={`data:image/jpeg;base64,${anuncio?.imagen[0]?.imagen}`}
-          className="w-96 h-[12rem] sm:h-[15rem] rounded-lg"
-          alt="imagen de referencia"
-        />
+        {data?.anuncio[0]?.imagen?.map((img) => (
+          <img
+            key={img.id}
+            src={`data:image/jpeg;base64,${img.imagen}`}
+            className="w-96 h-[12rem] sm:h-[15rem] rounded-lg"
+            alt="imagen de referencia"
+          />
+        ))}
       </div>
-      <h2 className={`font-semibold text-lg ${screenSizes}`}>
-        Tipo alojamiento "{anuncio?.alojamiento?.id_tipo_alojamiento}"
-      </h2>
+      {data && (
+        <h2 className={`font-semibold text-lg ${screenSizes}`}>
+          {`Tipo alojamiento ${data?.tipo_alojamiento?.descripcion}`}
+        </h2>
+      )}
       <section className={`grid grid-cols-3 sm:grid-cols-4 ${screenSizes}`}>
         {/* Seccion nombre y descripcion */}
-        <div className="col-span-3 mr-0 sm:mr-5 items-center">
+        <div className="items-center col-span-3 mr-0 sm:mr-5">
           <div className="flex flex-row justify-between py-2 border-b-2">
-            <span className="text-sm pt-1">
-              1 huesped · 1 habitacion · 1 baño
+            <span className="pt-1 text-sm">
+              {data &&
+                data?.caracteristica.map((car) => {
+                  if (
+                    car.descripcion !== "Piscina" &&
+                    car.descripcion !== "Estacionamiento" &&
+                    car.descripcion !== "Jaccuzi"
+                  ) {
+                    return (
+                      <span key={car.id} className="text-red-700">
+                        {" "}
+                        {`· ${car?.cantidad} ${car?.descripcion}`}
+                      </span>
+                    );
+                  }
+                })}
             </span>
             <div className="flex flex-row">
               <User className="rounded-full w-7 h-7 border-2 border-red-700 bg-[#FEAC4C]" />
-              <span className="ml-2 font-semibold align-middle">
-                Anunciante
-              </span>
+              {data && (
+                <span className="ml-2 font-semibold align-middle">
+                  {data?.usuario?.nombre} {data?.usuario?.apellidos}
+                </span>
+              )}
             </div>
           </div>
-          <p className="w-full pt-2 min-h-[6rem]">{anuncio?.descripcion}</p>
-          <div className="flex flex-row w-full justify-center items-center  py-6">
+          {data && (
+            <p className="w-full pt-2 min-h-[6rem]">
+              {data?.anuncio[0]?.descripcion}
+            </p>
+          )}
+          <div className="flex flex-row items-center justify-center w-full py-6">
             <Button
               variant="quinary"
               className="w-32 h-10 font-semibold"
@@ -148,12 +179,14 @@ export default function IDCard({ user }) {
               Reservar
             </Button>
             <div className="flex flex-col ml-6 min-h-[2rem]">
-              <span className="text-base font-semibold">
-                S/ {anuncio?.precio} / noche
-              </span>
-              <div className="flex flex-row justify-center items-center">
-                <Star className="w-4 h-4 fill-current text-red-700" />
-                <span className="text-sm pr-1">4.11</span>
+              {data && (
+                <span className="text-base font-semibold">
+                  S/ {data?.anuncio[0]?.precio} / noche
+                </span>
+              )}
+              <div className="flex flex-row items-center justify-center">
+                <Star className="w-4 h-4 text-red-700 fill-current" />
+                <span className="pr-1 text-sm">4.11</span>
                 <span className="text-sm text-gray-500">(20 reseñas)</span>
               </div>
             </div>
@@ -161,12 +194,23 @@ export default function IDCard({ user }) {
         </div>
         {/* Seccion de facilidades */}
         <div className="flex justify-center col-span-3 sm:col-span-1">
-          <div className="bg-gray-100 flex flex-row sm:flex-col justify-between rounded-lg p-4 w-full">
+          <div className="flex flex-row justify-between w-full p-4 bg-gray-100 rounded-lg sm:flex-col">
             <span className="font-semibold h-[15%]">El lugar ofrece:</span>
             <ul className="flex flex-col justify-around h-[85%] font-semibold items-center">
-              <li>Facilidades</li>
-              <li>Facilidades</li>
-              <li>Facilidades</li>
+              {data &&
+                data?.caracteristica.map((car) => {
+                  if (
+                    car.descripcion !== "Huespedes" &&
+                    car.descripcion !== "Habitaciones" &&
+                    car.descripcion !== "Baños"
+                  ) {
+                    return (
+                      <li key={car.id} className="text-blue-800">
+                        {car?.descripcion}
+                      </li>
+                    );
+                  }
+                })}
             </ul>
           </div>
         </div>

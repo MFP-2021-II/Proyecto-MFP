@@ -19,6 +19,7 @@ export default function Announcement({ user }) {
    * @default []
    */
   const [anuncios, setAnuncios] = useState([]);
+  const [reload, setReload] = useState(false);
 
   /**
    * Use effect para obtener los anuncios del usuario
@@ -41,10 +42,10 @@ export default function Announcement({ user }) {
         })
         .catch((err) => console.log(err));
     }
-  }, [user]);
+  }, [user, reload]);
 
   return (
-    <main className="h-almost-screen flex flex-col items-center justify-center ">
+    <main className="flex flex-col items-center justify-center h-almost-screen ">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
           <i>
@@ -71,13 +72,17 @@ export default function Announcement({ user }) {
           })
           .map((anuncio) => (
             <AdCard
+              user={user}
               key={anuncio.id}
               edit={true}
+              id={anuncio.id}
               image={anuncio.imagen[0].imagen}
               name={anuncio.nombre}
               location={anuncio.alojamiento.direccion}
               price={anuncio.precio}
               rating="4.1"
+              setReload={setReload}
+              reload={reload}
             />
           ))}
       </div>
