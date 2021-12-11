@@ -7,7 +7,7 @@ import Map from "components/Icons/Map";
 import Button from "components/Buttons/Button";
 import User from "components/Icons/User";
 
-export default function IDCard({ user }) {
+export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
@@ -37,7 +37,7 @@ export default function IDCard({ user }) {
         console.log(error);
       }
     }
-  }, [user, cardID]);
+  }, [user, cardID, reloadFavorites]);
 
   const handleToggleFavorite = async () => {
     try {
@@ -54,6 +54,7 @@ export default function IDCard({ user }) {
       const data = await res.json();
       console.log(data);
       setIsFavorite(!isFavorite);
+      setReloadFavorites(!reloadFavorites);
     } catch (err) {
       console.log(err);
     }

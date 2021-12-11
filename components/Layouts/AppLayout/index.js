@@ -53,6 +53,30 @@ export default function AppLayout({ Component, pageProps }) {
   const [openModal, setOpenModal] = useState(false);
   console.log("Modal: ", openModal);
 
+  const [reloadFavorites, setReloadFavorites] = useState(false);
+
+  const handleDelete = async (idAnuncio) => {
+    try {
+      const response = await fetch("http://localhost:3001/api/favoritos/", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem("user")).token
+          }`,
+        },
+        body: JSON.stringify({
+          id_anuncio: idAnuncio,
+        }),
+      });
+      const data = await response.json();
+      setReloadFavorites(!reloadFavorites);
+      console.log("data: ", data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   /**
    * Permite que no se pueda acceder al app desde la url sin estar logeado
    */
@@ -82,7 +106,7 @@ export default function AppLayout({ Component, pageProps }) {
         console.log(err);
       }
     }
-  }, [user]);
+  }, [user, reloadFavorites]);
 
   return (
     <>
@@ -177,11 +201,20 @@ export default function AppLayout({ Component, pageProps }) {
         <Modal className="z-20" setOpenModal={setOpenModal}>
           {/* ModalItem para agregar nuevas listas de favorito */}
           {favorites.map((fav) => (
-            <ModalItem key={fav.id} name={fav.nombre} />
+            <ModalItem
+              key={fav.id}
+              name={fav.nombre}
+              onClick={() => handleDelete(fav.H_Usuarios_Anuncios.id_anuncio)}
+            />
           ))}
         </Modal>
       </div>
-      <Component {...pageProps} user={user} />
+      <Component
+        {...pageProps}
+        setReloadFavorites={setReloadFavorites}
+        reloadFavorites={reloadFavorites}
+        user={user}
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import House from "components/Icons/House";
 import Delete from "components/Icons/Delete";
 
-export default function ModalItem({ name }) {
+export default function ModalItem({ name, onClick }) {
   return (
     <div className="w-full items-center bg-[#FCF8F8] hover:bg-gray-100 flex flex-row justify-between mb-3 p-3 border rounded-lg">
       <div className="flex flex-row items-center">
@@ -10,7 +10,9 @@ export default function ModalItem({ name }) {
           {name}
         </span>
       </div>
-      <Delete className="w-8 h-8 fill-current text-gray-700 hover:text-red-700 cursor-pointer" />
+      <button onClick={onClick}>
+        <Delete className="w-8 h-8 fill-current text-gray-700 hover:text-red-700 cursor-pointer" />
+      </button>
     </div>
   );
 }
