@@ -22,24 +22,38 @@ export default function FormPhoto({
         <label className="pb-2 font-medium text-gray-500">Sube una foto</label>
         <div className="flex items-center justify-center w-full">
           <label className="flex flex-col justify-around w-full h-48 border-4 border-dashed hover:bg-gray-100 hover:border-red-300 group">
-            <div className="flex flex-col items-center justify-center cursor-pointer pt-7">
-              <svg
-                className="w-10 h-10 text-red-400 group-hover:text-red-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                ></path>
-              </svg>
-              <p className="pt-1 text-sm tracking-wider text-center text-gray-400 group-hover:text-red-700">
-                Elige una foto menor a 60KB
-              </p>
+            <div className="flex flex-col items-center justify-center cursor-pointer">
+              {fileImage && typeof fileImage === "string" ? (
+                <img src={fileImage} />
+              ) : (
+                fileImage &&
+                typeof fileImage === "object" && (
+                  <img
+                    src={URL.createObjectURL(fileImage)}
+                    className="w-full h-full"
+                  />
+                )
+              )}
+
+              {!fileImage && (
+                <>
+                  <svg
+                    className="w-10 h-10 text-red-400 group-hover:text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  <p className="text-sm text-gray-500">Selecciona una imagen</p>
+                </>
+              )}
             </div>
             <input
               type={type}

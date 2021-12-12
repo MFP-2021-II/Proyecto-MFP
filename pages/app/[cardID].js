@@ -125,7 +125,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         {data?.anuncio[0]?.imagen?.map((img) => (
           <img
             key={img.id}
-            src={`data:image/jpeg;base64,${img.imagen}`}
+            src={img.imagen}
             className="w-96 h-[12rem] sm:h-[15rem] rounded-lg"
             alt="imagen de referencia"
           />

@@ -12,35 +12,23 @@ import CheckBox from "ui/CheckBox";
 import TextArea from "ui/TextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useFormState } from "react-hook-form";
 
-const schema = yup
-  .object({
-    nombre: yup.string().required("Titulo requerido"),
-    direccion: yup.string().required("Direccion requerida"),
-    //falta validacion de imagen
-    huespedes: yup
-      .number("number")
-      .positive()
-      .required("Requerido")
-      .typeError("La cantidad deber ser un numero"),
-    habitaciones: yup
-      .number("number")
-      .positive()
-      .required("Requerido")
-      .typeError("La cantidad deber ser un numero"),
-    baños: yup
-      .number("number")
-      .positive()
-      .required("Requerido")
-      .typeError("Debe ser un numero"),
-    precio: yup
-      .number("number")
-      .positive()
-      .required("Requerido")
-      .typeError("Debe ser decimal"),
-    descripcion: yup.string().min(25).required("Campo requerido"),
-  })
-  .required();
+const schema = yup.object({
+  nombre: yup.string(),
+  direccion: yup.string(),
+  huespedes: yup
+    .number("number")
+    .positive()
+    .typeError("La cantidad deber ser un numero"),
+  habitaciones: yup
+    .number("number")
+    .positive()
+    .typeError("La cantidad deber ser un numero"),
+  baños: yup.number("number").positive().typeError("Debe ser un numero"),
+  precio: yup.number("number").positive().typeError("Debe ser decimal"),
+  descripcion: yup.string().min(25),
+});
 /**
  * @returns {JSX} Página de edición de anuncios
  */
@@ -57,17 +45,26 @@ export default function Edit({ user }) {
    * @param {object} register Funciones para manejar el formulario
    * @param {object} handleSubmit Funcion para enviar el formulario
    */
+  //extract dirtyFields
   const {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
+  const url = URL.createObjectURL;
+
+  const { dirtyFields } = useFormState({
+    control,
+  });
   /**
    * useState para manejar el estado de las imagenes de los anuncios
    * @type {array}
    */
   const [fileImage, setFileImage] = useState(null);
+  const [features, setFeatures] = useState(null);
   /**
    * useState para manejar el estado los alojamientos
    * @type {array}
@@ -84,93 +81,12 @@ export default function Edit({ user }) {
     setFile(_file);
     register(field).onChange(e);
   };
-  /**
-   * Función asincrona para renderizar la imagen seleccionada como URL
-   * @param {object} file Imagen seleccionada
-   */
-  const toBase64 = async (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
+  const populateFormDataArray = (formData, field, object) => {
+    Object.keys(object).forEach((key) => {
+      formData.append(`${field}[${key}]`, object[key]);
     });
   };
 
-  /**
-   * Función asincrona para convertir la imagen a base64
-   * @param {object} data Dato de URL de la imagen
-   */
-  const onSubmit = async (data) => {
-    let newFileBase64 = null;
-    if (data.file.length > 0) {
-      const fileBase64 = await toBase64(data.file[0]);
-      newFileBase64 = fileBase64.split("data:image/jpeg;base64,")[1];
-    } else {
-      console.log("no hay imagen");
-      newFileBase64 = fileImage;
-    }
-
-    const formData = {
-      alojamiento: {
-        direccion: data.direccion,
-        id_tipo_alojamiento: +data.id_tipo_alojamiento,
-      },
-      anuncio: {
-        descripcion: data.descripcion,
-        precio: data.precio,
-        nombre: data.nombre,
-      },
-      caracteristicas: [
-        {
-          descripcion: "Huespedes",
-          cantidad: data.huespedes,
-        },
-        {
-          descripcion: "Habitaciones",
-          cantidad: data.habitaciones,
-        },
-        {
-          descripcion: "Baños",
-          cantidad: data.baños,
-        },
-        {
-          descripcion: "Piscina",
-          cantidad: +data.piscina,
-        },
-        {
-          descripcion: "Estacionamiento",
-          cantidad: +data.estacionamiento,
-        },
-        {
-          descripcion: "Jaccuzi",
-          cantidad: +data.jaccuzi,
-        },
-      ],
-      imagen: newFileBase64,
-    };
-
-    console.log(formData);
-
-    window
-      .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify(formData),
-      })
-      .then((res) => res.json())
-      .then((res) => {
-        router.push("/app/announcement");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
-  /**
-   * useEffect para obtener los alojamientos
-   */
   useEffect(() => {
     if (user)
       window
@@ -205,7 +121,7 @@ export default function Edit({ user }) {
       );
       const { data } = await res.json();
       const alojamientos = data.alojamientos;
-      console.log(data);
+      setFeatures(alojamientos.caracteristica);
       setFileImage(alojamientos.anuncio[0].imagen[0].imagen);
       setValue("nombre", alojamientos.anuncio[0].nombre);
       setValue("direccion", alojamientos.direccion);
@@ -213,7 +129,7 @@ export default function Edit({ user }) {
       setValue("descripcion", alojamientos.anuncio[0].descripcion);
       setValue("precio", alojamientos.anuncio[0].precio);
       setValue("huespedes", alojamientos.caracteristica[0].cantidad);
-      alojamientos.caracteristica.map((caracteristica) => {
+      alojamientos.caracteristica.forEach((caracteristica) => {
         if (caracteristica.descripcion === "Habitaciones") {
           setValue("habitaciones", caracteristica.cantidad);
         }
@@ -233,6 +149,95 @@ export default function Edit({ user }) {
       setValue("id_tipo_alojamiento", alojamientos.tipo_alojamiento.id);
     }
   }, [user, cardID]);
+  /**
+   * Función asincrona para convertir la imagen a base64
+   * @param {object} data Dato de URL de la imagen
+   */
+  const onSubmit = async (data) => {
+    const formData = {
+      alojamiento: {
+        direccion: data?.direccion,
+        id_tipo_alojamiento: +data?.id_tipo_alojamiento,
+      },
+      anuncio: {
+        descripcion: data?.descripcion,
+        precio: data?.precio,
+        nombre: data?.nombre,
+        id_anuncio: cardID,
+      },
+      caracteristicas: [
+        {
+          descripcion: "Huespedes",
+          cantidad: data?.huespedes,
+        },
+        {
+          descripcion: "Habitaciones",
+          cantidad: data?.habitaciones,
+        },
+        {
+          descripcion: "Baños",
+          cantidad: data?.baños,
+        },
+        {
+          descripcion: "Piscina",
+          cantidad: +data?.piscina,
+        },
+        {
+          descripcion: "Estacionamiento",
+          cantidad: +data?.estacionamiento,
+        },
+        {
+          descripcion: "Jaccuzi",
+          cantidad: +data?.jaccuzi,
+        },
+      ],
+      imagen: data?.file?.[0] || fileImage,
+    };
+    const formDataObject = new FormData();
+
+    populateFormDataArray(formDataObject, "alojamiento", formData.alojamiento);
+    populateFormDataArray(formDataObject, "anuncio", formData.anuncio);
+    formData.caracteristicas.forEach((caracteristica, index) => {
+      formDataObject.append(
+        `caracteristicas[${index}][cantidad]`,
+        caracteristica?.cantidad
+      );
+      formDataObject.append(
+        `caracteristicas[${index}][descripcion]`,
+        caracteristica?.descripcion
+      );
+      formDataObject.append(
+        `caracteristicas[${index}][id_caracteristica]`,
+        features.find((feature) => {
+          return feature.descripcion === caracteristica?.descripcion;
+        })?.id
+      );
+    });
+    formDataObject.append("imagen", formData.imagen);
+
+    // // print the formData iterate
+    // for (let pair of formDataObject.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+
+    window
+      .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: formDataObject,
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        // router.push("/app/announcement");
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+  /**
+   * useEffect para obtener los alojamientos
+   */
 
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
