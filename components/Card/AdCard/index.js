@@ -69,7 +69,7 @@ export default function AdCard({
       <div className="bg-transparent h-36">
         {/* Se cambió el largo de la tarjeta de full a 60 */}
         <img
-          src={`data:image/jpeg;base64,${image}`}
+          src={image}
           className="h-full rounded-md w-60"
           alt="reference image"
         />

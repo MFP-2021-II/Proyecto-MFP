@@ -83,16 +83,10 @@ export default function CreateAnnouncement({ user }) {
     setFile(_file);
     register(field).onChange(e);
   };
-  /**
-   * Función asincrona para renderizar la imagen seleccionada como URL
-   * @param {object} file Imagen seleccionada
-   */
-  const toBase64 = async (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
+
+  const populateFormDataArray = (formData, field, object) => {
+    Object.keys(object).forEach((key) => {
+      formData.append(`${field}[${key}]`, object[key]);
     });
   };
 
@@ -101,10 +95,6 @@ export default function CreateAnnouncement({ user }) {
    * @param {object} data Dato de URL de la imagen
    */
   const onSubmit = async (data) => {
-    const fileBase64 = await toBase64(data.file[0]);
-    const newFileBase64 = fileBase64.split("data:image/jpeg;base64,")[1];
-    console.log(newFileBase64);
-
     const formData = {
       alojamiento: {
         direccion: data.direccion,
@@ -141,24 +131,67 @@ export default function CreateAnnouncement({ user }) {
           cantidad: +data.jaccuzi,
         },
       ],
-      imagen: newFileBase64,
+      imagen: data.file[0],
     };
 
-    console.log(formData);
+    console.log(formData, "onSubmit");
+
+    // transfrom to a nested FormData object
+    const formDataObject = new FormData();
+
+    populateFormDataArray(formDataObject, "alojamiento", formData.alojamiento);
+    populateFormDataArray(formDataObject, "anuncio", formData.anuncio);
+    formDataObject.append(`caracteristicas[0][descripcion]`, "Huespedes");
+    formDataObject.append(
+      `caracteristicas[0][cantidad]`,
+      formData.caracteristicas[0].cantidad
+    );
+    formDataObject.append(`caracteristicas[1][descripcion]`, "Habitaciones");
+    formDataObject.append(
+      `caracteristicas[1][cantidad]`,
+      formData.caracteristicas[1].cantidad
+    );
+    formDataObject.append(`caracteristicas[2][descripcion]`, "Baños");
+    formDataObject.append(
+      `caracteristicas[2][cantidad]`,
+      formData.caracteristicas[2].cantidad
+    );
+    formDataObject.append(`caracteristicas[3][descripcion]`, "Piscina");
+    formDataObject.append(
+      `caracteristicas[3][cantidad]`,
+      formData.caracteristicas[3].cantidad
+    );
+    formDataObject.append(`caracteristicas[4][descripcion]`, "Estacionamiento");
+    formDataObject.append(
+      `caracteristicas[4][cantidad]`,
+      formData.caracteristicas[4].cantidad
+    );
+    formDataObject.append(`caracteristicas[5][descripcion]`, "Jaccuzi");
+    formDataObject.append(
+      `caracteristicas[5][cantidad]`,
+      formData.caracteristicas[5].cantidad
+    );
+    formDataObject.append("imagen", formData.imagen);
+
+    // iterate formDataObject
+    for (const [key, value] of formDataObject.entries()) {
+      console.log(`${key} = ${value}`);
+    }
 
     window
       .fetch("http://localhost:3001/api/alojamiento", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${user.token}`,
         },
-        body: JSON.stringify(formData),
+        body: formDataObject,
       })
       .then((res) => res.json())
       .then((res) => {
-        router.push("/app/announcement");
         console.log(res);
+        if (res.ok) {
+          router.push("/app/announcement");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -182,7 +215,7 @@ export default function CreateAnnouncement({ user }) {
 
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
-      <div className="w-11/12 flex flex-row items-center pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
+      <div className="flex flex-row items-center w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <i>
           <Add className="text-red-700 fill-current" />
         </i>
@@ -263,7 +296,7 @@ export default function CreateAnnouncement({ user }) {
               disabled={false}
               {...register("id_tipo_alojamiento")}
             />
-            <div className="mt-2 w-full h-24">
+            <div className="w-full h-24 mt-2">
               <TextArea
                 name="descripcion"
                 register={register}
@@ -272,7 +305,7 @@ export default function CreateAnnouncement({ user }) {
             </div>
           </div>
         </section>
-        <div className="flex flex-row justify-center lg:w-full space-x-6 mt-5">
+        <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
           <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
             Volver
           </LandingButton>
