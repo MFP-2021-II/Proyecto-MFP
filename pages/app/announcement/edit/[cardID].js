@@ -12,6 +12,7 @@ import CheckBox from "ui/CheckBox";
 import TextArea from "ui/TextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { diccionarioCaracteristicas } from "utils/constants";
 
 const schema = yup.object({
   nombre: yup.string(),
@@ -112,6 +113,7 @@ export default function Edit({ user }) {
           },
         }
       );
+
       const { data } = await res.json();
       const alojamientos = data.alojamientos;
       setFeatures(alojamientos.caracteristica);
@@ -122,18 +124,20 @@ export default function Edit({ user }) {
       setValue("descripcion", alojamientos.anuncio[0].descripcion);
       setValue("precio", alojamientos.anuncio[0].precio);
       setValue("huespedes", alojamientos.caracteristica[0].cantidad);
-      alojamientos.caracteristica.forEach((caracteristica) => {
-        if (caracteristica.descripcion === "Habitaciones")
-          setValue("habitaciones", caracteristica.cantidad);
-        if (caracteristica.descripcion === "Baños")
-          setValue("baños", caracteristica.cantidad);
-        if (caracteristica.descripcion === "Piscina")
-          setValue("piscina", caracteristica.cantidad);
-        if (caracteristica.descripcion === "Estacionamiento")
-          setValue("estacionamiento", caracteristica.cantidad);
-        if (caracteristica.descripcion === "Jaccuzi")
-          setValue("jaccuzi", caracteristica.cantidad);
+
+      diccionarioCaracteristicas.forEach((caracteristica) => {
+        const currentCaracteristica = alojamientos.caracteristica.find(
+          (car) => caracteristica === car.descripcion
+        );
+
+        if (currentCaracteristica) {
+          setValue(
+            caracteristica.toLowerCase(),
+            currentCaracteristica.cantidad
+          );
+        }
       });
+
       setValue("id_tipo_alojamiento", alojamientos.tipo_alojamiento.id);
     }
   }, [user, cardID]);
