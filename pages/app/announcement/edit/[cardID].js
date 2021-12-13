@@ -12,7 +12,6 @@ import CheckBox from "ui/CheckBox";
 import TextArea from "ui/TextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useFormState } from "react-hook-form";
 
 const schema = yup.object({
   nombre: yup.string(),
@@ -50,15 +49,9 @@ export default function Edit({ user }) {
     register,
     handleSubmit,
     setValue,
-    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const url = URL.createObjectURL;
-
-  const { dirtyFields } = useFormState({
-    control,
-  });
   /**
    * useState para manejar el estado de las imagenes de los anuncios
    * @type {array}
@@ -130,21 +123,16 @@ export default function Edit({ user }) {
       setValue("precio", alojamientos.anuncio[0].precio);
       setValue("huespedes", alojamientos.caracteristica[0].cantidad);
       alojamientos.caracteristica.forEach((caracteristica) => {
-        if (caracteristica.descripcion === "Habitaciones") {
+        if (caracteristica.descripcion === "Habitaciones")
           setValue("habitaciones", caracteristica.cantidad);
-        }
-        if (caracteristica.descripcion === "Baños") {
+        if (caracteristica.descripcion === "Baños")
           setValue("baños", caracteristica.cantidad);
-        }
-        if (caracteristica.descripcion === "Piscina") {
+        if (caracteristica.descripcion === "Piscina")
           setValue("piscina", caracteristica.cantidad);
-        }
-        if (caracteristica.descripcion === "Estacionamiento") {
+        if (caracteristica.descripcion === "Estacionamiento")
           setValue("estacionamiento", caracteristica.cantidad);
-        }
-        if (caracteristica.descripcion === "Jaccuzi") {
+        if (caracteristica.descripcion === "Jaccuzi")
           setValue("jaccuzi", caracteristica.cantidad);
-        }
       });
       setValue("id_tipo_alojamiento", alojamientos.tipo_alojamiento.id);
     }
@@ -215,11 +203,6 @@ export default function Edit({ user }) {
     });
     formDataObject.append("imagen", formData.imagen);
 
-    // // print the formData iterate
-    // for (let pair of formDataObject.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-
     window
       .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
         method: "PUT",
@@ -230,7 +213,7 @@ export default function Edit({ user }) {
       })
       .then((res) => res.json())
       .then((res) => {
-        // router.push("/app/announcement");
+        router.push("/app/announcement");
         console.log(res);
       })
       .catch((err) => console.log(err));
@@ -333,12 +316,12 @@ export default function Edit({ user }) {
           </div>
         </section>
         <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
-          <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
-            Volver
-          </LandingButton>
           <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
             Editar
           </NavButton>
+          <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
+            Volver
+          </LandingButton>
         </div>
       </form>
     </main>

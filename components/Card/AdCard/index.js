@@ -2,7 +2,6 @@ import Star from "components/Icons/Star";
 import Edit from "components/Icons/Edit";
 import Delete from "components/Icons/Delete";
 import Link from "next/link";
-import Button from "@/components/Buttons/Button";
 
 /**
  * Compontente para mostrar una tarjeta de anuncio
@@ -23,7 +22,7 @@ export default function AdCard({
   rating,
   edit = false,
   user = {},
-  setReload = () => {},
+  setReload,
   reload = false,
 }) {
   /**

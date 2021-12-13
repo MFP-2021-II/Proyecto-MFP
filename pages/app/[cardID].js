@@ -11,7 +11,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
-  const [data, setData] = useState(null);
+  const [dato, setDato] = useState(null);
 
   useEffect(async () => {
     if (user && cardID) {
@@ -51,8 +51,8 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
           id_anuncio: cardID,
         }),
       });
-      const data = await res.json();
-      console.log(data);
+      const dataRes = await res.json();
+      console.log(dataRes);
       setIsFavorite(!isFavorite);
       setReloadFavorites(!reloadFavorites);
     } catch (err) {
@@ -73,7 +73,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         .then((res) => res.json())
         .then(({ data }) => {
           console.log(data.alojamientos);
-          setData(data.alojamientos);
+          setDato(data.alojamientos);
         });
     }
   }, [cardID]);
@@ -84,10 +84,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
         <div className="flex flex-col">
-          {data && (
+          {dato && (
             <>
               <h1 className="text-2xl font-medium lg:text-3xl">
-                {data?.anuncio[0]?.nombre}
+                {dato?.anuncio[0]?.nombre}
               </h1>
               <div className="flex flex-row">
                 <div className="flex flex-row items-center">
@@ -96,7 +96,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 </div>
                 <div className="flex flex-row items-center pl-4">
                   <Map className="w-5 h-5 text-red-700 fill-current" />
-                  <span className="pl-2">{data?.direccion}</span>
+                  <span className="pl-2">{dato?.direccion}</span>
                 </div>
               </div>
             </>
@@ -122,7 +122,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         </div>
       </div>
       <div className={`border-2 mb-2 rounded-lg ${screenSizes}`}>
-        {data?.anuncio[0]?.imagen?.map((img) => (
+        {dato?.anuncio[0]?.imagen?.map((img) => (
           <img
             key={img.id}
             src={img.imagen}
@@ -131,9 +131,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
           />
         ))}
       </div>
-      {data && (
+      {dato && (
         <h2 className={`font-semibold text-lg ${screenSizes}`}>
-          {`Tipo alojamiento ${data?.tipo_alojamiento?.descripcion}`}
+          {`Tipo alojamiento ${dato?.tipo_alojamiento?.descripcion}`}
         </h2>
       )}
       <section className={`grid grid-cols-3 sm:grid-cols-4 ${screenSizes}`}>
@@ -141,17 +141,18 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         <div className="items-center col-span-3 mr-0 sm:mr-5">
           <div className="flex flex-row justify-between py-2 border-b-2">
             <span className="pt-1 text-sm">
-              {data &&
-                data?.caracteristica.map((car) => {
+              {dato &&
+                dato?.caracteristica.map((car) => {
                   if (
                     car.descripcion !== "Piscina" &&
                     car.descripcion !== "Estacionamiento" &&
                     car.descripcion !== "Jaccuzi"
                   ) {
                     return (
-                      <span key={car.id} className="text-red-700">
-                        {" "}
-                        {`· ${car?.cantidad} ${car?.descripcion}`}
+                      <span key={car.id} className="text-gray-600">
+                        {`${car?.cantidad} ${car?.descripcion}`}
+                        {` `}
+                        {` · `}
                       </span>
                     );
                   }
@@ -159,16 +160,19 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
             </span>
             <div className="flex flex-row">
               <User className="rounded-full w-7 h-7 border-2 border-red-700 bg-[#FEAC4C]" />
-              {data && (
-                <span className="ml-2 font-semibold align-middle">
-                  {data?.usuario?.nombre} {data?.usuario?.apellidos}
+              {dato && (
+                <span className="ml-2 font-semibold flex flex-row">
+                  {dato?.usuario?.nombre}
+                  <span className="ml-1 font-semibold hidden lg:flex">
+                    {dato?.usuario?.apellidos}
+                  </span>
                 </span>
               )}
             </div>
           </div>
-          {data && (
+          {dato && (
             <p className="w-full pt-2 min-h-[6rem]">
-              {data?.anuncio[0]?.descripcion}
+              {dato?.anuncio[0]?.descripcion}
             </p>
           )}
           <div className="flex flex-row items-center justify-center w-full py-6">
@@ -180,9 +184,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               Reservar
             </Button>
             <div className="flex flex-col ml-6 min-h-[2rem]">
-              {data && (
+              {dato && (
                 <span className="text-base font-semibold">
-                  S/ {data?.anuncio[0]?.precio} / noche
+                  S/ {dato?.anuncio[0]?.precio} / noche
                 </span>
               )}
               <div className="flex flex-row items-center justify-center">
@@ -198,16 +202,17 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
           <div className="flex flex-row justify-between w-full p-4 bg-gray-100 rounded-lg sm:flex-col">
             <span className="font-semibold h-[15%]">El lugar ofrece:</span>
             <ul className="flex flex-col justify-around h-[85%] font-semibold items-center">
-              {data &&
-                data?.caracteristica.map((car) => {
+              {dato &&
+                dato?.caracteristica.map((car) => {
                   if (
                     car.descripcion !== "Huespedes" &&
                     car.descripcion !== "Habitaciones" &&
-                    car.descripcion !== "Baños"
+                    car.descripcion !== "Baños" &&
+                    car?.cantidad !== 0
                   ) {
                     return (
                       <li key={car.id} className="text-blue-800">
-                        {car?.descripcion}
+                        {`· `} {car?.descripcion}
                       </li>
                     );
                   }

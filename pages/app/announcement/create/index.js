@@ -306,12 +306,12 @@ export default function CreateAnnouncement({ user }) {
           </div>
         </section>
         <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
-          <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
-            Volver
-          </LandingButton>
           <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
             Crear
           </NavButton>
+          <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
+            Volver
+          </LandingButton>
         </div>
       </form>
     </main>

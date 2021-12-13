@@ -114,7 +114,7 @@ export default function Register() {
               name="apellidos"
               variant="primary"
               register={register}
-              errors={errors.apellido}
+              errors={errors.apellidos}
             />
           </div>
         </div>
