@@ -6,12 +6,16 @@ import Star from "components/Icons/Star";
 import Map from "components/Icons/Map";
 import Button from "components/Buttons/Button";
 import User from "components/Icons/User";
+import PaymentModal from "components/Modals/Payment";
+import Backdrop from "@/components/Modals/Backdrop";
 
 export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
   const [data, setData] = useState(null);
+
+  const [mostrarPago, setMostrarPago] = useState(false);
 
   useEffect(async () => {
     if (user && cardID) {
@@ -80,8 +84,21 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
+  const toggleReservar = () => {
+    setMostrarPago(!mostrarPago);
+  };
+
+  let modalPago = (
+    <div>
+      <Backdrop />
+      <PaymentModal />
+    </div>
+  );
+
   return (
     <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
+      {mostrarPago && modalPago}
+
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
         <div className="flex flex-col">
           {data && (

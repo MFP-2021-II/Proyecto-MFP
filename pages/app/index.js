@@ -3,6 +3,10 @@ import IconButton from "components/Buttons/IconButton";
 import Search from "components/Icons/Search";
 import Filter from "components/Icons/Filter";
 import TextInputBrowse from "ui/TextInputBrowse";
+import DateBox from "ui/DateBox";
+import Select from "ui/Select";
+import InputLabel from "ui/InputLabel";
+import BiStateButton from "ui/BiStateButton";
 import House from "components/Icons/House";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -18,6 +22,7 @@ export default function App({ user }) {
    * @param {Array} anuncios Anuncios
    */
   const [anuncios, setAnuncios] = useState([]);
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
   const router = useRouter();
 
   /**
@@ -43,6 +48,59 @@ export default function App({ user }) {
   const CardID = router.query;
   console.log(CardID);
 
+  const toggleFiltros = () => {
+    setMostrarFiltros(!filtroContainer);
+  };
+
+  let filtroContainer;
+
+  if (mostrarFiltros) {
+    filtroContainer = (
+      <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 mb-4">
+        <span className="text-xl font-bold block mb-4">Filtros</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 items-center justify-items-center place-items-center gap-y-4">
+          <DateBox labeltag="F. entrada" />
+          <DateBox labeltag="F. salida" />
+          <div>
+            <InputLabel labeltag="Huéspedes" />
+            <Select
+              className="rounded-md ml-2"
+              options={[
+                { label: "1 adulto", value: 1 },
+                { label: "2 adultos", value: 2 },
+                { label: "3 adultos", value: 3 },
+              ]}
+            />
+          </div>
+          <div>
+            <InputLabel labeltag="Cuartos" />
+            <Select
+              className="rounded-md ml-2"
+              options={[
+                { label: "1 cuarto", value: 1 },
+                { label: "2 cuartos", value: 2 },
+                { label: "3 cuartos", value: 3 },
+              ]}
+            />
+          </div>
+          <div>slider</div>
+          <div className="bg-[#f5f7fb] border-[#d8d8d8] text-black rounded-md border-2 pl-3 pr-2 py-2">
+            <div className="grid grid-cols-4 gap-1">
+              <span className="col-span-3 truncate">Piscina</span>
+              <BiStateButton />
+              <span className="col-span-3 truncate">Estacionamiento</span>
+              <BiStateButton />
+              <span className="col-span-3 truncate">Jacuzzi</span>
+              <BiStateButton />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    filtroContainer = "";
+  }
+
   return (
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
@@ -64,12 +122,14 @@ export default function App({ user }) {
           <IconButton className="md:hidden">
             <Search className="text-gray-500 fill-current" />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={toggleFiltros}>
             <Filter className="text-gray-500 fill-current" />
           </IconButton>
         </div>
-        <div className="hidden">Espacio para filtros</div>
       </div>
+
+      {filtroContainer}
+
       <div className="overflow-y-scroll place-items-center md:grid-cols-2 w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 lg:grid-cols-3 2xl:grid-cols-4 h-3/4 grid grid-cols-1 gap-10 p-10 items-center bg-[#F5F7FB] rounded-lg border-solid border">
         {anuncios.map((item) => {
           console.log(item.id);
