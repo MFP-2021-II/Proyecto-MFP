@@ -7,23 +7,10 @@ import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { loginSchema } from "schemas/login";
 
-const schema = yup
-  .object({
-    correo: yup
-      .string()
-      .email()
-      .required("El correo es requerido")
-      .typeError("El correo no es válido"),
-    contraseña: yup
-      .string()
-      .min(8, "La contraseña debe tener al menos 8 caracteres")
-      .required("La contraseña es requerida"),
-  })
-  .required();
 /**
  * Componente de la página de incio de sesión
  * @returns {JSX} Login
@@ -51,7 +38,7 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(loginSchema) });
 
   /**
    * useEffect para enviar los datos del formulario
@@ -97,12 +84,14 @@ export default function Login() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center px-10 lg:px-20 xl:px-28 2xl:px-48 bg-white pb-5 xl:pb-14 mt-16 mb-16 sm:mt-32 sm:mb-32 w-10/12 sm:max-w-lg lg:w-8/12 rounded-xl lg:rounded-none lg:m-0 xl:min-w-[38%]"
       >
-        <div className="flex flex-row justify-center pr-4 mb-2 lg:mb-10 transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
-          <Link href="/" passHref>
-            <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
+        <div className="flex flex-row justify-center pr-4 mb-2 transition duration-500 ease-in-out cursor-pointer lg:mb-10 hover:scale-110">
+          <Link href="/">
+            <a>
+              <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
+            </a>
           </Link>
         </div>
-        <span className="mb-4 font-semibold sm:mb-8 lg:mb-10 text-lg md:text-2xl ">
+        <span className="mb-4 text-lg font-semibold sm:mb-8 lg:mb-10 md:text-2xl ">
           Inicia sesión
         </span>
         <TextInput
@@ -136,14 +125,14 @@ export default function Login() {
         </div>
         <a
           href="/"
-          className="text-sm md:text-base mb-2 sm:mb-5 lg:mb-8 font-semibold text-green-600 underline cursor-pointer"
+          className="mb-2 text-sm font-semibold text-green-600 underline cursor-pointer md:text-base sm:mb-5 lg:mb-8"
         >
           ¿Olvidaste tu contraseña?
         </a>
         <Button type="submit" variant="quinary">
           Iniciar sesión
         </Button>
-        <div className="font-semibold text-sm md:text-base my-2 lg:my-8 sm:my-5">
+        <div className="my-2 text-sm font-semibold md:text-base lg:my-8 sm:my-5">
           <span className="text-gray-500">¿Aun no tienes una cuenta?{` `}</span>
           <a
             href="/register"

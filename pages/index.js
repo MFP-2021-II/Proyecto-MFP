@@ -10,17 +10,17 @@ import LandingButton from "components/Buttons/LandingButton";
  * Componente del Landing page
  * @returns {JSX} LandingPage
  */
-export default function Home() {
+export default function LandingPage() {
   return (
-    <main className="h-almost-screen flex justify-center lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
-      <section className="flex flex-col justify-center items-center pb-20">
+    <main className="flex justify-center h-almost-screen lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
+      <section className="flex flex-col items-center justify-center pb-20">
         <Isotype className="w-48 h-48" />
-        <h1 className="font-bold text-3xl lg:text-4xl xl:text-5xl text-red-900 text-center mt-10">
+        <h1 className="mt-10 text-3xl font-bold text-center text-red-900 lg:text-4xl xl:text-5xl">
           ¿Ya decidiste en
           <br />
           dónde alojarte?
         </h1>
-        <p className="font-medium text-lg lg:text-xl xl:text-2xl text-center mt-10">
+        <p className="mt-10 text-lg font-medium text-center lg:text-xl xl:text-2xl">
           Viaja a cualquier lugar sin
           <br />
           preocuparte por el alojamiento 🏠
@@ -33,7 +33,7 @@ export default function Home() {
         <img
           src="/Landing-image.png"
           alt="ilustración"
-          className="w-full hidden lg:inline-block"
+          className="hidden w-full lg:inline-block"
         />
       </div>
     </main>
