@@ -14,7 +14,7 @@ import VisibilityOff from "components/Icons/VisibilityOff";
 const schema = yup
   .object({
     nombre: yup.string().required("Nombre requerido"),
-    apellido: yup.string().required("Apellido requerido"),
+    apellidos: yup.string().required("Apellido requerido"),
     correo: yup.string().email().required("El correo es requerido"),
     contraseña: yup
       .string()
@@ -58,6 +58,7 @@ export default function Register() {
    * @description Función para enviar los datos del formulario y redireccionar a la página de inicio de sesión
    */
   const onSubmit = (data) => {
+    console.log(data);
     window
       .fetch("http://localhost:3001/api/usuarios/registro", {
         method: "POST",
@@ -92,7 +93,9 @@ export default function Register() {
       >
         <div className="flex flex-row justify-center pr-4 mb-2 lg:mb-10 transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
           <Link href="/" passHref>
-            <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
+            <a>
+              <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
+            </a>
           </Link>
         </div>
         <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">

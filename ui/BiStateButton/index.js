@@ -5,7 +5,6 @@ export default function BiStateButton(props) {
 
   const changeState = () => {
     setEnabled(!enabled);
-    //props.onClick();
   };
 
   let element;

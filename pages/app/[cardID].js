@@ -15,7 +15,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [dato, setDato] = useState(null);
 
-  const [mostrarPago, setMostrarPago] = useState(false);
+  // const [mostrarPago, setMostrarPago] = ,,useState(false);
 
   useEffect(async () => {
     if (user && cardID) {
@@ -84,9 +84,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
-  const toggleReservar = () => {
-    setMostrarPago(!mostrarPago);
-  };
+  // const toggleReservar = ,,() => {
+  //   setMostrarPago(!mostrarPago);
+  // };
 
   let modalPago = (
     <div>
