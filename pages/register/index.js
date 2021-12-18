@@ -45,6 +45,16 @@ export default function Register() {
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
    */
+
+  /**
+   * Estado de error
+   * @type {string}
+   * @default null
+   * @description Mensaje de error
+   **/
+
+  const [error, setError] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -67,8 +77,12 @@ export default function Register() {
         body: JSON.stringify(data),
       })
       .then((res) => res.json())
-      .then(() => {
-        router.push("/login");
+      .then((parsedData) => {
+        if (parsedData.error) {
+          setError(parsedData.message || parsedData.error);
+        } else {
+          router.push("/login");
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -90,12 +104,12 @@ export default function Register() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center px-10 lg:px-20 xl:px-28 2xl:px-48 bg-white pb-5 xl:pb-14 mt-16 mb-16 sm:mt-32 sm:mb-32 w-10/12 sm:max-w-lg lg:w-8/12 rounded-xl lg:rounded-none lg:m-0 xl:min-w-[38%]"
       >
-        <div className="flex flex-row justify-center pr-4 mb-2 lg:mb-10 transition duration-500 ease-in-out hover:scale-110 cursor-pointer">
+        <div className="flex flex-row justify-center pr-4 mb-2 transition duration-500 ease-in-out cursor-pointer lg:mb-10 hover:scale-110">
           <Link href="/" passHref>
             <Logo className="w-39 h-28 sm:w-56 sm:h-32" />
           </Link>
         </div>
-        <span className="mb-4 sm:mb-8 lg:mb-10 text-lg md:text-2xl font-semibold">
+        <span className="mb-4 text-lg font-semibold sm:mb-8 lg:mb-10 md:text-2xl">
           Crear una cuenta
         </span>
         <div className="flex flex-row flex-wrap justify-between">
@@ -126,7 +140,7 @@ export default function Register() {
           register={register}
           errors={errors.correo}
         />
-        <div className="flex flex-col justify-center relative">
+        <div className="relative flex flex-col justify-center">
           <TextInput
             label="Contraseña"
             type={!visible ? "password" : "text"}
@@ -147,7 +161,7 @@ export default function Register() {
             />
           )}
         </div>
-        <div className="text-sm md:text-base mb-2 sm:mb-5 lg:mb-8 font-semibold">
+        <div className="mb-2 text-sm font-semibold md:text-base sm:mb-5 lg:mb-8">
           <span className="text-gray-500">¿Ya tienes una cuenta?{` `}</span>
           <a
             href="/login"
@@ -159,6 +173,11 @@ export default function Register() {
         <Button type="submit" variant="quinary">
           Registrarse
         </Button>
+        {error && (
+          <span className="px-4 py-2 text-sm font-semibold text-center text-white bg-red-600 md:text-base">
+            {error}
+          </span>
+        )}
       </form>
       <Sample></Sample>
     </>

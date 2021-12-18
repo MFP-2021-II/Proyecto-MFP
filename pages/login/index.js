@@ -34,6 +34,16 @@ export default function Login() {
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
    */
+
+  /**
+   * Estado de error
+   * @type {string}
+   * @default null
+   * @description Mensaje de error
+   **/
+
+  const [error, setError] = useState(null);
+
   const {
     register,
     handleSubmit,
@@ -58,12 +68,13 @@ export default function Login() {
       })
       .then((res) => res.json())
       .then((parsedData) => {
-        if (parsedData.message === "Invalid email or password!") {
-          throw new Error(parsedData.message);
-        }
         console.log(parsedData);
-        window.localStorage.setItem("user", JSON.stringify(parsedData));
-        router.push("/app");
+        if (parsedData.error) {
+          setError(parsedData.message);
+        } else {
+          window.localStorage.setItem("user", JSON.stringify(parsedData));
+          router.push("/app");
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -77,6 +88,8 @@ export default function Login() {
       router.push("/app");
     }
   }, []);
+
+  console.log(error, "aea");
 
   return (
     <>
@@ -141,6 +154,11 @@ export default function Login() {
             Regístrate
           </a>
         </div>
+        {error && (
+          <span className="px-4 py-2 text-sm font-semibold text-center text-white bg-red-600 md:text-base">
+            {error}
+          </span>
+        )}
       </form>
       <Sample />
     </>
