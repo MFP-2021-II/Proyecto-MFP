@@ -25,7 +25,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
-  // const [calification, setCalification] = useState(0);
+  // aconst [calification, setCalification] = useState(0)a;
   const [dato, setDato] = useState(null);
   const [reloadPublications, setReloadPublications] = useState(false);
   const {
@@ -136,7 +136,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const rating = [1, 2, 3, 4, 5];
 
   return (
-    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen pt-[350px]">
       {/* {mostrarPago &&aa modalPago}*/}
 
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
