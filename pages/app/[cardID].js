@@ -8,6 +8,14 @@ import Button from "components/Buttons/Button";
 import TextArea from "ui/TextArea";
 import Comment from "components/InfoBoxes/Comment";
 import UserVariant from "@/components/Icons/UserVariant";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  contenido: yup.string().required("Este campo es requerido"),
+  calificacion: yup.number().required("Este campo es requerido"),
+});
 
 // aimport PaymentModal from "components/Modals/Payment";
 // aimport Backdrop from "@/components/Modals/Backdrop";
@@ -16,9 +24,22 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
   const { cardID } = router.query;
   const [isFavorite, setIsFavorite] = useState(false);
+  // const [calification, setCalification] = useState(0);
   const [dato, setDato] = useState(null);
+  const [reloadPublications, setReloadPublications] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   // const [mostrarPago, setMostrarPago] = ,,useState(false);
+
+  const calification = watch("calificacion");
 
   useEffect(async () => {
     if (user && cardID) {
@@ -68,6 +89,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   };
 
   useEffect(() => {
+    register("calificacion");
     if (cardID) {
       window
         .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
@@ -83,7 +105,29 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
           setDato(data.alojamientos);
         });
     }
-  }, [cardID]);
+  }, [cardID, reloadPublications]);
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await fetch("http://localhost:3001/api/comentarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({
+          id_anuncio: cardID,
+          contenido: data.contenido,
+          calificacion: calification,
+        }),
+      });
+      const dataRes = await res.json();
+      console.log(dataRes);
+      setReloadPublications(!reloadPublications);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
@@ -180,11 +224,11 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 })}
             </span>
             <div className="flex flex-row">
-              <UserVariant className="rounded-full w-7 h-7 border-2 border-green-700" />
+              <UserVariant className="border-2 border-green-700 rounded-full w-7 h-7" />
               {dato && (
-                <span className="ml-2 font-semibold flex flex-row">
+                <span className="flex flex-row ml-2 font-semibold">
                   {dato?.usuario?.nombre}
-                  <span className="ml-1 font-semibold hidden lg:flex">
+                  <span className="hidden ml-1 font-semibold lg:flex">
                     {dato?.usuario?.apellidos}
                   </span>
                 </span>
@@ -212,8 +256,18 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               )}
               <div className="flex flex-row items-center justify-center">
                 <Star className="w-4 h-4 text-red-700 fill-current" />
-                <span className="pr-1 text-sm">4.11</span>
-                <span className="text-sm text-gray-500">(20 reseñas)</span>
+                <span className="pr-1 text-sm">
+                  {dato &&
+                    (
+                      dato?.anuncio[0]?.comentarios?.reduce(
+                        (total, comentario) => total + comentario.calificacion,
+                        0
+                      ) / (dato?.anuncio[0]?.comentarios?.length || 1)
+                    ).toFixed(1)}
+                </span>
+                <span className="text-sm text-gray-500">
+                  ({dato && dato?.anuncio[0]?.comentarios?.length} reseñas)
+                </span>
               </div>
             </div>
           </div>
@@ -244,44 +298,71 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
       </section>
       {/* Area de comentarios */}
       <section className={`flex flex-col mt-5 ${screenSizes}`}>
-        <div className="flex flex-row justify-between pb-2 border-b-2 font-semibold">
+        <div className="flex flex-row justify-between pb-2 font-semibold border-b-2">
           <h3>Comentarios y valoraciones</h3>
           <div className="flex flex-row items-center">
             <Star className="w-5 h-5 text-red-700 fill-current" />
-            <span className="pl-2">4.11</span>
+            <span className="pl-2">
+              {dato &&
+                (
+                  dato?.anuncio[0]?.comentarios?.reduce(
+                    (total, comentario) => total + comentario.calificacion,
+                    0
+                  ) / (dato?.anuncio[0]?.comentarios?.length || 1)
+                ).toFixed(1)}
+            </span>
           </div>
         </div>
         {/* Form para enviar comentario y valoracion */}
-        <form className="flex flex-row justify-between mt-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-row justify-between mt-4"
+        >
           <div className="w-[75%]">
             <TextArea
               label="Enviar comentario"
+              name="contenido"
               placeholder="Escribe aquí tu comentario..."
-              register={() => null}
+              register={register}
+              errors={errors.contenido}
             />
           </div>
           <div className="flex flex-col justify-center items-center w-[25%]">
             <div className="flex flex-row pb-2 space-x-2">
-              {rating.map((num) => (
+              {rating.map((num, index) => (
                 <Star
                   key={num}
-                  className="w-5 h-5 fill-current text-gray-300"
+                  className={`w-5 h-5 fill-current ${
+                    index + 1 <= calification ? "text-red-700" : "text-gray-500"
+                  }`}
+                  onClick={() => {
+                    // setCalification(index + 1);
+                    setValue("calificacion", index + 1);
+                  }}
                 />
               ))}
             </div>
             <div className="mb-2">
-              <Button variant="quaternary" className="w-44 h-10 font-semibold">
+              <Button
+                type="submit"
+                variant="quaternary"
+                className="h-10 font-semibold w-44"
+              >
                 Enviar
               </Button>
             </div>
           </div>
         </form>
         <div className="mt-3">
-          <Comment
-            usuario="Persona 1"
-            fecha="11/11/2000"
-            comentario="Este es un comentario"
-          />
+          {dato &&
+            dato?.anuncio[0]?.comentarios.map((comentario) => (
+              <Comment
+                key={comentario.id}
+                usuario={`${comentario?.usuario?.nombre} ${comentario?.usuario?.apellidos}`}
+                fecha={new Date(comentario?.createdAt).toLocaleDateString()}
+                comentario={comentario?.contenido}
+              />
+            ))}
         </div>
       </section>
     </main>

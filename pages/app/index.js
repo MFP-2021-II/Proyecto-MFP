@@ -56,15 +56,15 @@ export default function App({ user }) {
 
   if (mostrarFiltros) {
     filtroContainer = (
-      <div className="w-11/12 md:w-4/6 lg:w-5/6 xl:w-8/12 mb-4">
-        <span className="text-xl font-bold block mb-4">Filtros</span>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 items-center justify-items-center place-items-center gap-y-4">
+      <div className="w-11/12 mb-4 md:w-4/6 lg:w-5/6 xl:w-8/12">
+        <span className="block mb-4 text-xl font-bold">Filtros</span>
+        <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 justify-items-center place-items-center gap-y-4">
           <DateBox labeltag="F. entrada" />
           <DateBox labeltag="F. salida" />
           <div>
             <InputLabel labeltag="Huéspedes" />
             <Select
-              className="rounded-md ml-2"
+              className="ml-2 rounded-md"
               options={[
                 { label: "1 adulto", value: 1 },
                 { label: "2 adultos", value: 2 },
@@ -75,7 +75,7 @@ export default function App({ user }) {
           <div>
             <InputLabel labeltag="Cuartos" />
             <Select
-              className="rounded-md ml-2"
+              className="ml-2 rounded-md"
               options={[
                 { label: "1 cuarto", value: 1 },
                 { label: "2 cuartos", value: 2 },
@@ -141,7 +141,12 @@ export default function App({ user }) {
                   name={item.nombre}
                   location={item.alojamiento.direccion}
                   price={item.precio}
-                  rating="4.1"
+                  rating={
+                    (
+                      item.comentarios.reduce((a, b) => a + b.calificacion, 0) /
+                      (item.comentarios.length || 1)
+                    ).toFixed(1) || 0
+                  }
                 />
               </a>
             </Link>

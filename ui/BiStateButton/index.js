@@ -11,14 +11,14 @@ export default function BiStateButton(props) {
 
   if (!enabled) {
     element = (
-      <span class="border-2 rounded-full border-gray-500 flex items-center cursor-pointer bg-gray-200 w-8 justify-start">
-        <span class="rounded-full border border-gray-200 w-4 h-4 bg-gray-500"></span>
+      <span className="flex items-center justify-start w-8 bg-gray-200 border-2 border-gray-500 rounded-full cursor-pointer">
+        <span className="w-4 h-4 bg-gray-500 border border-gray-200 rounded-full"></span>
       </span>
     );
   } else {
     element = (
-      <span class="border-2 rounded-full border-gray-500 flex items-center cursor-pointer bg-gray-200 w-8 justify-end">
-        <span class="rounded-full border border-gray-200 w-4 h-4 bg-gray-500"></span>
+      <span className="flex items-center justify-end w-8 bg-gray-200 border-2 border-gray-500 rounded-full cursor-pointer">
+        <span className="w-4 h-4 bg-gray-500 border border-gray-200 rounded-full"></span>
       </span>
     );
   }
