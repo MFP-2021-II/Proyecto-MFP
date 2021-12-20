@@ -30,7 +30,7 @@ export default function Reservar() {
       if (cardID) {
         try {
           const res = await fetch(
-            `http://localhost:3001/api/anuncio/${cardID}`,
+            `${process.env.NEXT_PUBLIC_HOMY_URL}/anuncio/${cardID}`,
             {
               method: "GET",
               headers: {
@@ -58,7 +58,7 @@ export default function Reservar() {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await fetch("http://localhost:3001/api/reservas", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/reservas`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

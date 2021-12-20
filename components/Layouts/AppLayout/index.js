@@ -57,18 +57,21 @@ export default function AppLayout({ Component, pageProps }) {
 
   const handleDelete = async (idAnuncio) => {
     try {
-      const response = await fetch("http://localhost:3001/api/favoritos/", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem("user")).token
-          }`,
-        },
-        body: JSON.stringify({
-          id_anuncio: idAnuncio,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOMY_URL}/favoritos/`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${
+              JSON.parse(localStorage.getItem("user")).token
+            }`,
+          },
+          body: JSON.stringify({
+            id_anuncio: idAnuncio,
+          }),
+        }
+      );
       const data = await response.json();
       setReloadFavorites(!reloadFavorites);
       console.log("data: ", data);
@@ -92,13 +95,16 @@ export default function AppLayout({ Component, pageProps }) {
   useEffect(async () => {
     if (user) {
       try {
-        const res = await fetch("http://localhost:3001/api/favoritos", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/favoritos`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
         const json = await res.json();
         console.log("Favoritos: ", json);
         setFavorites(json.data);

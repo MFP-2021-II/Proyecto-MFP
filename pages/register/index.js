@@ -70,7 +70,7 @@ export default function Register() {
   const onSubmit = (data) => {
     console.log(data);
     window
-      .fetch("http://localhost:3001/api/usuarios/registro", {
+      .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/registro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -179,7 +179,7 @@ export default function CreateAnnouncement({ user }) {
     }
 
     window
-      .fetch("http://localhost:3001/api/alojamiento", {
+      .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -201,7 +201,7 @@ export default function CreateAnnouncement({ user }) {
   useEffect(() => {
     if (user)
       window
-        .fetch("http://localhost:3001/api/tipo_alojamiento", {
+        .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/tipo_alojamiento`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

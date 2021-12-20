@@ -43,7 +43,7 @@ export default function AdCard({
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/alojamiento/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -8,13 +8,16 @@ export default function Record() {
 
     const fetchPayments = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/reservas`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
         const json = await response.json();
         console.log(json);
       } catch (error) {

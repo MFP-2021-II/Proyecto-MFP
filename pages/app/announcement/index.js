@@ -29,7 +29,7 @@ export default function Announcement({ user }) {
   useEffect(() => {
     if (user) {
       window
-        .fetch("http://localhost:3001/api/anuncio", {
+        .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/anuncio`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${user.token}`,

@@ -84,7 +84,7 @@ export default function Edit({ user }) {
   useEffect(() => {
     if (user)
       window
-        .fetch("http://localhost:3001/api/tipo_alojamiento", {
+        .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/tipo_alojamiento`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -106,7 +106,7 @@ export default function Edit({ user }) {
   useEffect(async () => {
     if (user && cardID) {
       const res = await window.fetch(
-        `http://localhost:3001/api/alojamiento/${cardID}`,
+        `${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${cardID}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -208,7 +208,7 @@ export default function Edit({ user }) {
     formDataObject.append("imagen", formData.imagen);
 
     window
-      .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
+      .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${cardID}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${user.token}`,

@@ -46,7 +46,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     if (user && cardID) {
       try {
         const res = await fetch(
-          `http://localhost:3001/api/favoritos/${cardID}`,
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/favoritos/${cardID}`,
           {
             method: "GET",
             headers: {
@@ -70,7 +70,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const handleToggleFavorite = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/favoritos", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/favoritos`, {
         method: `${isFavorite ? "DELETE" : "POST"}`,
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     register("calificacion");
     if (cardID) {
       window
-        .fetch(`http://localhost:3001/api/alojamiento/${cardID}`, {
+        .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${cardID}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -110,18 +110,21 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const onSubmit = async (data) => {
     try {
-      const res = await fetch("http://localhost:3001/api/comentarios", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({
-          id_anuncio: cardID,
-          contenido: data.contenido,
-          calificacion: calification,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_HOMY_URL}/comentarios`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          body: JSON.stringify({
+            id_anuncio: cardID,
+            contenido: data.contenido,
+            calificacion: calification,
+          }),
+        }
+      );
       const dataRes = await res.json();
       console.log(dataRes);
       setReloadPublications(!reloadPublications);

@@ -59,7 +59,7 @@ export default function Login() {
   const onSubmit = (data) => {
     console.log(data);
     window
-      .fetch("http://localhost:3001/api/usuarios/login", {
+      .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

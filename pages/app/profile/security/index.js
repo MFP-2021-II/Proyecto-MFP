@@ -36,7 +36,7 @@ export default function Security() {
     console.log(formData);
     try {
       const res = await fetch(
-        `http://localhost:3001/api/usuarios/${user.data.id}`,
+        `${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/${user.data.id}`,
         {
           method: "PUT",
           headers: {
