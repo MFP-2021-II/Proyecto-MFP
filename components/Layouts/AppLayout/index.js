@@ -153,7 +153,7 @@ export default function AppLayout({ Component, pageProps }) {
                   {user?.data?.nombre}
                 </span>
                 <div className="flex flex-row">
-                  <Link href="#">
+                  <Link href="/app/profile">
                     <a className="text-base font-normal text-gray-500 cursor-pointer hover:underline">
                       Perfil
                     </a>

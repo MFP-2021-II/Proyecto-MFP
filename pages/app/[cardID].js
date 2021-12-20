@@ -11,6 +11,7 @@ import UserVariant from "@/components/Icons/UserVariant";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { screenSizes } from "utils/responsive";
 
 const schema = yup.object().shape({
   contenido: yup.string().required("Este campo es requerido"),
@@ -128,8 +129,6 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
       console.log(error);
     }
   };
-
-  const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
   const rating = [1, 2, 3, 4, 5];
   // const toggleReservar = ,,() => {
@@ -332,11 +331,11 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               {rating.map((num, index) => (
                 <Star
                   key={num}
-                  className={`w-5 h-5 fill-current ${
+                  className={`w-5 h-5 fill-current cursor-pointer ${
                     index + 1 <= calification ? "text-red-700" : "text-gray-500"
                   }`}
                   onClick={() => {
-                    // setCalification(index + 1);
+                    // setCalification(index + 1)a;
                     setValue("calificacion", index + 1);
                   }}
                 />

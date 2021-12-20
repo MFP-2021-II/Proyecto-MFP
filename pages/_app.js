@@ -34,7 +34,10 @@ const APP_PAGES = {
   "/app/announcement": "Mis anuncios",
   "/app/announcement/create": "Crear anuncios",
   "/app/announcement/edit": "Editar anuncio",
-  "/app/[cardID]": "Ver detalles",
+  "/app/profile": "Mi perfil",
+  "/app/profile/personal-info": "Información personal",
+  "/app/profile/security": "Seguridad de la cuenta",
+  "/app/profile/record": "historial de pagos",
 };
 
 /**
