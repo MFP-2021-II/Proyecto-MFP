@@ -1,5 +1,12 @@
 import React from "react";
 
+const theme = {
+  primary:
+    "w-full border-b-2 mb-4 pl-3 text-base font-bold border-0 py-1 outline-none font-medium transition duration-500 hover:bg-gray-100",
+  inactive:
+    "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal",
+};
+
 /**
  * Define los estilos de select.
  * @type {{styles: string}}
@@ -40,20 +47,14 @@ const Select = React.forwardRef(
     return (
       <>
         <label
-          className="font-medium text-gray-500 pb-2"
+          className="pb-2 font-medium text-gray-500"
           variant={variant}
           htmlFor={label}
         >
           {label}
         </label>
         <select
-          className={`w-full px-2 py-1 text-gray-700 border-2 bg-white shadow-sm border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ${
-            disabled && styles.disabled
-          } ${
-            errors &&
-            errors?.message &&
-            "border-red-300 focus:ring-red-400 focus:border-transparent"
-          } ${className}`}
+          className={`${theme[variant]}`}
           disabled={disabled}
           onChange={onChange}
           onBlur={onBlur}

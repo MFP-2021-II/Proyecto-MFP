@@ -4,6 +4,7 @@ import Payment from "components/Icons/Payment";
 
 export const ProfileCardData = [
   {
+    id: 1,
     toPath: "/app/profile/personal-info",
     children: <PersonalInfo className="fill-current text-[#56993E] w-8 h-8" />,
     titulo: "Datos personales",
@@ -11,12 +12,14 @@ export const ProfileCardData = [
       "Brinda tus datos personales e indícanos cómo podemos ponernos en contacto contigo.",
   },
   {
+    id: 2,
     toPath: "/app/profile/security",
     children: <Security className="fill-current text-[#56993E] w-7 h-7" />,
     titulo: "Seguridad de la cuenta",
     descripcion: "Actualice su contraseña y brinde una protección a su cuenta.",
   },
   {
+    id: 3,
     toPath: "/app/profile/record",
     children: <Payment className="fill-current text-[#56993E] w-8 h-8" />,
     titulo: "Ver historial de pagos",
