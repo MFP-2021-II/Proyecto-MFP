@@ -27,7 +27,7 @@ const schema = yup.object({
     .typeError("La cantidad deber ser un numero"),
   baños: yup.number("number").positive().typeError("Debe ser un numero"),
   precio: yup.number("number").positive().typeError("Debe ser decimal"),
-  descripcion: yup.string().min(25),
+  descripcion: yup.string().min(25).max(255),
 });
 /**
  * @returns {JSX} Página de edición de anuncios
@@ -315,6 +315,8 @@ export default function Edit({ user }) {
                 name="descripcion"
                 register={register}
                 errors={errors.descripcion}
+                placeholder="Agrega una descripción"
+                label="Descripción"
               />
             </div>
           </div>

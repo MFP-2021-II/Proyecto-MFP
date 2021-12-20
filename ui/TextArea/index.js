@@ -3,11 +3,17 @@
  * @param {object} register Referencia al register
  * @returns {JSX} TextArea
  */
-export default function TextArea({ name, register, errors }) {
+export default function TextArea({
+  name,
+  register,
+  errors,
+  label,
+  placeholder,
+}) {
   return (
     <>
       <label className="flex flex-col mb-2 font-medium text-gray-500">
-        Descripcion
+        {label}
       </label>
       <textarea
         className={`w-full h-16 resize-none pt-2 border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none ${
@@ -17,7 +23,7 @@ export default function TextArea({ name, register, errors }) {
         }`}
         name={name}
         {...register(name)}
-        placeholder="Escribe una descripción..."
+        placeholder={placeholder}
       />
       <p
         className={`mb-2 sm:mb-5 text-sm font-semibold text-red-500 ${

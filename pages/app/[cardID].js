@@ -5,9 +5,12 @@ import Fav from "components/Icons/Fav";
 import Star from "components/Icons/Star";
 import Map from "components/Icons/Map";
 import Button from "components/Buttons/Button";
-import User from "components/Icons/User";
-import PaymentModal from "components/Modals/Payment";
-import Backdrop from "@/components/Modals/Backdrop";
+import TextArea from "ui/TextArea";
+import Comment from "components/InfoBoxes/Comment";
+import UserVariant from "@/components/Icons/UserVariant";
+
+// aimport PaymentModal from "components/Modals/Payment";
+// aimport Backdrop from "@/components/Modals/Backdrop";
 
 export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const router = useRouter();
@@ -84,20 +87,21 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const screenSizes = "w-11/12 md:w-4/6 lg:w-5/6 xl:w-7/12";
 
+  const rating = [1, 2, 3, 4, 5];
   // const toggleReservar = ,,() => {
   //   setMostrarPago(!mostrarPago);
   // };
 
-  let modalPago = (
-    <div>
-      <Backdrop />
-      <PaymentModal />
-    </div>
-  );
+  // let modalPago = (
+  //   <div>
+  //     <Backdrop />
+  //     <PaymentModal />
+  //   </div>
+  // )aa;
 
   return (
     <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
-      {mostrarPago && modalPago}
+      {/* {mostrarPago &&aa modalPago}*/}
 
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
         <div className="flex flex-col">
@@ -176,7 +180,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 })}
             </span>
             <div className="flex flex-row">
-              <User className="rounded-full w-7 h-7 border-2 border-red-700 bg-[#FEAC4C]" />
+              <UserVariant className="rounded-full w-7 h-7 border-2 border-green-700" />
               {dato && (
                 <span className="ml-2 font-semibold flex flex-row">
                   {dato?.usuario?.nombre}
@@ -236,6 +240,48 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 })}
             </ul>
           </div>
+        </div>
+      </section>
+      {/* Area de comentarios */}
+      <section className={`flex flex-col mt-5 ${screenSizes}`}>
+        <div className="flex flex-row justify-between pb-2 border-b-2 font-semibold">
+          <h3>Comentarios y valoraciones</h3>
+          <div className="flex flex-row items-center">
+            <Star className="w-5 h-5 text-red-700 fill-current" />
+            <span className="pl-2">4.11</span>
+          </div>
+        </div>
+        {/* Form para enviar comentario y valoracion */}
+        <form className="flex flex-row justify-between mt-4">
+          <div className="w-[75%]">
+            <TextArea
+              label="Enviar comentario"
+              placeholder="Escribe aquí tu comentario..."
+              register={() => null}
+            />
+          </div>
+          <div className="flex flex-col justify-center items-center w-[25%]">
+            <div className="flex flex-row pb-2 space-x-2">
+              {rating.map((num) => (
+                <Star
+                  key={num}
+                  className="w-5 h-5 fill-current text-gray-300"
+                />
+              ))}
+            </div>
+            <div className="mb-2">
+              <Button variant="quaternary" className="w-44 h-10 font-semibold">
+                Enviar
+              </Button>
+            </div>
+          </div>
+        </form>
+        <div className="mt-3">
+          <Comment
+            usuario="Persona 1"
+            fecha="11/11/2000"
+            comentario="Este es un comentario"
+          />
         </div>
       </section>
     </main>

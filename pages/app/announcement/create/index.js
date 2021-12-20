@@ -38,7 +38,7 @@ const schema = yup
       .positive()
       .required("Requerido")
       .typeError("Debe ser decimal"),
-    descripcion: yup.string().min(25).required("Campo requerido"),
+    descripcion: yup.string().min(25).max(255).required("Campo requerido"),
   })
   .required();
 /**
@@ -299,6 +299,8 @@ export default function CreateAnnouncement({ user }) {
             <div className="w-full h-24 mt-2">
               <TextArea
                 name="descripcion"
+                label="Descripción"
+                placeholder="Agrega una descripción"
                 register={register}
                 errors={errors.descripcion}
               />
