@@ -10,4 +10,6 @@ export const loginSchema = yup.object({
     .string()
     .min(8, "La contraseña debe tener al menos 8 caracteres")
     .required("La contraseña es requerida"),
+
+  captcha: yup.string().required("El captcha es requerido"),
 });

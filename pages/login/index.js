@@ -9,6 +9,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "utils/react-simple-captcha";
+
 import { loginSchema } from "schemas/login";
 
 /**
@@ -57,26 +64,33 @@ export default function Login() {
    * @description Función para enviar los datos del formulario y redireccionar a la página de la aplicación
    */
   const onSubmit = (data) => {
-    console.log(data);
-    window
-      .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-      .then((res) => res.json())
-      .then((parsedData) => {
-        console.log(parsedData);
-        if (parsedData.error) {
-          setError(parsedData.message);
-        } else {
-          window.localStorage.setItem("user", JSON.stringify(parsedData));
-          router.push("/app");
-        }
-      })
-      .catch((err) => console.error(err));
+    if (validateCaptcha(data.captcha)) {
+      console.log(data);
+      window
+        .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo: data.correo,
+            contraseña: data.contraseña,
+          }),
+        })
+        .then((res) => res.json())
+        .then((parsedData) => {
+          console.log(parsedData);
+          if (parsedData.error) {
+            setError(parsedData.message);
+          } else {
+            window.localStorage.setItem("user", JSON.stringify(parsedData));
+            router.push("/app");
+          }
+        })
+        .catch((err) => console.error(err));
+    } else {
+      setError("Captcha incorrecto");
+    }
   };
   /**
    * useEffect para proteger rutas
@@ -87,6 +101,10 @@ export default function Login() {
     if (window.localStorage.getItem("user")) {
       router.push("/app");
     }
+  }, []);
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
   }, []);
 
   console.log(error, "aea");
@@ -142,6 +160,17 @@ export default function Login() {
         >
           ¿Olvidaste tu contraseña?
         </a>
+        <div>
+          <LoadCanvasTemplate />
+        </div>
+        <TextInput
+          label=""
+          name="captcha"
+          variant="primary"
+          errors={errors.captcha}
+          register={register}
+        />
+        {/* Captcha button */}
         <Button type="submit" variant="quinary">
           Iniciar sesión
         </Button>
