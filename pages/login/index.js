@@ -164,7 +164,7 @@ export default function Login() {
           <LoadCanvasTemplate />
         </div>
         <TextInput
-          label=""
+          label="Captcha"
           name="captcha"
           variant="primary"
           errors={errors.captcha}

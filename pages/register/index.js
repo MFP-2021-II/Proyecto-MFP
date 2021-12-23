@@ -99,6 +99,17 @@ export default function Register() {
     }
   }, []);
 
+  const handleCancel = () => {
+    // advert that the user will be lost if they cancel
+    if (
+      window.confirm(
+        "¿Estás seguro de que quieres cancelar? Se perderán todos los datos."
+      )
+    ) {
+      router.push("/login");
+    }
+  };
+
   return (
     <>
       <form
@@ -175,6 +186,15 @@ export default function Register() {
         </div>
         <Button type="submit" variant="quinary">
           Registrarse
+        </Button>
+        {/* Button cancelar */}
+        <Button
+          type="button"
+          variant="cancel"
+          className="mt-4"
+          onClick={handleCancel}
+        >
+          Cancelar
         </Button>
         {error && (
           <span className="px-4 py-2 text-sm font-semibold text-center text-white bg-red-600 md:text-base">

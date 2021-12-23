@@ -39,6 +39,10 @@ const schema = yup
       .required("Requerido")
       .typeError("Debe ser decimal"),
     descripcion: yup.string().min(25).max(255).required("Campo requerido"),
+    id_tipo_alojamiento: yup
+      .string()
+      .notOneOf([""], "Seleccione un tipo de alojamiento")
+      .required(),
   })
   .required();
 /**
@@ -294,6 +298,7 @@ export default function CreateAnnouncement({ user }) {
                 label: el?.descripcion,
               }))}
               disabled={false}
+              errors={errors.id_tipo_alojamiento}
               {...register("id_tipo_alojamiento")}
             />
             <div className="w-full h-24 mt-2">

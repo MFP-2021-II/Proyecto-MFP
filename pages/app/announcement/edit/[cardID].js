@@ -323,7 +323,7 @@ export default function Edit({ user }) {
         </section>
         <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
           <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
-            Editar
+            Guardar
           </NavButton>
           <LandingButton toPath="/app/announcement" className="w-30 lg:w-40">
             Volver

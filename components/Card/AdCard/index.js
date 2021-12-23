@@ -42,20 +42,27 @@ export default function AdCard({
   };
 
   const handleDelete = async () => {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-
-      const data = await res.json();
-      console.log(data);
-      setReload(!reload);
-    } catch (error) {
-      console.log(error);
+    if (window.confirm("¿Estas seguro de eliminar el anuncio?")) {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        console.log(data);
+        setReload(!reload);
+        setTimeout(() => {
+          window.alert("Anuncio eliminado con exito");
+        }, 500);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

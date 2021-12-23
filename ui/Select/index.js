@@ -2,7 +2,7 @@ import React from "react";
 
 const theme = {
   primary:
-    "w-full border-b-2 mb-4 pl-3 text-base font-bold border-0 py-1 outline-none font-medium transition duration-500 hover:bg-gray-100",
+    "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal transition duration-500 ease-in-out hover:shadow-md",
   inactive:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal",
 };
@@ -54,7 +54,12 @@ const Select = React.forwardRef(
           {label}
         </label>
         <select
-          className={`${theme[variant]}`}
+          className={`${theme[variant]}
+            ${
+              errors &&
+              errors?.message &&
+              "border-red-500 bg-red-100 focus:ring-red-400"
+            } ${className}`}
           disabled={disabled}
           onChange={onChange}
           onBlur={onBlur}
@@ -71,9 +76,9 @@ const Select = React.forwardRef(
             </option>
           ))}
         </select>
-        {/* <p className="text-sm font-semibold text-red-500">
+        <p className="text-sm font-semibold text-red-500">
           {errors && errors?.message}
-        </p> */}
+        </p>
       </>
     );
   }
