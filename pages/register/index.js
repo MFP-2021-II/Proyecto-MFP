@@ -11,17 +11,23 @@ import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 
-const schema = yup
-  .object({
-    nombre: yup.string().required("Nombre requerido"),
-    apellidos: yup.string().required("Apellido requerido"),
-    correo: yup.string().email().required("El correo es requerido"),
-    contraseña: yup
-      .string()
-      .min(8, "La contraseña debe tener al menos 8 caracteres")
-      .required("La contraseña es requerida"),
-  })
-  .required();
+const schema = yup.object({
+  nombre: yup.string().required("Nombre requerido"),
+  apellidos: yup.string().required("Apellido requerido"),
+  correo: yup.string().email().required("El correo es requerido"),
+  contraseña: yup
+    .string()
+    .min(8, "La contraseña debe tener al menos 8 caracteres")
+    .required("La contraseña es requerida"),
+  telefono: yup
+    .string()
+    .matches(/^[0-9]{9}$/, "El teléfono debe tener 9 digitos"),
+  confirmarContraseña: yup
+    .string()
+    .oneOf([yup.ref("contraseña"), null], "Las contraseñas no coinciden")
+    .required("La confirmación de la contraseña es requerida"),
+});
+
 /**
  * Componente de la página de registro de usuarios
  * @returns {JSX} Registro de usuarios
@@ -75,7 +81,13 @@ export default function Register() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          nombre: data.nombre,
+          apellidos: data.apellidos,
+          correo: data.correo,
+          contraseña: data.contraseña,
+          telefono: data.telefono,
+        }),
       })
       .then((res) => res.json())
       .then((parsedData) => {
@@ -154,6 +166,13 @@ export default function Register() {
           register={register}
           errors={errors.correo}
         />
+        <TextInput
+          label="Número de teléfono"
+          name="telefono"
+          variant="primary"
+          register={register}
+          errors={errors.telefono}
+        />
         <div className="relative flex flex-col justify-center">
           <TextInput
             label="Contraseña"
@@ -162,6 +181,25 @@ export default function Register() {
             variant="primary"
             register={register}
             errors={errors.contraseña}
+          />
+          {!visible ? (
+            <VisibilityOn
+              className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+              onClick={() => setVisible(!visible)}
+            />
+          ) : (
+            <VisibilityOff
+              className={`absolute right-[4%] top-10 fill-current text-gray-500 cursor-pointer`}
+              onClick={() => setVisible(!visible)}
+            />
+          )}
+          <TextInput
+            label="Repetir contraseña"
+            type={!visible ? "password" : "text"}
+            name="confirmarContraseña"
+            variant="primary"
+            register={register}
+            errors={errors.confirmarContraseña}
           />
           {!visible ? (
             <VisibilityOn

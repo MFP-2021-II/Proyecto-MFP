@@ -58,31 +58,36 @@ export default function PersonalInfo() {
 
   const onSubmit = async (formData) => {
     console.log(formData);
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/${user.data.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
+    if (window.confirm("¿Estás seguro de que quieres actualizar tus datos?")) {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/usuarios/${user.data.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...formData,
+              sexo: formData.sexo === "Masculino" ? true : false,
+            }),
+          }
+        );
+        const { data } = await res.json();
+        const newUser = {
+          ...user,
+          data: {
+            ...data.usuario,
           },
-          body: JSON.stringify({
-            ...formData,
-            sexo: formData.sexo === "Masculino" ? true : false,
-          }),
-        }
-      );
-      const { data } = await res.json();
-      const newUser = {
-        ...user,
-        data: {
-          ...data.usuario,
-        },
-      };
-      console.log(newUser);
-      window.localStorage.setItem("user", JSON.stringify(newUser));
-    } catch (error) {
-      console.log(error);
+        };
+        console.log(newUser);
+        window.localStorage.setItem("user", JSON.stringify(newUser));
+        setTimeout(() => {
+          window.alert("Datos actualizados correctamente");
+        }, 500);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

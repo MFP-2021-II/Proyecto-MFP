@@ -244,7 +244,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               className="w-32 h-10 font-semibold"
               register={null}
             >
-              Reservar
+              Pagar
             </Button>
             <div className="flex flex-col ml-6 min-h-[2rem]">
               {dato && (

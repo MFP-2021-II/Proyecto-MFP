@@ -33,9 +33,10 @@ export default function TextInput({
   disabled = false,
   ...props
 }) {
+  console.log(errors);
   return (
     <>
-      <label className="font-medium text-gray-500 pb-2" htmlFor={name}>
+      <label className="pb-2 font-medium text-gray-500" htmlFor={name}>
         {label}
       </label>
       <input
