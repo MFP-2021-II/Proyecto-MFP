@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "utils/react-simple-captcha";
 
@@ -113,7 +112,7 @@ export default function Login() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center px-10 lg:px-20 xl:px-28 2xl:px-48 bg-white pb-5 xl:pb-14 mt-16 mb-16 sm:mt-32 sm:mb-32 w-10/12 sm:max-w-lg lg:w-8/12 rounded-xl lg:rounded-none lg:m-0 xl:min-w-[38%]"
+        className="flex flex-col justify-center px-10 lg:px-20 xl:px-28 2xl:px-48 bg-white pb-5 xl:pb-6 w-10/12 sm:max-w-lg lg:w-8/12 rounded-xl lg:rounded-none xl:min-w-[38%] m-auto lg:m-0"
       >
         <div className="flex flex-row justify-center pr-4 mb-2 transition duration-500 ease-in-out cursor-pointer lg:mb-10 hover:scale-110">
           <Link href="/">
@@ -160,7 +159,7 @@ export default function Login() {
         >
           ¿Olvidaste tu contraseña?
         </a>
-        <div>
+        <div className="flex justify-center border rounded-lg">
           <LoadCanvasTemplate />
         </div>
         <TextInput

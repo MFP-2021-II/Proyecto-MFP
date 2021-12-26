@@ -136,7 +136,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   const rating = [1, 2, 3, 4, 5];
 
   return (
-    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen pt-[350px]">
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-10">
       {/* {mostrarPago &&aa modalPago}*/}
 
       <div className={`flex justify-between mb-3 ${screenSizes}`}>
@@ -314,9 +314,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         {/* Form para enviar comentario y valoracion */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-row justify-between mt-4"
+          className="grid grid-cols-1 sm:grid-cols-5 mt-4"
+          // className="flex flex-wrap md:flex-row justify-between"
         >
-          <div className="w-[75%]">
+          <div className="col-span-3 lg:col-span-4">
             <TextArea
               label="Enviar comentario"
               name="contenido"
@@ -325,7 +326,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               errors={errors.contenido}
             />
           </div>
-          <div className="flex flex-col justify-center items-center w-[25%]">
+          <div className="flex flex-col justify-center items-center col-span-2 lg:col-span-1">
             <div className="flex flex-row pb-2 space-x-2">
               {rating.map((num, index) => (
                 <Star
@@ -334,7 +335,6 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                     index + 1 <= calification ? "text-red-700" : "text-gray-500"
                   }`}
                   onClick={() => {
-                    // setCalification(index + 1)a;
                     setValue("calificacion", index + 1);
                   }}
                 />
@@ -344,7 +344,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               <Button
                 type="submit"
                 variant="quaternary"
-                className="h-10 font-semibold w-44"
+                className="h-10 font-semibold w-36"
               >
                 Enviar
               </Button>

@@ -4,7 +4,7 @@
  */
 const theme = {
   primary: "text-white bg-blue-500 hover:bg-blue-700",
-  cancel: "text-white bg-red-500 hover:bg-red-700",
+  cancel: "text-white bg-red-500 hover:bg-red-700 rounded-md",
   copy: "text-white bg-purple-500 hover:bg-purple-700",
   terciary: "text-white bg-green-500 hover:bg-green-700",
   quaternary:
