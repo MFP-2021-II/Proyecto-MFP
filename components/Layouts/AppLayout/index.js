@@ -49,9 +49,16 @@ export default function AppLayout({ Component, pageProps }) {
    * @type {Array}
    */
   const [open, setOpen] = useState(false);
-
+  /**
+   * useState para el estado del modal de favoritos
+   * @type {Array}
+   */
   const [openModal, setOpenModal] = useState(false);
-  console.log("Modal: ", openModal);
+  /**
+   * useState para el estado del modal de notificaciones
+   * @type {Array}
+   */
+  const [openModalNotif, setOpenModalNotif] = useState(false);
 
   const [reloadFavorites, setReloadFavorites] = useState(false);
 
@@ -179,6 +186,7 @@ export default function AppLayout({ Component, pageProps }) {
                 open={open}
                 setOpen={setOpen}
                 setOpenModal={setOpenModal}
+                setOpenModalNotif={setOpenModalNotif}
                 className="z-10"
               >
                 <LinkedDropdownListItem
@@ -213,6 +221,23 @@ export default function AppLayout({ Component, pageProps }) {
               onClick={() => handleDelete(fav.H_Usuarios_Anuncios.id_anuncio)}
             />
           ))}
+        </Modal>
+      </div>
+      <div
+        className={`z-10 absolute top-[0rem] backdrop-filter backdrop-blur-md bg-opacity-40 bg-gray-500 h-full w-full flex justify-center items-center ${
+          !openModalNotif && "hidden"
+        }`}
+      >
+        <Modal
+          className="z-20"
+          setOpenModal={setOpenModalNotif}
+          notificacion={true}
+        >
+          <ModalItem
+            name="Sistema"
+            notificacion={true}
+            onClick={() => handleDelete(fav.H_Usuarios_Anuncios.id_anuncio)}
+          />
         </Modal>
       </div>
       <Component

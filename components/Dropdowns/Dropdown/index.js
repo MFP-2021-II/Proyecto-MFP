@@ -14,6 +14,7 @@ export default function Dropdown({
   className,
   setOpen,
   setOpenModal,
+  setOpenModalNotif,
 }) {
   /**
    * Router redireccionar a la pagina de inicio de sesion
@@ -62,12 +63,15 @@ export default function Dropdown({
     >
       <div className="flex flex-col items-center px-2 py-2 bg-white rounded-md shadow">
         {children}
-        <a className={styles["not_style"]}>
+        <button
+          className={styles["not_style"]}
+          onClick={() => setOpenModalNotif(true)}
+        >
           Notificaciones
-          <span className="flex w-3 h-3">
+          {/* si hay una notificación aparece el span <span className="flex w-3 h-3">
             <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2"></span>
-          </span>
-        </a>
+          </span> */}
+        </button>
         <button
           className={styles["def_style"]}
           onClick={() => setOpenModal(true)}

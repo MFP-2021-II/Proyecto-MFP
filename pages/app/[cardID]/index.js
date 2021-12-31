@@ -12,6 +12,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { screenSizes } from "utils/responsive";
+import Pool from "components/Icons/Pool";
+import Jaccuzi from "components/Icons/Jaccuzi";
+import Parking from "components/Icons/Parking";
+import Empty from "components/Icons/Empty";
 
 const schema = yup.object().shape({
   contenido: yup.string().required("Este campo es requerido"),
@@ -135,6 +139,12 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
 
   const rating = [1, 2, 3, 4, 5];
 
+  const IconosFacilidades = {
+    Piscina: <Pool className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
+    Jacuzzi: <Jaccuzi className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
+    Estacionamientos: <Parking className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
+  };
+
   return (
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-10">
       {/* {mostrarPago &&aa modalPago}*/}
@@ -202,12 +212,20 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 dato?.caracteristica.map((car) => {
                   if (
                     car.descripcion !== "Piscina" &&
-                    car.descripcion !== "Estacionamiento" &&
-                    car.descripcion !== "Jaccuzi"
+                    car.descripcion !== "Estacionamientos" &&
+                    car.descripcion !== "Jacuzzi"
                   ) {
                     return (
                       <span key={car.id} className="text-gray-600">
                         {`${car?.cantidad} ${car?.descripcion}`}
+                        {` `}
+                        {` · `}
+                      </span>
+                    );
+                  } else {
+                    return (
+                      <span key={car.id} className="text-gray-600">
+                        No se especificó
                         {` `}
                         {` · `}
                       </span>
@@ -273,8 +291,8 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         {/* Seccion de facilidades */}
         <div className="flex justify-center col-span-3 sm:col-span-1">
           <div className="flex flex-row justify-between w-full p-4 bg-gray-100 rounded-lg sm:flex-col">
-            <span className="font-semibold h-[15%]">El lugar ofrece:</span>
-            <ul className="flex flex-col justify-around h-[85%] font-semibold items-center">
+            <span className="font-semibold h-[15%] mb-2">El lugar ofrece:</span>
+            <ul className="flex flex-row sm:flex-col justify-start h-[85%] font-semibold items-center">
               {dato &&
                 dato?.caracteristica.map((car) => {
                   if (
@@ -284,8 +302,18 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                     car?.cantidad !== 0
                   ) {
                     return (
-                      <li key={car.id} className="text-blue-800">
-                        {`· `} {car?.descripcion}
+                      <li key={car.id} title={car?.descripcion}>
+                        {IconosFacilidades[car.descripcion]}
+                      </li>
+                    );
+                  } else {
+                    return (
+                      <li
+                        key={car.id}
+                        title="El lugar no ofrece nada."
+                        className="bg-gray-300 rounded-lg m-1 sm:px-2"
+                      >
+                        <Empty className="w-8 h-8 my-2 mx-2 sm:mx-0 fill-current text-gray-600" />
                       </li>
                     );
                   }

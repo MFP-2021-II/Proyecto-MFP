@@ -5,6 +5,7 @@ import LandingButton from "components/Buttons/LandingButton";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Personal from "components/Icons/PersonalInfo";
 import * as yup from "yup";
 import Select from "ui/Select";
 
@@ -34,26 +35,26 @@ export default function PersonalInfo() {
   });
 
   useEffect(() => {
-    const user = JSON.parse(window.localStorage.getItem("user"));
-    setUser(user);
-    setValue("nombre", user.data.nombre);
-    setValue("apellidos", user.data.apellidos);
-    if (user.data.sexo !== null) {
-      if (user.data.sexo) {
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    setUser(userLocal);
+    setValue("nombre", userLocal.data.nombre);
+    setValue("apellidos", userLocal.data.apellidos);
+    if (userLocal.data.sexo !== null) {
+      if (userLocal.data.sexo) {
         setValue("sexo", "Masculino");
       } else {
         setValue("sexo", "Femenino");
       }
     }
-    if (user.data.fecha_nacimiento) {
+    if (userLocal.data.fecha_nacimiento) {
       setValue(
         "fecha_nacimiento",
-        new Date(user.data.fecha_nacimiento).toISOString().substring(0, 10)
+        new Date(userLocal.data.fecha_nacimiento).toISOString().substring(0, 10)
       );
     }
-    setValue("correo", user.data.correo);
-    setValue("DNI", user.data.DNI);
-    console.log(user.data);
+    setValue("correo", userLocal.data.correo);
+    setValue("DNI", userLocal.data.DNI);
+    console.log(userLocal.data);
   }, []);
 
   const onSubmit = async (formData) => {
@@ -92,11 +93,16 @@ export default function PersonalInfo() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-auto xl:h-almost-screen mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-0">
       <div className={screenSizes}>
-        <h1 className="pb-4 text-xl font-bold text-left">
-          Información personal
-        </h1>
+        <div className="flex flex-row items-center pb-2 mb-5 border-b-2">
+          <i>
+            <Personal className="text-red-700 fill-current rounded-full" />
+          </i>
+          <span className="pl-2 text-xl font-bold text-left">
+            Información personal
+          </span>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <ProfileInput
             register={register}
@@ -117,7 +123,7 @@ export default function PersonalInfo() {
             name="apellidos"
           />
           <Select
-            variant="primary"
+            variant="secondary"
             label="Sexo"
             name="sexo"
             erros={errors.sexo}
@@ -150,16 +156,16 @@ export default function PersonalInfo() {
             errors={errors.DNI}
             variant="primary"
             label="Documento de identidad"
-            placeholder="X"
+            placeholder="DNI"
             type="text"
             name="DNI"
           />
           <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
             <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
-              Cambiar
+              Guardar
             </NavButton>
             <LandingButton toPath="/app/profile" className="w-30 lg:w-40">
-              Volver
+              Cancelar
             </LandingButton>
           </div>
         </form>

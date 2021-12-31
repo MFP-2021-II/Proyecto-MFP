@@ -9,7 +9,7 @@ export default function aboutUs() {
     <main>
       <div>
         <img
-          src="/aboutusbg.png"
+          src="/aboutusbg-compressed.jpg"
           alt="ilustración"
           className="w-full hidden lg:inline-block"
         />

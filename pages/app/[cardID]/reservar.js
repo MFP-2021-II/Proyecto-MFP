@@ -1,8 +1,12 @@
+import { screenSizes } from "utils/responsive";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TextInput from "ui/TextInput";
+import Button from "components/Buttons/Button";
+import LandingButton from "components/Buttons/LandingButton";
+import Payment from "components/Icons/Payment";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
@@ -11,10 +15,12 @@ const schema = yup.object().shape({
   fecha_caducidad: yup.string().required("La fecha de caducidad es requerida"),
   numero_tarjeta: yup
     .string()
-    .matches(/^[0-9]{16}$/, "El número de tarjeta debe contener 16 dígitos"),
+    // Cambio [0-9] por \d
+    .matches(/^\d{16}$/, "El número de tarjeta debe contener 16 dígitos"),
   cvv: yup
     .string()
-    .matches(/^[0-9]{3}$/, "El código CVV debe contener 3 dígitos"),
+    // Cambio [0-9] por \d
+    .matches(/^\d{3}$/, "El código CVV debe contener 3 dígitos"),
 });
 
 export default function Reservar() {
@@ -85,8 +91,8 @@ export default function Reservar() {
           if (json.message === "El anuncio se ha obtenido exitosamente") {
             setAlojamientoId(json.data.anuncios[0].id_alojamiento);
           }
-        } catch (error) {
-          console.log(error);
+        } catch (errorCatcher) {
+          console.log(errorCatcher);
         }
       }
     };
@@ -120,8 +126,8 @@ export default function Reservar() {
         if (json.ok) {
           router.push("/app/profile/record");
         }
-      } catch (error) {
-        console.log(error);
+      } catch (errorCatcher) {
+        console.log(errorCatcher);
       }
     }
   };
@@ -129,56 +135,110 @@ export default function Reservar() {
   console.log(errors);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-center">Reservar</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center w-full"
-      >
-        <h1 className="text-xl font-bold text-center">Datos de la reserva</h1>
-        <TextInput
-          name="fecha_reserva"
-          label="Fecha de reserva"
-          register={register}
-          errors={errors.fecha_reserva}
-          type="date"
-        />
-        <TextInput
-          name="fecha_fin"
-          label="Fecha de fin"
-          register={register}
-          errors={errors.fecha_fin}
-          type="date"
-        />
-        <h1 className="text-xl font-bold text-center">Datos de la tarjeta</h1>
-        <TextInput
-          name="fecha_caducidad"
-          label="Fecha de caducidad"
-          register={register}
-          errors={errors.fecha_caducidad}
-          type="date"
-        />
-        <TextInput
-          name="numero_tarjeta"
-          label="Número de tarjeta"
-          register={register}
-          errors={errors.numero_tarjeta}
-        />
-
-        <TextInput
-          name="cvv"
-          label="Código de seguridad"
-          register={register}
-          errors={errors.cvv}
-        />
-        {error && <p className="text-center text-red-500">{error}</p>}
-        <button
-          type="submit"
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-auto xl:h-almost-screen mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-0">
+      <div className={screenSizes}>
+        <div className="flex flex-row items-center pb-2 mb-5 border-b-2">
+          <i>
+            <Payment className="text-red-700 fill-current" />
+          </i>
+          <span className="pl-2 text-xl font-bold text-left">
+            Confirmar pago
+          </span>
+        </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full grid grid-cols-5 gap-4 lg:gap-8"
         >
-          Pagar
-        </button>
-      </form>
-    </div>
+          <div className="flex flex-col col-span-5 lg:col-span-2">
+            <h1 className="text-md lg:text-xl font-bold pb-3">
+              Datos de la reserva
+            </h1>
+            <TextInput
+              name="fecha_reserva"
+              label="Fecha de reserva"
+              register={register}
+              errors={errors.fecha_reserva}
+              type="date"
+            />
+            <TextInput
+              name="fecha_fin"
+              label="Fecha de fin"
+              register={register}
+              errors={errors.fecha_fin}
+              type="date"
+            />
+          </div>
+          <div className="flex flex-col col-span-5 lg:col-span-3">
+            <h1 className="text-md lg:text-xl font-bold pb-3">
+              Datos personales
+            </h1>
+            {/* grid Tarjeta y caducidad */}
+            <div className="grid grid-cols-4 lg:grid-cols-3 gap-0 sm:gap-4">
+              <div className="flex flex-col col-span-4 sm:col-span-2">
+                <TextInput
+                  name="numero_tarjeta"
+                  label="Número de tarjeta"
+                  register={register}
+                  errors={errors.numero_tarjeta}
+                />
+              </div>
+              <div className="flex flex-col col-span-4 sm:col-span-2 lg:col-span-1">
+                <TextInput
+                  name="fecha_caducidad"
+                  label="F. caducidad"
+                  register={register}
+                  errors={errors.fecha_caducidad}
+                  type="date"
+                />
+              </div>
+            </div>
+            {/* grid Cod seguridad y cod.postal */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 sm:gap-4">
+              <div className="flex flex-col">
+                <TextInput
+                  name="cvv"
+                  label="Código de seguridad"
+                  register={register}
+                  errors={errors.cvv}
+                />
+              </div>
+              <div className="flex flex-col col-span-1">
+                <TextInput
+                  name="codpos"
+                  label="Código postal"
+                  register={() => null}
+                  errors={errors.cvv}
+                />
+              </div>
+            </div>
+            {/* Agregar en la bd */}
+            {/* Direccion */}
+            <div className="flex flex-col">
+              <TextInput
+                name="direccion"
+                label="Dirección de facturación"
+                register={() => null}
+                errors={errors.cvv}
+              />
+            </div>
+          </div>
+          {/* Botones */}
+          <div className="col-span-5">
+            <div className="flex flex-row justify-center space-x-4 mb-2">
+              <Button variant="quinary" type="submit" className="w-36">
+                Pagar
+              </Button>
+              <LandingButton
+                toPath={`/app/${cardID}`}
+                variant="quaternary"
+                className="w-36"
+              >
+                Volver
+              </LandingButton>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 }

@@ -31,7 +31,7 @@ export default function LandingPage() {
       </section>
       <div className="flex flex-col justify-center">
         <img
-          src="/Landing-image.png"
+          src="/Landing-image-com.png"
           alt="ilustración"
           className="hidden w-full lg:inline-block"
         />

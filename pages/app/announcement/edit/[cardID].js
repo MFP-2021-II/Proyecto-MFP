@@ -303,6 +303,7 @@ export default function Edit({ user }) {
             <CheckBox register={register} />
             <Select
               label="Tipo de alojamiento"
+              variant="primary"
               options={tipoAlojamientos.map((el) => ({
                 value: el?.id,
                 label: el?.descripcion,

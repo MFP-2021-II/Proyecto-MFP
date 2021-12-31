@@ -1,4 +1,3 @@
-import { screenSizes } from "utils/responsive";
 import TextInput from "ui/TextInput";
 import NavButton from "components/Buttons/NavButton";
 import LandingButton from "components/Buttons/LandingButton";
@@ -7,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import router from "next/router";
+import Lock from "components/Icons/Lock";
 
 const schema = yup.object().shape({
   nueva_contraseña: yup.string().required("La contraseña es requerida"),
@@ -28,8 +28,8 @@ export default function Security() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(window.localStorage.getItem("user"));
-    setUser(user);
+    const userLocal = JSON.parse(window.localStorage.getItem("user"));
+    setUser(userLocal);
   }, []);
 
   const onSubmit = async (formData) => {
@@ -63,13 +63,23 @@ export default function Security() {
     }
   };
 
+  const screenSize = "w-11/12 md:w-6/12 lg:w-3/6 xl:w-5/12 2xl:w-4/12";
+
   return (
-    <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
-      <div className={screenSizes}>
-        <h1 className="pb-6 text-xl font-bold text-left">
-          Cambia tu contraseña
-        </h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-16">
+    <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-32 xl:mt-[10%]">
+      <div className={screenSize}>
+        <div className="flex flex-row items-center pb-2 mb-5 border-b-2">
+          <i>
+            <Lock className="text-red-700 fill-current rounded-full" />
+          </i>
+          <span className="pl-2 text-xl font-bold text-left">
+            Cambiar contraseña
+          </span>
+        </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col px-0 sm:px-24 md:px-16"
+        >
           <TextInput
             label="Nueva contraseña"
             type="password"
