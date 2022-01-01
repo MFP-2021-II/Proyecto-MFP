@@ -9,10 +9,10 @@ export default function Record() {
     const user = JSON.parse(window.localStorage.getItem("user"));
     console.log(user);
 
-    const fetchPayments = async () => {
+    const fetchPaymentsMade = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas`,
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas/realizadas`,
           {
             method: "GET",
             headers: {
@@ -22,14 +22,34 @@ export default function Record() {
           }
         );
         const json = await response.json();
-        console.log(json);
+        console.log(json, "HECHASSSSSSS");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchPaymentsReceived = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas/recibidas`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        console.log(json, "RECIBIDASSSSS");
       } catch (error) {
         console.log(error);
       }
     };
 
     if (user) {
-      fetchPayments();
+      fetchPaymentsMade();
+      fetchPaymentsReceived();
     }
   }, []);
 
