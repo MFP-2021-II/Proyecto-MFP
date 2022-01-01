@@ -145,6 +145,13 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     Estacionamientos: <Parking className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
   };
 
+  const calificacion = (
+    dato?.anuncio[0]?.comentarios?.reduce(
+      (total, comentario) => total + comentario.calificacion,
+      0
+    ) / (dato?.anuncio[0]?.comentarios?.length || 1)
+  ).toFixed(1);
+
   return (
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-10">
       {/* {mostrarPago &&aa modalPago}*/}
@@ -159,7 +166,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               <div className="flex flex-row">
                 <div className="flex flex-row items-center">
                   <Star className="w-5 h-5 text-red-700 fill-current" />
-                  <span className="pl-2">4.11</span>
+                  <span className="pl-2">{dato && calificacion}</span>
                 </div>
                 <div className="flex flex-row items-center pl-4">
                   <Map className="w-5 h-5 text-red-700 fill-current" />
@@ -272,15 +279,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
               )}
               <div className="flex flex-row items-center justify-center">
                 <Star className="w-4 h-4 text-red-700 fill-current" />
-                <span className="pr-1 text-sm">
-                  {dato &&
-                    (
-                      dato?.anuncio[0]?.comentarios?.reduce(
-                        (total, comentario) => total + comentario.calificacion,
-                        0
-                      ) / (dato?.anuncio[0]?.comentarios?.length || 1)
-                    ).toFixed(1)}
-                </span>
+                <span className="pr-1 text-sm">{dato && calificacion}</span>
                 <span className="text-sm text-gray-500">
                   ({dato && dato?.anuncio[0]?.comentarios?.length} reseñas)
                 </span>
@@ -328,15 +327,7 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
           <h3>Comentarios y valoraciones</h3>
           <div className="flex flex-row items-center">
             <Star className="w-5 h-5 text-red-700 fill-current" />
-            <span className="pl-2">
-              {dato &&
-                (
-                  dato?.anuncio[0]?.comentarios?.reduce(
-                    (total, comentario) => total + comentario.calificacion,
-                    0
-                  ) / (dato?.anuncio[0]?.comentarios?.length || 1)
-                ).toFixed(1)}
-            </span>
+            <span className="pl-2">{dato && calificacion}</span>
           </div>
         </div>
         {/* Form para enviar comentario y valoracion */}
