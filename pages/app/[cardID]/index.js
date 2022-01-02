@@ -221,7 +221,8 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                     car.descripcion !== "Piscina" &&
                     car.descripcion !== "Estacionamiento" &&
                     car.descripcion !== "Estacionamientos" &&
-                    car.descripcion !== "Jacuzzi"
+                    car.descripcion !== "Jacuzzi" &&
+                    car.descripcion !== "Jaccuzi"
                   ) {
                     return (
                       <span key={car.id} className="text-gray-600">
