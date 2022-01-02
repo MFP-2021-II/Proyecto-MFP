@@ -21,7 +21,8 @@ const schema = yup.object({
     .required("La contraseña es requerida"),
   telefono: yup
     .string()
-    .matches(/^[0-9]{9}$/, "El teléfono debe tener 9 digitos"),
+    // Se cambió [0-9] por \d
+    .matches(/^\d{9}$/, "El teléfono debe tener 9 digitos"),
   confirmarContraseña: yup
     .string()
     .oneOf([yup.ref("contraseña"), null], "Las contraseñas no coinciden")
