@@ -32,7 +32,7 @@ export default function Dropdown({
     def_style:
       "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200 border-solid border-b cursor-pointer",
     end_style:
-      "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 hover:bg-gray-200",
+      "block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 transition ease-in duration-200 group hover:bg-red-200 hover:text-red-600",
   };
   /**
    * Funcion para cerrar la lista desplegable
@@ -70,8 +70,10 @@ export default function Dropdown({
         >
           Notificaciones
           {exists && (
-            <span className="flex w-3 h-3">
-              <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2"></span>
+            <span className="flex flex-row w-3 h-3">
+              <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2">
+                <span className="w-3 h-3 right-[0.05rem] animate-ping absolute inline-flex rounded-full bg-purple-400 opacity-75"></span>
+              </span>
             </span>
           )}
         </button>

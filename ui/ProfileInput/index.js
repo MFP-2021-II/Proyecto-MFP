@@ -1,6 +1,6 @@
 const theme = {
   primary:
-    "w-full border-b-2 pl-3 text-base border-0 py-1 outline-none font-medium transition duration-500 hover:bg-gray-100",
+    "w-full border-b-2 pl-3 text-base border-0 py-1 outline-none font-medium transition bg-gray-50 duration-500 hover:bg-gray-100",
   inactive:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal",
 };

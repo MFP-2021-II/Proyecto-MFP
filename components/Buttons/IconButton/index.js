@@ -15,7 +15,7 @@ export default function IconButton({ children, className, onClick }) {
 
   return (
     <button onClick={onClick} className={`${primary} ${className}`}>
-      <a href="#">{children}</a>
+      <a>{children}</a>
     </button>
   );
 }

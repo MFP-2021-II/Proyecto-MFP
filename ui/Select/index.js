@@ -4,7 +4,7 @@ const theme = {
   primary:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal transition duration-500 ease-in-out hover:shadow-md",
   secondary:
-    "border-solid border-b-2 text-base font-medium transition duration-500 hover:bg-gray-100 pl-3 py-1 outline-none font-medium text-black mb-2 sm:mb-5",
+    "border-solid border-b-2 text-base font-medium bg-gray-50 transition duration-500 hover:bg-gray-100 pl-3 py-1 outline-none font-medium text-black mb-2 sm:mb-5",
   inactive:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal",
 };

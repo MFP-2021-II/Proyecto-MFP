@@ -219,20 +219,13 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                 dato?.caracteristica.map((car) => {
                   if (
                     car.descripcion !== "Piscina" &&
+                    car.descripcion !== "Estacionamiento" &&
                     car.descripcion !== "Estacionamientos" &&
                     car.descripcion !== "Jacuzzi"
                   ) {
                     return (
                       <span key={car.id} className="text-gray-600">
                         {`${car?.cantidad} ${car?.descripcion}`}
-                        {` `}
-                        {` · `}
-                      </span>
-                    );
-                  } else {
-                    return (
-                      <span key={car.id} className="text-gray-600">
-                        No se especificó
                         {` `}
                         {` · `}
                       </span>
@@ -305,10 +298,17 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
                         {IconosFacilidades[car.descripcion]}
                       </li>
                     );
-                  } else {
+                  } else if (
+                    car.cantidad >= 0 &&
+                    !(
+                      car.descripcion !== "Piscina" &&
+                      car.descripcion !== "Estacionamientos" &&
+                      car.descripcion !== "Jacuzzi"
+                    )
+                  ) {
+                    // Return defectuoso
                     return (
                       <li
-                        key={car.id}
                         title="El lugar no ofrece nada."
                         className="bg-gray-300 rounded-lg m-1 sm:px-2"
                       >

@@ -109,7 +109,7 @@ export default function PersonalInfo() {
             errors={errors.nombre}
             variant="primary"
             label="Nombre"
-            placeholder="X"
+            placeholder="Nombre"
             type="text"
             name="nombre"
           />
@@ -118,7 +118,7 @@ export default function PersonalInfo() {
             errors={errors.apellidos}
             variant="primary"
             label="Apellidos"
-            placeholder="X"
+            placeholder="Apellidos"
             type="text"
             name="apellidos"
           />
@@ -138,7 +138,6 @@ export default function PersonalInfo() {
             errrors={errors.fecha_nacimiento}
             variant="primary"
             label="Fecha de nacimiento"
-            placeholder="X"
             type="date"
             name="fecha_nacimiento"
           />
@@ -147,7 +146,7 @@ export default function PersonalInfo() {
             errors={errors.correo}
             variant="primary"
             label="Correo electrónico"
-            placeholder="X"
+            placeholder="Correo electrónico"
             type="text"
             name="correo"
           />

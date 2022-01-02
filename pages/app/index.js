@@ -165,12 +165,18 @@ export default function App({ user }) {
                 <BiStateButton />
               </div>
             </div>
-            <div className="min-w-[160px] flex justify-center">
+            <div className="min-w-[160px] flex flex-col justify-center space-y-3">
               <Button
                 variant="quinary"
                 className="w-32 px-3 py-1 xl:px-5 xl:py-1"
               >
                 Aplicar
+              </Button>
+              <Button
+                variant="quaternary"
+                className="w-32 px-3 py-1 xl:px-5 xl:py-1"
+              >
+                Restablecer
               </Button>
             </div>
           </div>
