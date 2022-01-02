@@ -12,12 +12,12 @@ export default function TransactionItem({
   return (
     <div
       className={`w-full ${
-        tipo === "huesped" ? "bg-green-50" : "bg-red-50"
+        tipo === "huesped" ? "bg-red-50" : "bg-green-50"
       } flex flex-col justify-between mb-3 p-3 border rounded-lg`}
     >
       {tipo === "huesped" ? (
         <>
-          <h1 className="text-center font-semibold mb-3 text-green-800">
+          <h1 className="text-center font-semibold mb-3 text-red-800">
             Pago Realizado
           </h1>
           <span>{`Fecha de pago: ${fechaPago}`}</span>
@@ -30,7 +30,7 @@ export default function TransactionItem({
         </>
       ) : (
         <>
-          <h1 className="text-center font-semibold mb-3 text-red-800">
+          <h1 className="text-center font-semibold mb-3 text-green-800">
             Pago Recibido
           </h1>
           <span>{`Fecha de pago: ${fechaPago}`}</span>

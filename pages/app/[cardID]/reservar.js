@@ -207,6 +207,7 @@ export default function Reservar() {
                   name="codpos"
                   label="Código postal"
                   register={() => null}
+                  // opcional
                   errors={errors.cvv}
                 />
               </div>

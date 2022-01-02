@@ -15,6 +15,7 @@ export default function Dropdown({
   setOpen,
   setOpenModal,
   setOpenModalNotif,
+  exists,
 }) {
   /**
    * Router redireccionar a la pagina de inicio de sesion
@@ -68,9 +69,11 @@ export default function Dropdown({
           onClick={() => setOpenModalNotif(true)}
         >
           Notificaciones
-          {/* si hay una notificación aparece el span <span className="flex w-3 h-3">
-            <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2"></span>
-          </span> */}
+          {exists && (
+            <span className="flex w-3 h-3">
+              <span className="relative inline-flex w-3 h-3 bg-purple-500 rounded-full left-2"></span>
+            </span>
+          )}
         </button>
         <button
           className={styles["def_style"]}

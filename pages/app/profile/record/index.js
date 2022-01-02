@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { screenSizes } from "utils/responsive";
 import LandingButton from "components/Buttons/LandingButton";
 import Payment from "components/Icons/Payment";
 import TransactionItem from "ui/TransactionItem";
 
 export default function Record() {
+  const [made, setMade] = useState([]);
+  const [received, setReceived] = useState([]);
+
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
     console.log(user);
@@ -22,6 +25,7 @@ export default function Record() {
           }
         );
         const json = await response.json();
+        setMade(json.data.reservas);
         console.log(json, "HECHASSSSSSS");
       } catch (error) {
         console.log(error);
@@ -41,6 +45,7 @@ export default function Record() {
           }
         );
         const json = await response.json();
+        setReceived(json.data);
         console.log(json, "RECIBIDASSSSS");
       } catch (error) {
         console.log(error);
@@ -65,8 +70,34 @@ export default function Record() {
           </span>
         </div>
         <section className="overflow-y-scroll p-10 items-center bg-[#F5F7FB] rounded-lg border-solid border h-[28rem] lg:mx-40 xl:mx-48">
-          <TransactionItem tipo="huesped" />
-          <TransactionItem />
+          {made &&
+            made.map((paymentMade) => (
+              <TransactionItem
+                key={paymentMade.id}
+                tipo="huesped"
+                alojamiento={paymentMade.alojamiento.anuncio[0].nombre}
+                anfitrion={paymentMade.usuario.nombre}
+                importe={`S/ ${paymentMade.alojamiento.anuncio[0].precio}`}
+                fechaPago={new Date(paymentMade.createdAt).toTimeString()}
+                fLlegada={new Date(paymentMade.fecha_reserva).toDateString()}
+                fSalida={new Date(paymentMade.fecha_fin).toDateString()}
+                tarjeta={paymentMade.numero_tarjeta}
+              />
+            ))}
+          {received &&
+            received.map((paymentReceived) =>
+              paymentReceived.reserva.map((reserva) => (
+                <TransactionItem
+                  key={reserva.id}
+                  fechaPago={new Date(reserva.createdAt).toTimeString()}
+                  alojamiento={paymentReceived.anuncio[0].nombre}
+                  huesped={reserva.nombre_huesped}
+                  importe={`S/ ${paymentReceived.anuncio[0].precio}`}
+                  fLlegada={new Date(reserva.fecha_reserva).toDateString()}
+                  fSalida={new Date(reserva.fecha_fin).toDateString()}
+                />
+              ))
+            )}
         </section>
         <div className="flex justify-center mt-4">
           <LandingButton toPath="/app/profile" variant="quinary">

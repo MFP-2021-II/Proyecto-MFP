@@ -62,6 +62,9 @@ export default function AppLayout({ Component, pageProps }) {
 
   const [reloadFavorites, setReloadFavorites] = useState(false);
 
+  const [made, setMade] = useState([]);
+  const [received, setReceived] = useState([]);
+
   const handleDelete = async (idAnuncio) => {
     try {
       const response = await fetch(
@@ -121,12 +124,65 @@ export default function AppLayout({ Component, pageProps }) {
     }
   }, [user, reloadFavorites]);
 
+  useEffect(() => {
+    const userNoti = JSON.parse(window.localStorage.getItem("user"));
+    console.log(userNoti);
+
+    const fetchPaymentsMade = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas/realizadas`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userNoti.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        setMade(json.data.reservas);
+        console.log(json, "HECHASSSSSSS");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const fetchPaymentsReceived = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOMY_URL}/reservas/recibidas`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userNoti.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        setReceived(json.data[0].reserva);
+        console.log(json, "RECIBIDASSSSS");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (userNoti) {
+      fetchPaymentsMade();
+      fetchPaymentsReceived();
+    }
+  }, []);
+
   return (
     <>
       <nav className="flex justify-center p-7 pr-7  w-full text-lg font-sans font-bold shadow-lg bg-[#FBEADC]">
         <div className="flex justify-between w-full md:w-8/12">
           <Link href="/app">
-            <a className="flex flex-row items-center transition duration-500 ease-in-out cursor-pointer hover:scale-110">
+            <a
+              title="Regresar /app"
+              className="flex flex-row items-center transition duration-500 ease-in-out cursor-pointer hover:scale-110"
+            >
               <Isotype className="w-11 h-11" />
               <span className="hidden md:flex">Homy.</span>
             </a>
@@ -187,6 +243,7 @@ export default function AppLayout({ Component, pageProps }) {
                 setOpen={setOpen}
                 setOpenModal={setOpenModal}
                 setOpenModalNotif={setOpenModalNotif}
+                exists={received || made ? true : false}
                 className="z-10"
               >
                 <LinkedDropdownListItem
@@ -207,6 +264,7 @@ export default function AppLayout({ Component, pageProps }) {
           </div>
         </div>
       </nav>
+      {/* Modal Favoritos */}
       <div
         className={`z-10 absolute top-[0rem] backdrop-filter backdrop-blur-md bg-opacity-40 bg-gray-500 h-full w-full flex justify-center items-center ${
           !openModal && "hidden"
@@ -223,6 +281,7 @@ export default function AppLayout({ Component, pageProps }) {
           ))}
         </Modal>
       </div>
+      {/* Modal Notificaciones */}
       <div
         className={`z-10 absolute top-[0rem] backdrop-filter backdrop-blur-md bg-opacity-40 bg-gray-500 h-full w-full flex justify-center items-center ${
           !openModalNotif && "hidden"
@@ -233,11 +292,26 @@ export default function AppLayout({ Component, pageProps }) {
           setOpenModal={setOpenModalNotif}
           notificacion={true}
         >
-          <ModalItem
-            name="Sistema"
-            notificacion={true}
-            onClick={() => handleDelete(fav.H_Usuarios_Anuncios.id_anuncio)}
-          />
+          {received &&
+            received.map((PagoRecibida) => (
+              <ModalItem
+                key={PagoRecibida.id}
+                name="Sistema"
+                notificacion={true}
+                mensaje="Pago realizado con éxito."
+                fecha={new Date(PagoRecibida.createdAt).toDateString()}
+              />
+            ))}
+          {made &&
+            made.map((PagoHecho) => (
+              <ModalItem
+                key={PagoHecho.id}
+                name="Sistema"
+                notificacion={true}
+                mensaje="Recibió un pago."
+                fecha={new Date(PagoHecho.createdAt).toDateString()}
+              />
+            ))}
         </Modal>
       </div>
       <Component
