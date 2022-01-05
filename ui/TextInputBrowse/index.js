@@ -1,5 +1,7 @@
 /**
  * Temas para el text input de tipo buscador.
+ * English:
+ * Themes for the text input of type search.
  * @type {{primary: string}}
  */
 const theme = {
@@ -9,6 +11,23 @@ const theme = {
 
 /**
  * Componente atomico de una variante del input de tipo buscador.
+ * English:
+ * Atomic component of an input variant of type search.
+ *
+ * className - clase de la etiqueta
+ * variant - tipo de tema
+ * label - etiqueta del input
+ * type - tipo de input
+ * name - nombre del input
+ * props - propiedades del input
+ *
+ * English:
+ * className - class of the label
+ * variant - theme type
+ * label - label of the input
+ * type - input type
+ *  name - name of the input
+ * props - input properties
  * @param {string} className Nombre de la clase
  * @param {string} variant Tipo de variante
  * @param {string} label Texto del label
@@ -26,6 +45,14 @@ export default function TextInputBrowse({
   ...props
 }) {
   return (
+    /**
+     * Componente de input de tipo texto para
+     * busquedas de datos que tiene soporte para
+     * manejo de react hook form.
+     * English:
+     * Component of text input for search data
+     * that has support for react hook form.
+     */
     <>
       <input
         id={name}
@@ -35,5 +62,15 @@ export default function TextInputBrowse({
         {...props}
       />
     </>
+    /**
+     * Componente de input de tipo
+     * texto para busquedas de datos
+     * que tiene soporte para manejo
+     * de react hook form.
+     * English:
+     * Component of text input for
+     * search data that has support for
+     * react hook form.
+     */
   );
 }

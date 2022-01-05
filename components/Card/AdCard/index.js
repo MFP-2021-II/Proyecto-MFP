@@ -5,6 +5,23 @@ import Link from "next/link";
 
 /**
  * Compontente para mostrar una tarjeta de anuncio
+ * English:
+ * Component to show an ad card
+ *
+ * image es la imagen de la tarjeta
+ * name es el nombre de la tarjeta
+ * location es la ubicación de la tarjeta
+ * price es el precio de la tarjeta
+ * rating es la calificación de la tarjeta
+ * edit es el icono para cambiar el modo de la tarjeta
+ *
+ * English:
+ * image of the card
+ * name of the card
+ * location of the card
+ * price of the card
+ * rating of the card
+ * edit icon to change the mode of the card
  * @param {string} image Imagen del anuncio
  * @param {string} name Nombre del anuncio
  * @param {string} location Ubicacion del anuncio
@@ -40,7 +57,25 @@ export default function AdCard({
     b_text: "font-light text-xs md:text-sm truncate w-full",
     r_text: "font-medium text-xs md:text-sm",
   };
-
+  /**
+   * Muestra anuncios de confirmación para eliminar o
+   * editar tarjetas una función asincrona que se ejecuta
+   * al hacer click en el boton de una alerta muestra un
+   * mensaje si se confirma la eliminación o editar si
+   * se confirma la eliminación del anuncio, se hace
+   * una petición al servidor para eliminarlo de la base
+   * de datos y se cambia el estado reload para
+   * actualizar la lista de anuncios
+   * English:
+   * Shows ads for confirmation to delete or
+   * edit cards an asynchronous function that is
+   * executed when you click on the button of an alert
+   * shows a message if you confirm the deletion or
+   * edit if you confirm the deletion of the ad,
+   * a request is made to the server to delete it
+   * from the database and the state reload is changed
+   * to update the list of ads.
+   **/
   const handleDelete = async () => {
     if (window.confirm("¿Estas seguro de eliminar el anuncio?")) {
       try {
@@ -86,6 +121,8 @@ export default function AdCard({
           <span title={name} className={text_size["u_text"]}>
             {name}
           </span>
+          {/* Se realiza un operador ternario para reutilizar el mismo componente AdCard para la vista de
+          edición de anuncios y la vista principal de los anuncios */}
           {edit ? (
             <></>
           ) : (
@@ -99,6 +136,8 @@ export default function AdCard({
             </>
           )}
         </div>
+        {/* Se realiza un operador ternario con el mismo componente AdCard para la vista de
+          edición de anuncios en la dirección /app/announcement y la vista principal de los anuncios en la dirección /app */}
         {edit ? (
           <div className="flex flex-row pr-1">
             <Link href={`/app/announcement/edit/${id}`}>

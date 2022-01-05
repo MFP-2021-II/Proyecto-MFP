@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BoderFav from "components/Icons/BorderFav";
@@ -17,21 +22,87 @@ import Jaccuzi from "components/Icons/Jaccuzi";
 import Parking from "components/Icons/Parking";
 import Empty from "components/Icons/Empty";
 
+/**
+ * Esquema para validar el formulario
+ * de tipo objeto de react-hook-form.
+ * English:
+ * Schema to validate the form of
+ * react-hook-form type object.
+ */
 const schema = yup.object().shape({
   contenido: yup.string().required("Este campo es requerido"),
   calificacion: yup.number().required("Este campo es requerido"),
 });
-
-// aimport PaymentModal from "components/Modals/Payment";
-// aimport Backdrop from "@/components/Modals/Backdrop";
-
+/**
+ * Componente IDCard que renderiza
+ * la pagina de una tarjeta seleccionada,
+ * con sus respectivos datos.
+ * English:
+ * IDCard component that renders
+ * the selected card page, with its
+ * respective data.
+ *
+ * user - Usuario que esta logueado
+ * setReloadFavorites - Funcion para
+ * actualizar el estado de favoritos
+ * reloadFavorites - Estado de favoritos
+ * English:
+ * User that is logged in
+ * setReloadFavorites - Function to
+ * update the favorites state
+ * reloadFavorites - Favorites state
+ */
 export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
+  /**
+   * Router para obtener la url actual
+   * Tipo objeto
+   * English:
+   * Router to get the current url
+   * Type object
+   */
   const router = useRouter();
+  /**
+   * Deesctructurar el query para
+   * obtener la ruta del id de
+   * la taarjeta de alojamiento.
+   * English:
+   * Destructuring the query to
+   * get the route of the id of
+   * the accommodation card.
+   */
   const { cardID } = router.query;
+  /**
+   * useState para establecer el
+   * alojamiento favorito para
+   * el usuario.
+   * English:
+   * useState to set the accommodation
+   * favorite for the user.
+   */
   const [isFavorite, setIsFavorite] = useState(false);
-  // aconst [calification, setCalification] = useState(0)a;
+  /**
+   * useState para establecer la data.
+   * English:
+   * useState to set the data.
+   */
   const [dato, setDato] = useState(null);
+  /**
+   * useState para cargar las
+   * publicaciones del usuario.
+   * English:
+   * useState to load the user's
+   * publications.
+   */
   const [reloadPublications, setReloadPublications] = useState(false);
+  /**
+   * Utilización del yup resolver
+   * para validar el formulario y
+   * obtener los errores de los campos.
+   * English:
+   * Utilization of the yup resolver
+   * to validate the form and get
+   * the errors of the fields.
+   */
   const {
     register,
     handleSubmit,
@@ -42,10 +113,21 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     resolver: yupResolver(schema),
   });
 
-  // const [mostrarPago, setMostrarPago] = ,,useState(false);
-
+  /**
+   * constante para obtener la
+   * calificación del usuario.
+   * English:
+   * constant to get the user's
+   * rating.
+   */
   const calification = watch("calificacion");
 
+  /**
+   * UseEffect para obtener los favoritos
+   * del usuario.
+   * English:
+   * UseEffect to get the user's favorites.
+   */
   useEffect(async () => {
     if (user && cardID) {
       try {
@@ -72,6 +154,16 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     }
   }, [user, cardID, reloadFavorites]);
 
+  /**
+   * UseEffect para hacer un handle
+   * de los favoritos, actualizarlos
+   * y cargarlos.
+   * Eliminar y establecer.
+   * English:
+   * UseEffect to make a handle of
+   * the favorites, update them and
+   * load them.
+   */
   const handleToggleFavorite = async () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/favoritos`, {
@@ -93,6 +185,13 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     }
   };
 
+  /**
+   * UseEffect para obtener la calificación
+   * del usuario por alojamiento.
+   * English:
+   * UseEffect to get the user's rating
+   * by accommodation.
+   */
   useEffect(() => {
     register("calificacion");
     if (cardID) {
@@ -112,6 +211,13 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     }
   }, [cardID, reloadPublications]);
 
+  /**
+   * Función para enviar los comentarios
+   * publicados por el usuario.
+   * English:
+   * Function to send the comments posted
+   * by the user.
+   */
   const onSubmit = async (data) => {
     try {
       const res = await fetch(
@@ -137,14 +243,33 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
     }
   };
 
+  /**
+   * Rating del alojamiento.
+   * English:
+   * Rating of the accommodation.
+   */
   const rating = [1, 2, 3, 4, 5];
 
+  /**
+   * Render de las facilidades
+   * del alojamiento.
+   * English:
+   * Render of the facilities of
+   * the accommodation.
+   */
   const IconosFacilidades = {
     Piscina: <Pool className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
     Jacuzzi: <Jaccuzi className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
     Estacionamientos: <Parking className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
   };
 
+  /**
+   * Logica de soleecionar estrellas
+   * para la calificacion por puntos.
+   * English:
+   * Logic to select stars for the
+   * rating by points.
+   */
   const calificacion = (
     dato?.anuncio[0]?.comentarios?.reduce(
       (total, comentario) => total + comentario.calificacion,
@@ -153,6 +278,45 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   ).toFixed(1);
 
   return (
+    /**
+     * Se carga el contenido principal
+     * de la vista de un alojamiento
+     * por su id, con sus respectivas
+     * publicaciones y comentarios.
+     * Se muestra el nombre del alojamiento,
+     * su descripción, la calificación, la
+     * imagen, la ubicación, las facilidades,
+     * el precio, el número de estrellas,
+     * el número de comentarios, el número de
+     * favoritos, el número de visitas, el
+     * número de reservas, el número de
+     * personas que han reservado, el número
+     * de personas que han visitado, el número
+     * de personas que han hecho una reserva,
+     * el número de personas que han hecho
+     * una visita, el número de personas que
+     * han hecho una reserva y el número
+     * de personas que han hecho una visita.
+     * English:
+     * The main content of the view of
+     * an accommodation by its id, with
+     * its respective publications and
+     * comments.
+     * It shows the name of the accommodation,
+     * its description, the rating, the image,
+     * the location, the facilities, the price,
+     * the number of stars, the number of
+     * comments, the number of favorites,
+     * the number of visits, the number of
+     * reservations, the number of people
+     * who have reserved, the number of people
+     * who have visited, the number of people
+     * who have made a reservation, the number
+     * of people who have made a visit, the
+     * number of people who have made a
+     * reservation and the number of people
+     * who have made a visit.
+     */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-10">
       {/* {mostrarPago &&aa modalPago}*/}
 
@@ -384,5 +548,43 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
         </div>
       </section>
     </main>
+    /**
+     * Se carga el contenido principal de
+     * la vista de un alojamiento por
+     * su id, con sus respectivas publicaciones
+     * y comentarios. Se muestra el nombre
+     * del alojamiento, su descripción,
+     * la calificación, la imagen, la ubicación,
+     * las facilidades, el precio, el número de
+     * estrellas, el número de comentarios,
+     * el número de favoritos, el número de visitas,
+     * el número de reservas, el número de personas
+     * que han reservado, el número de personas
+     * que han visitado, el número de personas
+     * que han hecho una reserva, el número
+     * de personas que han hecho una visita,
+     * el número de personas que han hecho
+     * una reserva y el número de personas
+     * que han hecho una visita.
+     * English:
+     * The main content of the view of an
+     * accommodation by its id, with its
+     * respective publications and
+     * comments. It shows the name
+     * of the accommodation, its description,
+     * the rating, the image, the location,
+     * the facilities, the price, the number
+     * of stars, the number of comments,
+     * the number of favorites,
+     * the number of visits, the number of
+     * reservations, the number of people who
+     * have reserved, the number of people
+     * who have visited, the number of people who
+     * have made a reservation, the number
+     * of people who have made a visit, the
+     * number of people who have made a
+     * reservation and the number of people who
+     * have made a visit.
+     */
   );
 }

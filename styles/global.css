@@ -1,3 +1,14 @@
+/* Estilos para vistas
+en donde el contenido se
+expandir bajo la barra de
+navegación, el cual es
+el 100% el tamaño de la 
+pantalla. 
+English: Styles for views
+where the content expands
+under the navigation bar,
+which is 100% the size of
+the screen. */
 html,
 body,
 #__next {

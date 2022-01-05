@@ -1,5 +1,7 @@
 /**
  * Define los estilos de input.
+ * English:
+ * Define the input styles.
  * @type {{primary: string,inactive:string}}
  */
 const theme = {
@@ -10,7 +12,30 @@ const theme = {
 };
 
 /**
- * Componente atomico de una variante del input.
+ * Componente atomico de una variante
+ * del input.
+ * English:
+ * Atomic component of an input variant.
+ *
+ * className - clase de la etiqueta
+ * variant - tipo de tema
+ * label - etiqueta del input
+ * type - tipo de input
+ * register - funcion de registro
+ * name - nombre del input
+ * errors - errores del input
+ * disabled - estado del input
+ * props - propiedades del input
+ * English:
+ * className - class of the label
+ * variant - theme type
+ * label - label of the input
+ * type - input type
+ * register - register function
+ * name - name of the input
+ * errors - input errors
+ * disabled - input state
+ * props - input properties
  * @param {string} className Nombre de la clase
  * @param {string} variant Tipo de variante
  * @param {string} label Texto del label
@@ -35,6 +60,14 @@ export default function TextInput({
 }) {
   console.log(errors);
   return (
+    /**
+     * Componente de input de tipo texto.
+     * que tiene soporte para manejo de
+     * react hook form y errores.
+     * English:
+     * Input of type text.
+     * that supports react hook form and errors.
+     */
     <>
       <label className="pb-2 font-medium text-gray-500" htmlFor={name}>
         {label}
@@ -61,5 +94,15 @@ export default function TextInput({
         {errors && errors?.message}
       </p>
     </>
+    /**
+     * Componente de input de tipo
+     * texto. que tiene soporte para
+     * manejo de react hook form
+     * y errores.
+     * English:
+     * Input of type text.
+     * that supports react hook
+     * form and errors.
+     */
   );
 }

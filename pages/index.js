@@ -1,6 +1,6 @@
 /**
  * @file index.js archivo principal
- * @author Carlos Tarmeño Noriega
+ * @author Carlos Tarmeño
  */
 
 import Isotype from "components/Icons/Isotype";
@@ -8,10 +8,22 @@ import LandingButton from "components/Buttons/LandingButton";
 
 /**
  * Componente del Landing page
+ * English:
+ * Landing page component
  * @returns {JSX} LandingPage
  */
 export default function LandingPage() {
   return (
+    /**
+     * Contenedor del landing page
+     * muestra información de la aplicación
+     * y un boton para empezar a realizar
+     * reservas.
+     * English:
+     * Container of the landing page
+     * shows information of the application
+     * and a button to start making reservations.
+     */
     <main className="flex justify-center h-almost-screen lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
       <section className="flex flex-col items-center justify-center pb-20">
         <Isotype className="w-48 h-48" />
@@ -37,5 +49,15 @@ export default function LandingPage() {
         />
       </div>
     </main>
+    /**
+     * Contenedor del landing page
+     * muestra información de la
+     * aplicación y un boton para
+     * empezar a realizar reservas.
+     * English:
+     * Container of the landing page
+     * shows information of the application
+     * and a button to start making reservations.
+     */
   );
 }

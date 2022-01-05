@@ -1,7 +1,21 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import PersonalInfo from "components/Icons/PersonalInfo";
 import Security from "components/Icons/Security";
 import Payment from "components/Icons/Payment";
 
+/**
+ * Un array de objetos que contiene
+ * los datos de las tarjetas de la
+ * página de perfil de usuario.
+ * English:
+ * An array of objects that contains
+ * the data of the user profile page
+ * cards.
+ */
 export const ProfileCardData = [
   {
     id: 1,
@@ -27,3 +41,12 @@ export const ProfileCardData = [
       "Proporciona una vista de las fechas de pago y nombre de alojamientos.",
   },
 ];
+/**
+ * Un array de objetos que contiene
+ * los datos de las tarjetas de la
+ * página de perfil de usuario.
+ * English:
+ * An array of objects that contains
+ * the data of the user profile page
+ * cards.
+ */

@@ -1,10 +1,36 @@
 /**
- * Icono de quitar visibilidad de campo
+ * Icono de quitar visibilidad de campo,
+ * se utiliza en la campos de contraseña
+ * en la vista de registro e inicio
+ * de sesión del usuario.
+ * English:
+ * Icon Remove Visibility Field,
+ * used in the password fields
+ * in the registration and login
+ * user view.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} VisibilityOff
  */
 export default function VisibilityOff(props) {
   return (
+    /**
+     * Icono de quitaar visibilidad
+     * de un campo, donde se le pasa
+     * los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Icon Remove Visibility Field,
+     * where it passes the props to be
+     * modified by className from the
+     * component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

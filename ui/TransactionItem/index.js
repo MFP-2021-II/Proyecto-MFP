@@ -1,3 +1,38 @@
+/**
+ * Componente atomico para msotrar las
+ * transacciones de un usuario realizadas y dadas.
+ * Se tiene como prametro el tipo, fecha de pago,
+ * alojamiento, anfitrion, huespedm
+ * importe, fecha de llegada, fecha de salida,
+ * el estado de la tarjeta.
+ * English:
+ * Atomic component to display the
+ * transactions of a user made and given.
+ * It has as parameter the type, payment date,
+ * accommodation, host, guest, amount,
+ * arrival date, departure date, card status.
+ *
+ * tipo - tipo de transaccion
+ * fechaPago - fecha de pago
+ * alojamiento - alojamiento
+ * anfitrion - anfitrion
+ * huesped - huesped
+ * importe - importe
+ * fechaLlegada - fecha de llegada
+ * fechaSalida - fecha de salida
+ * estadoTarjeta - estado de la tarjeta
+ *
+ * English:
+ * type - transaction type
+ * paymentDate - payment date
+ * accommodation - accommodation
+ * host - host
+ * guest - guest
+ * amount - amount
+ * arrivalDate - arrival date
+ * departureDate - departure date
+ * cardStatus - card status
+ */
 export default function TransactionItem({
   tipo,
   fechaPago,
@@ -10,6 +45,20 @@ export default function TransactionItem({
   tarjeta,
 }) {
   return (
+    /**
+     * Componente para mostrar las transacciones
+     * de un usuario realizadas y recibidas.
+     * Se tiene como parametro el tipo, fecha de pago,
+     * alojamiento, anfitrion, huespedm
+     * importe, fecha de llegada, fecha de salida,
+     * el estado de la tarjeta.
+     * English:
+     * Component to display the transactions
+     * of a user made and given.
+     * It has as parameter the type, payment date,
+     * accommodation, host, guest, amount,
+     * arrival date, departure date, card status.
+     */
     <div
       className={`w-full ${
         tipo === "huesped" ? "bg-red-50" : "bg-green-50"
@@ -42,5 +91,19 @@ export default function TransactionItem({
         </>
       )}
     </div>
+    /**
+     * Componente para mostrar las
+     * transacciones de un usuario realizadas
+     * y recibidas. Se tiene como parametro el tipo,
+     * fecha de pago, alojamiento, anfitrion, huesped
+     * importe, fecha de llegada, fecha de salida,
+     * el estado de la tarjeta.
+     * English:
+     * Component to display the transactions
+     * of a user made and given.
+     * It has as parameter the type, payment
+     * date, accommodation, host, guest, amount,
+     * arrival date, departure date, card status.
+     */
   );
 }

@@ -1,5 +1,18 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import * as yup from "yup";
 
+/**
+ * Esquema de validación de los
+ * datos del formulario se tiene el correo,
+ * contraseña y captcha.
+ * English:
+ * Schema of the form validation
+ * has the email, password and captcha.
+ */
 export const loginSchema = yup.object({
   correo: yup
     .string()
@@ -13,3 +26,11 @@ export const loginSchema = yup.object({
 
   captcha: yup.string().required("El captcha es requerido"),
 });
+/**
+ * Esquema de validación de los
+ * datos del formulario se tiene el correo,
+ * contraseña y captcha.
+ * English:
+ * Schema of the form validation
+ * has the email, password and captcha.
+ */

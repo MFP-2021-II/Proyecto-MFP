@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import House from "components/Icons/House";
 import Delete from "components/Icons/Delete";
 import Robot from "components/Icons/Robot";
@@ -10,6 +15,13 @@ export default function ModalItem({
   fecha,
 }) {
   return (
+    /**
+     * Se retorna un item para el modal
+     * de notificaciones.
+     * English:
+     * Return an item for the modal
+     * of notifications.
+     */
     <div className="w-full items-center bg-[#FCF8F8] hover:bg-gray-100 flex flex-row justify-between mb-3 p-3 border rounded-lg">
       {notificacion ? (
         <div className="flex flex-row items-center">
@@ -34,5 +46,12 @@ export default function ModalItem({
         </>
       )}
     </div>
+    /**
+     * Se retorna un item para el modal
+     * de notificaciones.
+     * English:
+     * Return an item for the modal
+     * of notifications.
+     */
   );
 }

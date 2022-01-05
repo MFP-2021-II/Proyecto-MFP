@@ -1,10 +1,34 @@
 /**
- * Icono de filtrar
+ * Icono de filtrar, este sirve para
+ * indicar al usuario que existe una
+ * opción para filtrar los anuncios
+ * del tablero.
+ * English:
+ * Filter icon, this is used to indicate
+ * to the user that there is an option
+ * to filter the ads of the board.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Filter
  */
 export default function Filter(props) {
   return (
+    /**
+     * Icono de filtrar, silueta de embudo,
+     * donde se le pasa los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Filter icon, silhouette of a pipe,
+     * where you pass the props to be able
+     * to modify it by className from
+     * the component where it is used.
+     * (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

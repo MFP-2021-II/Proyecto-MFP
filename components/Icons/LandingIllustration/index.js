@@ -1,9 +1,35 @@
 /**
- * Illustracion del landing page
+ * Illustracion del landing page, la
+ * imagen del inicio, que está conformada por
+ * una vista de un escenario con alto contraste
+ * y una vista del mar situado en la
+ * zona de una cocina en una casa.
+ * English:
+ * Illustration of the landing page, the
+ * image of the start, which is composed of
+ * a high contrast view of a scene and a view
+ * of the sea in a house.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} LandingIllustration
  */
 export default function LandingIllustration(props) {
+  /**
+   * Illustración de la página principal,
+   * donde se le pasa los props para poder
+   * modificarlo por className desde el
+   * componente donde se utiliza.
+   * (SVG convertido JSX)
+   * English:
+   * Illustration of the main page,
+   * where it is passed the props to be
+   * able to modify it by className from
+   * the component where it is used.
+   * (SVG converted JSX)
+   */
   return (
     <svg
       width={886}

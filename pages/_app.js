@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import "tailwindcss/tailwind.css";
 import "styles/global.css";
 import LandingLayout from "components/Layouts/LandingLayout";
@@ -8,6 +13,14 @@ import { useRouter } from "next/router";
 
 /**
  * Rutas de autentificacion
+ * English:
+ * Authentication routes
+ *
+ * /register - Registro
+ * /login - Inicio de sesión
+ * English:
+ * /register - Register
+ * /login - Login
  * @type {{'/register': string, '/login': string}}
  */
 const AUTH_PAGES = {
@@ -17,6 +30,16 @@ const AUTH_PAGES = {
 
 /**
  * Rutas del Landing Page
+ * English:
+ * Landing page routes
+ *
+ * / - Inicio
+ * /about - Sobre Nosotros
+ * /contact - Contacto
+ * English:
+ * / - Home
+ * /about - About
+ * /contact - Contact
  * @type {{'/': string, '/about-us': string, '/contact': string}}
  */
 const LANDING_PAGES = {
@@ -27,6 +50,26 @@ const LANDING_PAGES = {
 
 /**
  * Rutas de la aplicacion
+ * English:
+ * Application routes
+ *
+ * /app - App
+ * /app/profile - Perfil
+ * /app/announcements - Anuncios
+ * /app/announcements/create - Nuevo anuncio
+ * /app/announcements/edit - Editar anuncio
+ * /app/profile/personal-info - Datos personales
+ * /app/profile/security - Cambiar contraseña
+ * /app/profile/record - Historial de reservas
+ * English:
+ * /app - App
+ * /app/profile - Profile
+ * /app/announcements - Announcements
+ * /app/announcements/create - New announcement
+ * /app/announcements/edit - Edit announcement
+ * /app/profile/personal-info - Personal data
+ * /app/profile/security - Change password
+ * /app/profile/record - Reservation history
  * @type {{'/app': string, 'app/announcement': string, '/app/announcement/create': string, '/app/announcement/edit': string}}
  */
 const APP_PAGES = {
@@ -41,6 +84,9 @@ const APP_PAGES = {
 };
 
 /**
+ * Componente principal de la aplicacion
+ * English:
+ * Main component of the application
  * @param {Component} Component Componente a renderizar
  * @param {Object} pageProps Propiedades de la pagina
  * @returns {JSX} Renderizado de la pagina

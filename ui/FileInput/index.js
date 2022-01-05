@@ -1,7 +1,20 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import React, { useState } from "react";
 
 /**
  * Componente atomico de input de archivo
+ * English:
+ * Atomic component of file input
+ * label - etiqueta del input
+ * name - nombre del input
+ * errors - errores del input
+ * disabled - estado del input
+ * onchange - funcion de cambio de archivo
+ * onBlur - funcion de perdida de foco
  * @param {string} label Texto del label
  * @param {string} name Nombre del input
  * @param {object} errors Errores del input
@@ -21,6 +34,14 @@ const FileInput = React.forwardRef(
     };
 
     return (
+      /**
+       * Componente de input de archivo
+       * que tiene soporte para manejo de
+       * react hook form y errores.
+       * English:
+       * Input component for file
+       * that supports react hook form and errors.
+       */
       <>
         <label className="mt-4 mb-2" htmlFor={label}>
           {label}
@@ -57,6 +78,14 @@ const FileInput = React.forwardRef(
     );
   }
 );
+/**
+ * Componente de input de archivo
+ * que tiene soporte para manejo de
+ * react hook form y errores.
+ * English:
+ * Input component for file
+ * that supports react hook form and errors.
+ */
 
 FileInput.displayName = "Select";
 

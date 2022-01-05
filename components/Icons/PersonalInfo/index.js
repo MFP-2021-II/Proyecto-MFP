@@ -1,5 +1,37 @@
+/**
+ * Icono de información personal,
+ * se usa en el perfil de usuario,
+ * se usa para indicar al usuario
+ * que se encuentra en la vista donde
+ * puede modificar sus datos personales,
+ * entre ellos su nombre, apellidos,
+ * numero de telefono, sexo, dni, correo, etc.
+ * English:
+ * Icon Personal Info, used in the user profile,
+ * used to indicate to the user that he is
+ * in the view where he can modify his personal
+ * data, among them his name, last name,
+ * phone number, gender, dni, email, etc.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} PersonalInfo
+ */
 export default function PersonalInfo(props) {
   return (
+    /**
+     * Icono de información personal,
+     * donde se le pasa los props para
+     * poder modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Personal Info icon, where it passes the
+     * props to be modified by className from
+     * the component where it is used.
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

@@ -1,5 +1,32 @@
 /**
- * Temas para los botones por defecto de la aplicación
+ * Temas para los botones por
+ * defecto de la aplicación
+ * English:
+ * Theme for the default buttons
+ * of the application
+ *
+ * Tipos de variables:
+ * primary - Color primario
+ * secondary - Color secundario
+ * copy - Color de texto
+ * terciary - Color de fondo y borde
+ * quaternary - Color de borde y fondo
+ * quinary - Color de borde y fondo
+ * white - Color de fondo
+ * light - Color de fondo
+ * outline - Sin borde
+ *
+ * English:
+ * Types of variables:
+ * primary - Primary color
+ * secondary - Secondary color
+ * copy - Text color
+ * terciary - Background and border color
+ * quaternary - Border and background color
+ * quinary - Border and background color
+ * white - Background color
+ * light - Background color
+ * outline - No border
  * @type {{primary: string, cancel: string, copy: string, terciary: string, quaternary: string, quinary: string, white: string, light: string, outline: string}}
  */
 const theme = {
@@ -19,6 +46,8 @@ const theme = {
 
 /**
  * Estilo para el estado de los botones
+ * English:
+ * Style for the button state
  * @type {{primary: string, cancel: string, copy: string, terciary: string}}
  */
 const disabledStyle = {
@@ -29,6 +58,8 @@ const disabledStyle = {
 };
 /**
  * Tamaños para los botones
+ * English:
+ * Sizes for the buttons
  * @type {{small: string, medium: string, large: string}}
  */
 const sizes = {
@@ -39,6 +70,8 @@ const sizes = {
 
 /**
  * Componente boton por defecto de la aplicación
+ * English:
+ * Default button component of the application
  * @param {string} className Clase de estilo
  * @param {string} variant Tipo de botón
  * @param {string} size Tamaño del botón
@@ -55,6 +88,12 @@ export default function Button({
   ...props
 }) {
   return (
+    /**Etiqueta boton que contiene propiedades
+     * que deshabilita el botón, estilos, variantes y tamaños
+     * English:
+     * Button tag that contains properties that
+     * disable the button, styles, variants and sizes
+     */
     <button
       disabled={disabled}
       className={`w-full font-bold flex justify-center items-center

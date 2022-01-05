@@ -1,10 +1,37 @@
 /**
- * Icono de buscar
+ * Icono de buscar, se usa en
+ * en la vista de ver alojamientos,
+ * donde se usa este icono para
+ * indicar que es una sección donde
+ * se aplica la busqueda o filtrado
+ * por nombre de la tarjeta del anuncio.
+ * English:
+ * Icon Search, used in the view
+ * of accommodation, where it is used
+ * this icon to indicate that it is a
+ * section where the search or filter
+ * by name of the card of the advertisement.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Search
  */
 export default function Search(props) {
   return (
+    /**
+     * Icono de buscar, donde se
+     * le pasa los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Search icon, where it passes the
+     * props to be modified by className from
+     * the component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

@@ -1,10 +1,31 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import LandingCard from "components/Card/LandingCard";
 
 /**
  * Componente de la página de acerca de nosotros
+ * en donde se muestra una imagen de fondo
+ * y una tarjeta con información de la empresa
+ * con la misión y visión de la misma.
+ * English:
+ * Component about us page where
+ * it shows a background image and
+ * a card with information about the
+ * company with the mission and vision.
  * @returns {JSX} Acerca de nosotros
  */
 export default function aboutUs() {
+  /**
+   * Componente de usado como
+   * página de Acerca de nosotros
+   * en el sistema de Homy.
+   * English:
+   * Component used as About us page
+   * in the system Homy.
+   */
   return (
     <main>
       <div>
@@ -38,5 +59,14 @@ export default function aboutUs() {
         </LandingCard>
       </div>
     </main>
+    /**
+     * Componente de usado
+     * como página de Acerca
+     * de nosotros en el sistema
+     * de Homy.
+     * English:
+     * Component used as About
+     * us page in the system Homy.
+     */
   );
 }

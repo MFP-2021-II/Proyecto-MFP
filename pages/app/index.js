@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import AdCard from "components/Card/AdCard";
 import IconButton from "components/Buttons/IconButton";
 import Search from "components/Icons/Search";
@@ -14,22 +19,54 @@ import TextInput from "ui/TextInput";
 import Button from "components/Buttons/Button";
 import "rc-slider/assets/index.css";
 /**
+ * Componente de la sección de anuncios
+ * English:
+ * Ad section component
+ *
+ * user - Usuario de la aplicación
+ * English:
+ * user - User of the application
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de la aplicación
  */
 export default function App({ user }) {
   /**
    * useState para establecer nuevos anuncios
+   * English:
+   * useState to set new announcements
    * @type {Array}
    * @param {Array} anuncios Anuncios
    */
   const [anuncios, setAnuncios] = useState([]);
+  /**
+   * Estado para mostrar o no el filtro
+   * de la vista de alojamientos.
+   * English:
+   * State to show or not the filter
+   * of the view of accommodations.
+   */
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
+  /**
+   * UseState para mostrar la busqueda por texto
+   * en la vista de alojamientos.
+   * English:
+   * UseState to show the search by text
+   * in the view of accommodations.
+   */
   const [mostrarBuscar, setMostrarBuscar] = useState(false);
+  /**
+   * Uso de router para redireccionar
+   * a la página de creación de anuncios
+   * English:
+   * Use router to redirect to the
+   * announcement creation page
+   */
   const router = useRouter();
 
   /**
    * useEffect para obtener los anuncios del API
+   * English:
+   * Use effect to get the announcements from the API
    */
   useEffect(() => {
     if (user) {
@@ -48,23 +85,59 @@ export default function App({ user }) {
     }
   }, [user]);
 
+  /**
+   * Constante para extrar
+   * la ruta actual del usuario
+   * como string
+   * English:
+   * Constant to extract
+   * the current user's route
+   * as string
+   */
   const CardID = router.query;
   console.log(CardID);
 
+  /**
+   * Función para mostrar o no
+   * el filtro de la vista de alojamientos
+   * English:
+   * Function to show or not
+   * the filter of the view of accommodations
+   */
   const toggleFiltros = () => {
     setMostrarFiltros(!filtroContainer);
   };
 
+  /**
+   * Función para mostrar o no
+   * el buscador de la vista de alojamientos
+   * English:
+   * Function to show or not
+   * the searcher of the view of accommodations
+   */
   const toggleBuscar = () => {
     setMostrarBuscar(!mostrarBuscar);
   };
 
   let filtroContainer;
 
-  // Filter
+  /**
+   * Estado para mostrar o no
+   * el filtro de la vista de alojamientos
+   * English:
+   * State to show or not
+   * the filter of the view of accommodations
+   */
   const [searchValue, setSearchValue] = useState("");
   let searchedCards = [];
 
+  /**
+   * Lógica para biuscar en tiempo real los anuncios
+   * en la vista de alojamientos.
+   * English:
+   * Logic for bi-searching the announcements
+   * in the view of accommodations.
+   */
   if (!searchValue.length >= 1) {
     searchedCards = [...anuncios];
   } else {
@@ -74,11 +147,35 @@ export default function App({ user }) {
       return anuncioTitle.includes(searchText);
     });
   }
-
+  /**
+   * Evento de cambio de texto en el buscador
+   * de la vista de alojamientos.
+   * English:
+   * Event of change of text in the searcher
+   * of the view of accommodations.
+   */
   const onsearchValueChange = (e) => {
     setSearchValue(e.target.value);
   };
-
+  /**
+   * Mostrar filtros de la vista de alojamientos
+   * cuando el estado de mostrarFiltros es true.
+   * En los filtros se tiene la fecha de entraada
+   * y la fecha de salida.
+   * Un select para la cantidad de huespedes, habitaciones
+   * campos para ingresar el rango de precios
+   * y 3 switch para indicar la presencia de
+   * facilidades en el alojamiento.
+   * English:
+   * Show filters of the view of accommodations
+   * when the state of showFiltros is true.
+   * In the filters there is the date of arrival
+   * and the date of departure.
+   * A select for the number of guests, rooms
+   * fields for entering the price range
+   * and 3 switches for indicating the presence
+   * of facilities in the accommodation.
+   */
   if (mostrarFiltros) {
     filtroContainer = (
       <div className="w-11/12 mb-4 md:w-4/6 lg:w-5/6 xl:w-8/12">
@@ -184,8 +281,45 @@ export default function App({ user }) {
   } else {
     filtroContainer = "";
   }
+  /**
+   * Mostrar filtros de la vista de
+   * alojamientos cuando el estado de
+   * mostrarFiltros es true. En los filtros
+   * se tiene la fecha de entraada
+   * y la fecha de salida. Un select para
+   * la cantidad de huespedes, habitaciones campos
+   * para ingresar el rango de precios
+   * y 3 switch para indicar la presencia de
+   * facilidades en el alojamiento.
+   * English:
+   * Show filters of the view of accommodations
+   * when the state of showFiltros is true. In
+   * the filters there is the date of arrival
+   * and the date of departure. A select for
+   * the number of guests, rooms fields for
+   * entering the price range and 3 switches
+   * for indicating the presence
+   * of facilities in the accommodation.
+   */
 
   return (
+    /**
+     * contenido de la pagina donde se muestran los alojamientos
+     * se muestran los alojamientos en una lista de tarjetas
+     * con una imagen y una descripcion de cada uno.
+     * Se puede filtrar por la cantidad de huespedes, habitaciones
+     * la fecha de entrada y la fecha de salida, y por el precio.
+     * Se puede filtrar por la presencia de facilidades en el alojamiento.
+     * Se puede filtrar por la ubicacion del alojamiento.
+     * Se puede filtrar por la categoria del alojamiento.
+     * English:
+     * Content of the page where the accommodations are displayed
+     * are displayed in a list of cards with an image and a description
+     * of each one.
+     * You can filter by the number of guests, rooms
+     * the date of arrival and the date of departure, and by the price.
+     * You can filter by the presence of facilities in the accommodation.
+     */
     <main className="flex flex-col items-center justify-center h-auto mt-10">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
@@ -255,5 +389,24 @@ export default function App({ user }) {
         })}
       </div>
     </main>
+    /**
+     * contenido de la pagina donde se muestran los
+     * alojamientos se muestran los alojamientos en una
+     * lista de tarjetas con una imagen y una descripcion
+     * de cada uno. Se puede filtrar por la cantidad de
+     * huespedes, habitaciones la fecha de entrada y la
+     * fecha de salida, y por el precio. Se puede filtrar
+     * por la presencia de facilidades en el alojamiento.
+     * Se puede filtrar por la ubicacion del alojamiento.
+     * Se puede filtrar por la categoria del alojamiento.
+     * English:
+     * Content of the page where the accommodations are
+     * displayed are displayed in a list of cards with
+     * an image and a description of each one.
+     * You can filter by the number of guests, rooms
+     * the date of arrival and the date of departure, and
+     * by the price. You can filter by the presence of
+     * facilities in the accommodation.
+     */
   );
 }

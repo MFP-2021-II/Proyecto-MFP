@@ -1,20 +1,40 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import AdCard from "components/Card/AdCard";
 import Ballot from "components/Icons/Ballot";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 /**
+ * Componente de la sección de anuncios
+ * English:
+ * Ad section component
+ *
+ * users - Usuarios de la aplicación
+ * English:
+ * users - Users of the application
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de anuncios del usuario
  */
 export default function Announcement({ user }) {
   /**
-   * Use router para redireccionar a la página de creación de anuncios
+   * Use router para redireccionar a
+   * la página de creación de anuncios
+   * English:
+   * Use router to redirect to the
+   * announcement creation page
    * @type {Router}
    */
   const router = useRouter();
   /**
-   * Use state para manejar el estado de los anuncios
+   * Use state para manejar el estado
+   * de los anuncios
+   * English:
+   * Use state to handle the announcement
+   * state
    * @type {Array}
    * @default []
    */
@@ -22,7 +42,11 @@ export default function Announcement({ user }) {
   const [reload, setReload] = useState(false);
 
   /**
-   * Use effect para obtener los anuncios del usuario
+   * Use effect para obtener los
+   * anuncios del usuario
+   * English:
+   * Use effect to get the user's
+   * announcements
    * @param {object} user Usuario de la aplicación
    * @returns {void}
    */
@@ -45,6 +69,15 @@ export default function Announcement({ user }) {
   }, [user, reload]);
 
   return (
+    /**
+     * contenido de la página donde se muestra
+     * la lista de anuncios del usuario y un botón
+     * para crear un nuevo anuncio.
+     * English:
+     * content of the page where the list of
+     * user's announcements is shown and a button
+     * to create a new announcement.
+     */
     <main className="flex flex-col items-center justify-center h-almost-screen ">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <div className="flex flex-row items-center">
@@ -87,5 +120,16 @@ export default function Announcement({ user }) {
           ))}
       </div>
     </main>
+    /**
+     * contenido de la página donde
+     * se muestra la lista de anuncios
+     * del usuario y un botón para
+     * crear un nuevo anuncio.
+     * English:
+     * content of the page where the list
+     * of user's announcements is shown
+     * and a button to create a new
+     * announcement.
+     */
   );
 }

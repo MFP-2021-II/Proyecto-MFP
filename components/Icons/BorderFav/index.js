@@ -1,5 +1,32 @@
+/**
+ * Icono de Borde para la vista de
+ * detalles de inmuebles en favoritos.
+ * English:
+ * Icon for the view of details of
+ * properties in favorites.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} BorderFav
+ */
 export default function BorderFav(props) {
   return (
+    /**
+     * Icono de borde de la silueta de
+     * un corazón que indica que es el
+     * favorito de un usuario donde se
+     * le pasa los props para poder modificarlo
+     * por className desde el componente
+     * donde se utiliza. (SVG convertida a JSX)
+     * English:
+     * Border of the silhouette of a heart
+     * that indicates that it is a favorite
+     * of a user where you pass the props
+     * to be able to modify it by className from
+     * the component where it is used. (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

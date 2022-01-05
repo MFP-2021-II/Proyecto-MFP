@@ -1,5 +1,22 @@
 /**
  * Componente para el campo de imagen
+ * English:
+ * Image field component
+ *
+ * type es el tipo de campo
+ * name es el nombre del campo
+ * register es el registro del campo
+ * onChange es el evento de cambio
+ * fileImage es la imagen del campo
+ * errors es el error del campo
+ *
+ * English:
+ * type is the field type
+ * name is the field name
+ * register is the field register
+ * onChange is the event of change
+ * fileImage is the field image
+ * errors is the field error
  * @param {string} type Tipo de campo
  * @param {string} name Nombre del campo
  * @param {object} register Registro del formulario
@@ -17,6 +34,18 @@ export default function FormPhoto({
   errors,
 }) {
   return (
+    /**
+     * Componente para el campo de imagen
+     * constituido por un label superior,
+     * dentro un div para crear la caja de
+     * la imagen y un input para guardar
+     * la imagen.
+     * English:
+     * Image field component composed by
+     * a label upper, inside a div to create
+     * the box of the image and an input to
+     * save the image.
+     */
     <>
       <div className="grid grid-cols-1 m-2 w-[80%]">
         <label className="pb-2 font-medium text-gray-500">Sube una foto</label>
@@ -72,5 +101,12 @@ export default function FormPhoto({
       )}
       <span className="text-xs text-red-500">{errors && errors?.message}</span>
     </>
+    /**
+     * English:
+     * Image field component composed by
+     * a label upper, inside a div to create
+     * the box of the image and an input to
+     * save the image.
+     */
   );
 }

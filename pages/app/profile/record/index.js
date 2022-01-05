@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import { useEffect, useState } from "react";
 import { screenSizes } from "utils/responsive";
 import LandingButton from "components/Buttons/LandingButton";
@@ -5,9 +10,32 @@ import Payment from "components/Icons/Payment";
 import TransactionItem from "ui/TransactionItem";
 
 export default function Record() {
+  /**
+   * Estado para guardar los pagos hechos
+   * por el usuario.
+   * English:
+   * State to save the payments made
+   * by the user.
+   */
   const [made, setMade] = useState([]);
+  /**
+   * Estado para guardar los pagos recibidos
+   * por usuario.
+   * English:
+   * State to save the payments received
+   * by the user.
+   */
   const [received, setReceived] = useState([]);
 
+  /**
+   * useEffect para obtener las reservas
+   * hechas por el usuario y las reservas
+   * recibidas por el usuario.
+   * English:
+   * useEffect to get the reservations
+   * made by the user and the reservations
+   * received by the user.
+   */
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
     console.log(user);
@@ -59,6 +87,19 @@ export default function Record() {
   }, []);
 
   return (
+    /**
+     * Seccion para mostrar los pagos hechos,
+     * recibidos y los pagos pendientes.
+     * Se muestran en tarjetaas que indican si
+     * se realizó el pago o no
+     * de acuerdo a su color.
+     * English:
+     * Section to show the payments made,
+     * received and the payments pending.
+     * They are shown in cards that indicate
+     * if the payment was made or not
+     * according to their color.
+     */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
       <div className={screenSizes}>
         <div className="flex flex-row items-center pb-2 mb-5 border-b-2">
@@ -106,5 +147,18 @@ export default function Record() {
         </div>
       </div>
     </main>
+    /**
+     * Seccion para mostrar los pagos hechos,
+     * recibidos y los pagos pendientes.
+     * Se muestran en tarjetaas que indican si
+     * se realizó el pago o no
+     * de acuerdo a su color.
+     * English:
+     * Section to show the payments made,
+     * received and the payments pending.
+     * They are shown in cards that indicate
+     * if the payment was made or not
+     * according to their color.
+     */
   );
 }

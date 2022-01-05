@@ -1,5 +1,35 @@
+/**
+ * Icono de favoritos, se usa en ver
+ * detalles del anuncio, se usa para
+ * indicar al usuario que tiene un
+ * anuncio favorito y desea guadarlo.
+ * English:
+ * Favorites icon, used in view
+ * details of the ad, used to
+ * indicate the user that he has a
+ * favorite ad and wants to save it.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Fav
+ */
 export default function Fav(props) {
   return (
+    /**
+     * Icono de favorito, silueta de corazon,
+     * donde se le pasa los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Favorite icon, heart silhouette,
+     * where you pass the props to be able
+     * to modify it by className from
+     * the component where it is used.
+     * (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

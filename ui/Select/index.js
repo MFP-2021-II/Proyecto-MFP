@@ -1,5 +1,23 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import React from "react";
 
+/**
+ * Estilos apra el componente select
+ * English:
+ * Styles for the select component.
+ *
+ * primary - Color primario.
+ * secondary - Color secundario.
+ * inactive - Color inactivo.
+ * English:
+ * Primary color.
+ * Secondary color.
+ * Inactive color.
+ */
 const theme = {
   primary:
     "border-solid border border-gray-400 border-opacity-60 bg-gray-50 rounded-lg py-2 px-3 outline-none font-normal transition duration-500 ease-in-out hover:shadow-md",
@@ -11,6 +29,8 @@ const theme = {
 
 /**
  * Define los estilos de select.
+ * English:
+ * Define the select styles.
  * @type {{styles: string}}
  */
 const styles = {
@@ -18,6 +38,30 @@ const styles = {
 };
 /**
  * Componente atomico de input de tipo select.
+ * English:
+ * Atomic component of select input.
+ *
+ * classname- clase de la etiqueta
+ * option - opciones del select
+ * label - etiqueta del input
+ * value - valor del input
+ * name - nombre del input
+ * errors - errores del input
+ * variant - tipo de tema
+ * disabled - estado del input
+ * onChange - funcion de cambio
+ * onBlur - funcion de perdida de foco
+ * English:
+ * classname - class of the label
+ * option - options of the select
+ * label - label of the input
+ * value - value of the input
+ * name - name of the input
+ * errors - input errors
+ * variant - theme type
+ * disabled - input state
+ * onChange - change function
+ * onBlur - blur function
  * @param {string} className Clases adicionales para el componente.
  * @param {object} option Propiedades del componente.
  * @param {string} label Texto del label
@@ -47,6 +91,11 @@ const Select = React.forwardRef(
     ref
   ) => {
     return (
+      /**
+       * Componente de input de tipo select.
+       * English:
+       * Input component of type select.
+       */
       <>
         <label
           className={`font-medium ${
@@ -84,6 +133,11 @@ const Select = React.forwardRef(
           {errors && errors?.message}
         </p>
       </>
+      /**
+       * Componente de input de tipo select.
+       * English:
+       * Input component of type select.
+       */
     );
   }
 );

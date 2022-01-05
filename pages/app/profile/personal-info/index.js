@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import { screenSizes } from "utils/responsive";
 import ProfileInput from "ui/ProfileInput";
 import NavButton from "components/Buttons/NavButton";
@@ -9,6 +14,18 @@ import Personal from "components/Icons/PersonalInfo";
 import * as yup from "yup";
 import Select from "ui/Select";
 
+/**
+ * Esquema de validación de los
+ * datos del formulario
+ * se tiene el nombre, apellido
+ * sexo, fecha de nacimiento,
+ * correo, dni.
+ * English:
+ * Schema of the form validation
+ * has the name, last name,
+ * gender, birthday,
+ * email, dni.
+ */
 const schema = yup.object().shape({
   nombre: yup.string().required("El nombre es requerido"),
   apellidos: yup.string().required("Los apellidos son requeridos"),
@@ -24,7 +41,22 @@ const schema = yup.object().shape({
 });
 
 export default function PersonalInfo() {
+  /**
+   * Estado para guardar los datos
+   * del usuario.
+   * English:
+   * State to save the user's data.
+   */
   const [user, setUser] = useState(null);
+  /**
+   * Uso de yup resolver para
+   * validar los datos del formulario
+   * y obtener los errores.
+   * English:
+   * Use yup resolver to
+   * validate the form data and
+   * get the errors.
+   */
   const {
     register,
     handleSubmit,
@@ -34,6 +66,15 @@ export default function PersonalInfo() {
     resolver: yupResolver(schema),
   });
 
+  /**
+   * Se obtiene el usuario de la sesión
+   * y se establece los cambios de datos
+   * que se realizan en el formulario.
+   * English:
+   * Get the user from the session
+   * and set the changes of data
+   * that are made in the form.
+   */
   useEffect(() => {
     const userLocal = JSON.parse(window.localStorage.getItem("user"));
     setUser(userLocal);
@@ -57,6 +98,14 @@ export default function PersonalInfo() {
     console.log(userLocal.data);
   }, []);
 
+  /**
+   * Función para actualizar los datos
+   * del usuario al presionar el botón
+   * de actualizar.
+   * English:
+   * Function to update the user's data
+   * when the update button is pressed.
+   */
   const onSubmit = async (formData) => {
     console.log(formData);
     if (window.confirm("¿Estás seguro de que quieres actualizar tus datos?")) {
@@ -93,6 +142,24 @@ export default function PersonalInfo() {
   };
 
   return (
+    /**
+     * Contenido de la página, donde
+     * se tiene los campos para
+     * actualizar los datos del usuario, el nombre
+     * apellidos, sexo, fecha de nacimiento,
+     * correo y DNI.
+     * Se tiene un botón para actualizar los datos
+     * y un botón para volver a la página de inicio.
+     * Se tiene un icono para mostrar los datos
+     * del usuario.
+     * English:
+     * Content of the page, where
+     * there are the fields to update
+     * the user's data, the name,
+     * last name, gender, birtday,
+     * It has a icon to show the data
+     * from the user.
+     */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto xl:h-almost-screen mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-0">
       <div className={screenSizes}>
         <div className="flex flex-row items-center pb-2 mb-5 border-b-2">
@@ -170,5 +237,24 @@ export default function PersonalInfo() {
         </form>
       </div>
     </main>
+    /**
+     * Contenido de la página, donde
+     * se tiene los campos para
+     * actualizar los datos del usuario,
+     * el nombre apellidos, sexo,
+     * fecha de nacimiento, correo y DNI.
+     * Se tiene un botón para actualizar
+     * los datos y un botón para volver a
+     * la página de inicio.
+     * Se tiene un icono para mostrar los datos
+     * del usuario.
+     * English:
+     * Content of the page, where
+     * there are the fields to update
+     * the user's data, the name,
+     * last name, gender, birtday,
+     * It has a icon to show the data
+     * from the user.
+     */
   );
 }

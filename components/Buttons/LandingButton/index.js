@@ -1,7 +1,25 @@
+/**
+ * Importar librerias o componentes
+ */
 import Link from "next/link";
 
 /**
  * Componente boton del landing page
+ * English:
+ * Landing page button component
+ *
+ * children es el contenido del boton
+ * className es la clase del boton
+ * toPath es la ruta a la que se dirige
+ * type es el tipo de boton
+ * variant es el estilo del boton
+ *
+ * English:
+ * children is the button content
+ * className is the button class
+ * toPath is the path to which it is directed
+ * type is the button type
+ * variant is the button style
  * @param {children} children - Contenido del boton
  * @param {string} toPath - Ruta a la que se redirecciona
  * @param {string} className - Clase del boton
@@ -18,6 +36,8 @@ export default function LandingButton({
 }) {
   /**
    * Estilos para el boton del landing page
+   * English:
+   * Landing page button styles
    * @type {{primary: string, secondary: string}}
    */
   const types = {
@@ -26,6 +46,14 @@ export default function LandingButton({
   };
 
   return (
+    /**Link que redirecciona a la ruta que se le pasa por toPath
+     * dentro una etiqueta boton que contiene propiedades que indica el tipo,
+     * estilos, variantes y tamaños.
+     * English:
+     * Link that redirects to the route that is passed by toPath
+     * inside a button tag that contains properties that indicate the type,
+     * styles, variants and sizes.
+     **/
     <Link href={toPath}>
       <button
         type={type}

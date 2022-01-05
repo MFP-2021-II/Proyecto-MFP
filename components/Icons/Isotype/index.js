@@ -1,9 +1,31 @@
 /**
  * Isotipo de la página
+ * English:
+ * Isotipo of the page
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Isotype
  */
 export default function Isotype(props, className) {
+  /**
+   * Isotipo de la página web,
+   * silueta de un sol con olas
+   * de fondo, donde se le pasa
+   * los props para poder modificarlo
+   * por className desde el componente
+   * donde se utiliza.
+   * (SVG convertido JSX)
+   * English:
+   * Isotipo of the web page,
+   * silhouette of a sun with waves
+   * background, where you pass the
+   * props to be able to modify it by
+   * className from the component where
+   * it is used. (SVG converted to JSX)
+   */
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

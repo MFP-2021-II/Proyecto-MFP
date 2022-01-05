@@ -1,10 +1,35 @@
 /**
- * Icono de casa
+ * Icono de casa que es un elemento
+ * que se usa en el encabeza de la
+ * opción de favoritos en el modal
+ * de favoritos.
+ * English:
+ * House icon, an element that is used
+ * in the header of the favorites option
+ * in the favorites modal.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} House
  */
 export default function House(props) {
   return (
+    /**
+     * Icono de una casa con un usuario
+     * adentro, silueta de una casa, donde
+     * se le pasa los props para poder
+     * modificarlo por className desde el
+     * componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * A house with a user inside, silhouette
+     * of a house, where you pass the props
+     * to be able to modify it by className from
+     * the component where it is used.
+     * (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

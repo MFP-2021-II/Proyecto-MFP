@@ -1,9 +1,23 @@
 /**
  * Componente de la página de contacto
+ * English:
+ * Contact page component
  * @returns {JSX} Contacto
  */
 export default function Contact() {
   return (
+    /**
+     * Contenido de la página de contacto
+     * donde se muestra la información refernete
+     * al grupo desarrollador de la aplicación, dirección
+     * de correo, teléfono y redes sociales.
+     * English:
+     * Content of the contact page
+     * where the information related to the
+     * developer group of the application,
+     * email address, phone number and
+     * social networks are displayed.
+     */
     <main className="grid grid-cols-1 md:grid-cols-3 p-8 gap-8">
       <section className="col-span-1 md:col-span-2">
         <h1 className="font-bold text-3xl">Contáctanos</h1>
@@ -34,5 +48,17 @@ export default function Contact() {
         </div>
       </section>
     </main>
+    /**
+     * Contenido de la página de contacto
+     * donde se muestra la información refernete
+     * al grupo desarrollador de la aplicación, dirección
+     * de correo, teléfono y redes sociales.
+     * English:
+     * Content of the contact page
+     * where the information related to the
+     * developer group of the application,
+     * email address, phone number and
+     * social networks are displayed.
+     */
   );
 }

@@ -1,3 +1,8 @@
+/**
+ * Importar componentes o librerias
+ * English:
+ * Import libraries or components
+ */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "ui/Select";
@@ -13,6 +18,18 @@ import TextArea from "ui/TextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+/**
+ * Esquema de validación de los
+ * datos del formulario
+ * para el nombre del alojamiento
+ * dirección, huspedes, habitaciones,
+ * precio, descripción, etc.
+ * English:
+ * Schema of validation of the
+ * form data for the name of the
+ * accommodation, address, guests,
+ * rooms, price, description, etc.
+ */
 const schema = yup
   .object({
     nombre: yup.string().required("Titulo requerido"),
@@ -46,17 +63,30 @@ const schema = yup
   })
   .required();
 /**
+ * Componente de la sección de creación de anuncios
+ * de un usuario logueado
+ * English:
+ * Component of the announcement creation section
+ * of a logged user
+ *
+ * user - Objeto de usuario logueado
+ * English:
+ * user - Logged user object
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de creación de anuncios
  */
 export default function CreateAnnouncement({ user }) {
   /**
    * Use router para redireccionar a la página de anuncios
+   * English:
+   * Use router to redirect to the announcement page
    * @type {Router}
    */
   const router = useRouter();
   /**
    * Hook para manejar el formulario
+   * English:
+   * Hook for handling the form
    * @type {object}
    * @param {object} register Funciones para manejar el formulario
    * @param {object} handleSubmit Funcion para enviar el formulario
@@ -67,12 +97,18 @@ export default function CreateAnnouncement({ user }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   /**
-   * useState para manejar el estado de las imagenes de los anuncios
+   * useState para manejar el estado
+   * de las imagenes de los anuncios
+   * English:
+   * useState for handling the state of
+   * the images of the announcements
    * @type {array}
    */
   const [fileImage, setFileImage] = useState(null);
   /**
    * useState para manejar el estado los alojamientos
+   * English:
+   * useState for handling the state of the accommodations
    * @type {array}
    */
   const [tipoAlojamientos, setTipoAlojamientos] = useState([]);
@@ -88,6 +124,19 @@ export default function CreateAnnouncement({ user }) {
     register(field).onChange(e);
   };
 
+  /**
+   * Función para manejar el formulario
+   * donde se tienen los parametros del formulario
+   * formData es el objeto con los datos del formulario
+   * field es el campo del formulario
+   * object es el objeto con los datos del formulario
+   * English:
+   * Function to handle the form
+   * where the parameters of the form are
+   * formData is the object with the form data
+   * field is the field of the form
+   * object is the object with the form data
+   */
   const populateFormDataArray = (formData, field, object) => {
     Object.keys(object).forEach((key) => {
       formData.append(`${field}[${key}]`, object[key]);
@@ -96,6 +145,8 @@ export default function CreateAnnouncement({ user }) {
 
   /**
    * Función asincrona para convertir la imagen a base64
+   * English:
+   * Asynchronous function to convert the image to base64
    * @param {object} data Dato de URL de la imagen
    */
   const onSubmit = async (data) => {
@@ -143,45 +194,182 @@ export default function CreateAnnouncement({ user }) {
     // transfrom to a nested FormData object
     const formDataObject = new FormData();
 
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en alojamiento
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in accommodation
+     */
     populateFormDataArray(formDataObject, "alojamiento", formData.alojamiento);
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en anuncio
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in announcement
+     */
     populateFormDataArray(formDataObject, "anuncio", formData.anuncio);
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas de alojamiento
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in accommodation characteristics field
+     */
     formDataObject.append(`caracteristicas[0][descripcion]`, "Huespedes");
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en cantidad de alojamiento
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in accommodation quantity field
+     */
     formDataObject.append(
       `caracteristicas[0][cantidad]`,
       formData.caracteristicas[0].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas de habitaciones
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in room characteristics field
+     */
     formDataObject.append(`caracteristicas[1][descripcion]`, "Habitaciones");
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con sus cantidades
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in room characteristics field
+     */
     formDataObject.append(
       `caracteristicas[1][cantidad]`,
       formData.caracteristicas[1].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su descripcion
+     * en baños
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in bathroom characteristics field
+     */
     formDataObject.append(`caracteristicas[2][descripcion]`, "Baños");
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad
+     * en baños
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in bathroom characteristics field
+     */
     formDataObject.append(
       `caracteristicas[2][cantidad]`,
       formData.caracteristicas[2].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad
+     * en piscina
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in pool characteristics field
+     */
     formDataObject.append(`caracteristicas[3][descripcion]`, "Piscina");
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad.
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in pool characteristics field
+     */
     formDataObject.append(
       `caracteristicas[3][cantidad]`,
       formData.caracteristicas[3].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad
+     * en estacionamiento
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in parking characteristics field
+     */
     formDataObject.append(`caracteristicas[4][descripcion]`, "Estacionamiento");
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad
+     * en estacionamiento
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in parking characteristics field
+     */
     formDataObject.append(
       `caracteristicas[4][cantidad]`,
       formData.caracteristicas[4].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en caracteristicas con su cantidad
+     * en jaccuzi
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in jaccuzi characteristics field
+     */
     formDataObject.append(`caracteristicas[5][descripcion]`, "Jaccuzi");
     formDataObject.append(
       `caracteristicas[5][cantidad]`,
       formData.caracteristicas[5].cantidad
     );
+    /**
+     * Se llama a la función populateFormDataArray
+     * para llenar el objeto formDataObject con los datos
+     * del formulario en imagen
+     * English:
+     * Call the populateFormDataArray function
+     * to fill the formDataObject with the form data
+     * in image field
+     */
     formDataObject.append("imagen", formData.imagen);
 
     // iterate formDataObject
     for (const [key, value] of formDataObject.entries()) {
       console.log(`${key} = ${value}`);
     }
-
+    /**
+     * Se usa un fetch para enviar los datos del alojamiento
+     * al servidor.
+     * English:
+     * Use a fetch to send the accommodation data to the server
+     */
     window
       .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento`, {
         method: "POST",
@@ -201,6 +389,9 @@ export default function CreateAnnouncement({ user }) {
   };
   /**
    * useEffect para obtener los alojamientos
+   * del usuario
+   * English:
+   * useEffect to get the user's accommodations
    */
   useEffect(() => {
     if (user)
@@ -218,6 +409,20 @@ export default function CreateAnnouncement({ user }) {
   }, [user]);
 
   return (
+    /**
+     * Contenido de la página para crear un alojamiento
+     * el cual contiene campos para llenar los datos
+     * del alojamiento. Nombre, descripción, tipo,
+     * caracteristicas, imagen. También se encuentra
+     * un botón para enviar los datos del alojamiento
+     * al servidor y un botón para regresar a la página.
+     * English:
+     * Content of the page to create an accommodation
+     * which contains fields to fill the accommodation data.
+     * Name, description, type, characteristics, image.
+     * Also there is a button to send the accommodation data
+     * to the server and a button to go back to the page.
+     */
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="flex flex-row items-center w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <i>
@@ -313,6 +518,7 @@ export default function CreateAnnouncement({ user }) {
             </div>
           </div>
         </section>
+        {/* Botones para enviar o regresar */}
         <div className="flex flex-row justify-center mt-5 space-x-6 lg:w-full">
           <NavButton type="submit" variant="quinary" className="w-30 lg:w-40">
             Crear
@@ -323,5 +529,23 @@ export default function CreateAnnouncement({ user }) {
         </div>
       </form>
     </main>
+    /**
+     * Contenido de la página para crear
+     * un alojamiento el cual contiene
+     * campos para llenar los datos del
+     * alojamiento. Nombre, descripción, tipo,
+     * caracteristicas, imagen. También se
+     * encuentra un botón para enviar los datos
+     * del alojamiento al servidor y un botón
+     * para regresar a la página.
+     * English:
+     * Content of the page to create an
+     * accommodation which contains fields to
+     * fill the accommodation data. Name,
+     * description, type, characteristics,
+     * image. Also there is a button to send
+     * the accommodation data to the server
+     * and a button to go back to the page.
+     */
   );
 }

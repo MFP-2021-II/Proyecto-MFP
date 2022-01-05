@@ -1,5 +1,35 @@
+/**
+ * Icono de Bloqueado, se usa en el
+ * perfil del usuario, se usa para
+ * indicar al usuario que se encuentra
+ * en una zona donde puede modificar
+ * sus credenciales de acceso a la plataforma.
+ * English:
+ * Icon Lock, used in the user profile,
+ * used to indicate to the user that he is
+ * in a zone where he can modify his
+ * credentials of access to the platform.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Lock
+ */
 export default function Lock(props) {
   return (
+    /**
+     * Icono de bloqueo, donde se le pasa
+     * los props para poder modificarlo
+     * por className desde el componente
+     * donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Lock icon, where it passes the props
+     * to be modified by className from the
+     * component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

@@ -1,5 +1,38 @@
+/**
+ * Icono de esconder la opcion filtrar,
+ * este sirve para indicar al usuario
+ * que existe una opción para filtrar
+ * los anuncios del tablero y que esta
+ * puede ser escondida.
+ * English:
+ * Hide filter icon, this is used to indicate
+ * to the user that there is an option to
+ * filter the ads of the board and that this
+ * option can be hidden.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} FilterOff
+ */
 export default function FilterOff(props) {
   return (
+    /**
+     * Icono de apagar filtrado, silueta
+     * de un embudo tachado, donde se le
+     * pasa los props para poder modificarlo
+     * por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Filter off icon, silhouette of a
+     * pipe crossed out, where you pass
+     * the props to be able to modify it
+     * by className from the component
+     * where it is used.
+     * (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

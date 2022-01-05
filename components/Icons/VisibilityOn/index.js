@@ -1,10 +1,36 @@
 /**
- * Icono de activar visibilidad de campo
+ * Icono de activar visibilidad de campo,
+ * se utiliza en la campos de contraseña
+ * en la vista de registro e inicio
+ * de sesión del usuario.
+ * English:
+ * Icon active Visibility Field,
+ * used in the password fields
+ * in the registration and login
+ * user view.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} VisibilityOn
  */
 export default function VisibilityOn(props) {
   return (
+    /**
+     * Icono de activar visibilidad
+     * de un campo, donde se le pasa
+     * los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Icon active visibility field,
+     * where it passes the props to be
+     * modified by className from the
+     * component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

@@ -1,3 +1,10 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
+ */
 import Logo from "components/Icons/Logo";
 import Sample from "components/InfoBoxes/Sample";
 import Button from "components/Buttons/Button";
@@ -19,16 +26,31 @@ import { loginSchema } from "schemas/login";
 
 /**
  * Componente de la página de incio de sesión
+ * English:
+ * Login page component
+ * Francais:
+ * Composant de la page de connexion
  * @returns {JSX} Login
  */
 export default function Login() {
   /**
-   * Use router para redireccionar a la página de la aplicación
+   * Use router para redireccionar a
+   * la página de la aplicación
+   * English:
+   * Use router to redirect to the
+   * application page
+   * Francais:
+   * Utiliser le router pour rediriger
+   * vers la page de l'application
    * @type {Router}
    */
   const router = useRouter();
   /**
    * Estado de la contraseña
+   * English:
+   * Password state
+   * Francais:
+   * Etat de la mot de passe
    * @type {boolean}
    * @default false
    * @description Estado de la contraseña
@@ -36,6 +58,10 @@ export default function Login() {
   const [visible, setVisible] = useState(false);
   /**
    * Hooks de formulario de inicio de sesión
+   * English:
+   * Login form hooks
+   * Francais:
+   * Hooks de formulaire de connexion
    * @type {Object}
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
@@ -43,13 +69,28 @@ export default function Login() {
 
   /**
    * Estado de error
+   * English:
+   * Error state
+   * Francais:
+   * Etat d'erreur
    * @type {string}
    * @default null
    * @description Mensaje de error
    **/
-
   const [error, setError] = useState(null);
 
+  /**
+   * yup resolver para validar
+   * los datos del formulario
+   * y obtener los errores.
+   * English:
+   * yup resolver to validate
+   * the form data and get the errors.
+   * Francais:
+   * yup resolver pour valider
+   * les données du formulaire
+   * et obtenir les erreurs.
+   */
   const {
     register,
     handleSubmit,
@@ -58,6 +99,12 @@ export default function Login() {
 
   /**
    * useEffect para enviar los datos del formulario
+   * al servidor.
+   * English:
+   * useEffect to send the form data to the server.
+   * Francais:
+   * useEffect pour envoyer les données du formulaire
+   * au serveur.
    * @param {Object} data - Datos del formulario
    * @returns {void}
    * @description Función para enviar los datos del formulario y redireccionar a la página de la aplicación
@@ -93,6 +140,10 @@ export default function Login() {
   };
   /**
    * useEffect para proteger rutas
+   * English:
+   * useEffect to protect routes
+   * Francais:
+   * useEffect pour proteger les routes
    * @returns {void}
    * @description Función para evitar que el usuario entre por ruta "/app" sin estar registrados.
    */
@@ -102,6 +153,13 @@ export default function Login() {
     }
   }, []);
 
+  /**
+   * useEffect para cargar el captcha
+   * English:
+   * useEffect to load the captcha
+   * Francais:
+   * useEffect pour charger le captcha
+   */
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -109,6 +167,22 @@ export default function Login() {
   console.log(error, "aea");
 
   return (
+    /**
+     * Formulario de inicio de
+     * sesion con los campos de correo y contraseña
+     * el botón de inicio de sesión y el botón de registro
+     * la seccion del captcha y el botón de olvido de contraseña
+     * English:
+     * Login form with email and password fields
+     * login button, register button, captcha section and
+     * forgot password button
+     * Francais:
+     * Formulaire de connexion avec
+     * les champs de courriel et mot de passe
+     * le bouton de connexion et le bouton de
+     * inscription la section du captcha et le
+     * bouton de mot de passe oublié
+     */
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -190,5 +264,31 @@ export default function Login() {
       </form>
       <Sample />
     </>
+    /**
+     * Formulario de inicio de
+     * sesion con los campos de correo
+     * y contraseña el botón de inicio de
+     * sesión y el botón de registro la seccion
+     * del captcha y el botón de olvido de contraseña
+     * English:
+     * Login form with email and password fields
+     * login button, register button, captcha section
+     * and forgot password button
+     * Francais:
+     * Formulaire de connexion avec
+     * les champs de courriel et mot de passe
+     * le bouton de connexion et le bouton de
+     * inscription la section du captcha et le
+     * bouton de mot de passe oublié
+     *
+     * Deutsch:
+     * Login-Formular mit E-Mail- und Passwortfeldern
+     * Login-Button, Registrierungs-Button, Captcha-Sektion
+     * und Passwort-Vergessen-Button
+     * Italien:
+     * Form di accesso con campi di posta elettronica e password
+     * pulsante di accesso e pulsante di registrazione la sezione
+     * del captcha e il pulsante di dimenticare la password
+     */
   );
 }

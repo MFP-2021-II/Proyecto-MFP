@@ -1,9 +1,32 @@
 /**
- * Componente de ejemplo en la pagina de registro e inicio de sesion
+ * Componente de ejemplo en
+ * a pagina de registro e
+ * inicio de sesion, sirve
+ * como imagen de vista para
+ * los modulos de la aplicación.
+ * English:
+ * Example component in
+ * the registration and
+ * login page, serves as
+ * image view for the
+ * modules of the application.
  * @returns {JSX} Sample
  */
 export default function Sample() {
   return (
+    /**
+     * Está constituido por una imagen,
+     * un titulo o nombre del modulo y
+     * una breve descripción de la
+     * función que cumple ese modulo
+     * dentro del sistema.
+     * English:
+     * It is composed by an image,
+     * a title or name of the module
+     * and a brief description of the
+     * function that performs that
+     * module inside the system.
+     **/
     <div className="flex-col justify-center w-full hidden lg:flex">
       <section>
         <div className="flex justify-center">
@@ -27,5 +50,18 @@ export default function Sample() {
         </div>
       </section>
     </div>
+    /**
+     * Está constituido por una imagen,
+     * un titulo o nombre del modulo y
+     * una breve descripción de la
+     * función que cumple ese modulo
+     * dentro del sistema.
+     * English:
+     * It is composed by an image,
+     * a title or name of the module
+     * and a brief description of the
+     * function that performs that
+     * module inside the system.
+     **/
   );
 }

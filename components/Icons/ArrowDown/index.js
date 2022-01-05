@@ -1,10 +1,31 @@
 /**
- * Icono de flecha arriba
+ * Icono de flecha arriba, usado como
+ * botón de despliegue del dropdown en
+ * la aplicación en general.
+ * English:
+ * Arrow up icon, used as
+ * button to expand the dropdown in
+ * the application in general.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} ArrowDown
  */
 export default function ArrowDown(props) {
   return (
+    /**
+     * Icono de Flecha arriba donde se le pasa
+     * los props para poder modificarlo por
+     * className desde el componente donde se utiliza.
+     * (SVG convertida a JSX)
+     * English:
+     * Arrow up icon, where you pass the props
+     * to be able to modify it by className from
+     * the component where it is used.
+     * (SVG converted to JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

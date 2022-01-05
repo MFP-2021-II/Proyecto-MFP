@@ -1,7 +1,25 @@
+/**
+ * Importar librerias o componentes
+ * English:
+ * Import libraries or components
+ */
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 /**
  * Componente de lista desplegable
+ * English:
+ * Dropdown list component
+ *
+ * children es el contenido del listado
+ * className es la clase del listado
+ * open es el estado del listado
+ * setOpen es la funcion para cambiar el estado del listado
+ *
+ * English:
+ * children is the content of the list
+ * className is the class of the list
+ * open is the state of the list
+ * setOpen is the function to change the state of the list
  * @param {children} children - Contenido del componente
  * @param {className} className - Clase del componente
  * @param {boolean} open - Estado de la lista desplegable
@@ -19,11 +37,15 @@ export default function Dropdown({
 }) {
   /**
    * Router redireccionar a la pagina de inicio de sesion
+   * English:
+   * Router redirect to the login page
    * @returns {void}
    */
   const router = useRouter();
   /**
    * Estilo para los items de la lista desplegable
+   * English:
+   * Style for the items of the dropdown list
    * @type {{not_style: string, def_style: string, end_style: string}}
    */
   const styles = {
@@ -36,6 +58,8 @@ export default function Dropdown({
   };
   /**
    * Funcion para cerrar la lista desplegable
+   * English:
+   * Function to close the dropdown list
    */
   const handleClickOutside = (e) => {
     if (open) {
@@ -46,7 +70,11 @@ export default function Dropdown({
   };
 
   /**
-   * UseEffect para agregar el evento click a la pagina para cerrar el dropdown
+   * UseEffect para agregar el evento click a
+   * la pagina para cerrar el dropdown
+   * English:
+   * UseEffect to add the click event to the
+   * page to close the dropdown
    */
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, false);
@@ -56,6 +84,33 @@ export default function Dropdown({
   }, [open]);
 
   return (
+    /**
+     * Componente dropdown donde por defecto se muestra
+     * una las notificaciones, lista de favoritos y
+     * cerrrar sesion también se puede agregar una
+     * lista de items el cual tiene por nombre DRopdownItem
+     * en la carpeta ui, las notificaciones presentan un
+     * comportamiento difirente en el caso de que haya o
+     * no una notificación dentro, mostrando un punto
+     * intermitente de color violeta, Aparte se tiene
+     * los cambios en los estados para abrir el moddal
+     * de notificaciones y el modal de favoritos,
+     * finalmente se remueve el usuario del localstore
+     * al momento de pulsar cerrar sesión y se redirecciona
+     * a la ruta "/login".
+     * English:
+     * Dropdown component where by default it shows
+     * the notifications, favorites and logout also
+     * can add a list of items with the name DropdownItem
+     * in the ui folder, the notifications present a
+     * different behavior in the case of having or not
+     * a notification, showing an intermittent point
+     * of violet color, Besides, there are changes in
+     * the states to open the modal notifications and
+     * the modal favorites, finally remove the user
+     * from the localstore when you click logout and
+     * redirect to the route "/login".
+     **/
     <div
       id="dropdown"
       className={`fixed right-0 md:right-[16.5vmax] top-[98px] w-full mt-2 rounded-md shadow-lg md:w-48 ${

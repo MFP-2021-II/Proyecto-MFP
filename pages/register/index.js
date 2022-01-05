@@ -1,3 +1,10 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
+ */
 import Logo from "components/Icons/Logo";
 import Sample from "components/InfoBoxes/Sample";
 import { useEffect, useState } from "react";
@@ -11,6 +18,20 @@ import Link from "next/link";
 import VisibilityOn from "components/Icons/VisibilityOn";
 import VisibilityOff from "components/Icons/VisibilityOff";
 
+/**
+ * Esquema de validación de los
+ * datos del formulario
+ * nombre, apellidos, correo,
+ * contraseña y confirmar contraseñam telefono.
+ * English:
+ * Schema of the form validation
+ * name, last name, email,
+ * password and confirm password.
+ * Francais:
+ * Schema de validation du formulaire
+ * nom, prenom, email,
+ * mot de passe et confirmer mot de passe.
+ */
 const schema = yup.object({
   nombre: yup.string().required("Nombre requerido"),
   apellidos: yup.string().required("Apellido requerido"),
@@ -31,16 +52,30 @@ const schema = yup.object({
 
 /**
  * Componente de la página de registro de usuarios
+ * English:
+ * User registration page component
+ * Francais:
+ * Composant de la page d'enregistrement
+ * d'utilisateurs
  * @returns {JSX} Registro de usuarios
  */
 export default function Register() {
   /**
    * Use router para redireccionar a la página de inicio de sesión
+   * English:
+   * Use router to redirect to the login page
+   * Francais:
+   * Utiliser le router pour rediriger vers
+   * la page de connexion
    * @type {Router}
    */
   const router = useRouter();
   /**
    * Estado de la contraseña
+   * English:
+   * Password state
+   * Francais:
+   * Etat de la mot de passe
    * @type {boolean}
    * @default false
    * @description Estado de la contraseña
@@ -48,6 +83,11 @@ export default function Register() {
   const [visible, setVisible] = useState(false);
   /**
    * Hooks de formulario de registro de usuarios
+   * English:
+   * User registration form hooks
+   * Francais:
+   * Hooks de formulaire d'enregistrement
+   * d'utilisateurs
    * @type {Object}
    * @property {Object} register - Función para registrar los datos del formulario
    * @property {Object} handleSubmit - Función para enviar los datos del formulario
@@ -55,13 +95,28 @@ export default function Register() {
 
   /**
    * Estado de error
+   * English:
+   * Error state
+   * Francais:
+   * Etat d'erreur
    * @type {string}
    * @default null
    * @description Mensaje de error
    **/
-
   const [error, setError] = useState(null);
 
+  /**
+   * yup resolver
+   * para validar los datos del formulario
+   * y obtener los errores.
+   * English:
+   * yup resolver to validate
+   * the form data and get the errors.
+   * Francais:
+   * yup resolver pour valider
+   * les données du formulaire et
+   * obtenir les erreurs.
+   */
   const {
     register,
     handleSubmit,
@@ -70,6 +125,11 @@ export default function Register() {
 
   /**
    * Función para enviar los datos del formulario
+   * English:
+   * Function to send the form data
+   * Francais:
+   * Fonction pour envoyer les données
+   * du formulaire
    * @param {Object} data - Datos del formulario
    * @returns {void}
    * @description Función para enviar los datos del formulario y redireccionar a la página de inicio de sesión
@@ -103,6 +163,10 @@ export default function Register() {
 
   /**
    * useEffect para proteger rutas
+   * English:
+   * useEffect to protect routes
+   * Francais:
+   * useEffect pour proteger les routes
    * @returns {void}
    * @description Función para evitar que el usuario entre por ruta "/app" sin estar registrados.
    */
@@ -112,6 +176,14 @@ export default function Register() {
     }
   }, []);
 
+  /**
+   * Advert de la página de registro de usuarios
+   * English:
+   * User registration page advert
+   * Francais:
+   * Annonce de la page d'enregistrement
+   * d'utilisateurs
+   */
   const handleCancel = () => {
     // advert that the user will be lost if they cancel
     if (
@@ -124,6 +196,27 @@ export default function Register() {
   };
 
   return (
+    /**
+     * Componente de la página de registro de usuarios
+     * donde se tienen los datos del formulario
+     * nombre , apellidos, correo,
+     * contraseña, confirmar contraseña,
+     * boton de registro y boton de cancelar.
+     * English:
+     * User registration page component
+     * where the form data is
+     * name, last name, email,
+     * password, confirm password,
+     * register button and cancel button.
+     * Francais:
+     * Composant de la page d'enregistrement
+     * d'utilisateurs où les données du
+     * formulaire sont
+     * nom, nom de famille, courriel,
+     * mot de passe, confirmer le mot
+     * de passe, bouton d'enregistrement et
+     * bouton d'annulation.
+     */
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -243,5 +336,37 @@ export default function Register() {
       </form>
       <Sample></Sample>
     </>
+    /**
+     * Componente de la página de
+     * registro de usuarios donde se
+     * tienen los datos del formulario nombre
+     * apellidos, correo, contraseña,
+     * confirmar contraseña,
+     * boton de registro y boton de cancelar.
+     * English:
+     * User registration page
+     * componentwhere the form
+     * data is name, last name,
+     * email, password, confirm password,
+     * register button and cancel button.
+     * Francais:
+     * Composant de la page d'enregistrement
+     * d'utilisateurs où les données du
+     * formulaire sont
+     * nom, nom de famille, courriel,
+     * mot de passe, confirmer le mot
+     * de passe, bouton d'enregistrement et
+     * bouton d'annulation.
+     * Deutsch:
+     * Benutzerregistrierungsseite
+     * Komponente, in der die Formulardaten
+     * sind:
+     * Name, Nachname, E-Mail, Passwort,
+     * Passwort bestätigen, Registrierungs-
+     * Taste und Abbrechen-Taste.
+     * Italiano:
+     * Componente della pagina di registrazione
+     * degli utenti in cui i dati del
+     */
   );
 }

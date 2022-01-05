@@ -1,5 +1,22 @@
 /**
  * Componente atomico de input tipo textarea
+ * English:
+ * Atomic component of input type textarea
+ *
+ * name - nombre del input
+ * label - etiqueta del input
+ * value - valor del input
+ * errors - errores del input
+ * register - funcion de registro
+ * placeholder - placeholder del input
+ *
+ * English:
+ * name - name of the input
+ * label - label of the input
+ * value - value of the input
+ * errors - input errors
+ * register - registration function
+ * placeholder - placeholder of the input
  * @param {object} register Referencia al register
  * @returns {JSX} TextArea
  */
@@ -11,6 +28,14 @@ export default function TextArea({
   placeholder,
 }) {
   return (
+    /**
+     * Componente de input tipo textarea
+     * que tiene soporte para manejo de
+     * react hook form y errores.
+     * English:
+     * Input component type textarea
+     * that supports react hook form and errors.
+     */
     <>
       <label className="flex flex-col mb-2 font-medium text-gray-500">
         {label}
@@ -33,5 +58,14 @@ export default function TextArea({
         {errors && errors?.message}
       </p>
     </>
+    /**
+     * Componente de input tipo textarea
+     * que tiene soporte para manejo
+     * de react hook form y errores.
+     * English:
+     * Input component type textarea
+     * that supports react hook form
+     * and errors.
+     */
   );
 }

@@ -1,5 +1,35 @@
+/**
+ * Icono de usuario variante,
+ * se muestra como foto de usuario
+ * en los detalles de inmuebles o
+ * alojamientos.
+ * English:
+ * Icon user variant, is shown as a
+ * user photo in the details of
+ * properties or accommodations.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} UserVariant
+ */
 export default function UserVariant(props) {
   return (
+    /**
+     * Icono de variante de un usuario,
+     * donde se le pasa los props
+     * para poder modificarlo
+     * por className desde el
+     * componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Icon variant of a user, where
+     * it passes the props to be
+     * modified by className from
+     * the component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

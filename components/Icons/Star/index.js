@@ -1,10 +1,35 @@
 /**
- * Icono de estrella vacía
+ * Icono de estrella vacía, indica
+ * que el usuario aún no ha dejado
+ * su calificación seleccionado las
+ * estrellas como medio de puntaje
+ * del alojamiento en el cual se encuentra.
+ * English:
+ * Icon Star Empty, indicates that the
+ * user has not yet left his rating selected
+ * stars as a score of the accommodation
+ * in which he is.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Star
  */
 export default function Star(props) {
   return (
+    /**
+     * Icono de estrella vacia, donde se
+     * le pasa los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Star Empty icon, where it passes the
+     * props to be modified by className from
+     * the component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

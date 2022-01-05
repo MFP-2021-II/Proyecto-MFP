@@ -1,9 +1,33 @@
 /**
- * Icono de eliminar
+ * Icono de eliminar, se usa en la
+ * sección de mis anuncios para
+ * eliminar un anuncio del tablero,
+ * el cual publicó un usuario.
+ * English:
+ * Delete icon, used in the user's ads
+ * section to delete an ad from the board,
+ * which a user published.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Delete
  */
 export default function Delete(props) {
+  /**
+   * Icono de eliminar, con forma de bote
+   * de basura, donde se le pasa los props
+   * para poder modificarlo por className
+   * desde el componente donde se utiliza.
+   * (SVG convertido JSX)
+   * English:
+   * Delete icon, with a trash can shape,
+   * where you pass the props to be able
+   * to modify it by className from the
+   * component where it is used.
+   * (SVG converted to JSX)
+   */
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

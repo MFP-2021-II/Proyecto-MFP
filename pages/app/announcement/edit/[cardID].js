@@ -1,3 +1,8 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "ui/Select";
@@ -14,6 +19,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { diccionarioCaracteristicas } from "utils/constants";
 
+/**
+ * Esquema de validación de los
+ * datos del formulario
+ * que contiene el nombre,
+ * descripción, precio,
+ * caracteristicas,fotos,
+ * direccion, baños y habitaciones.
+ * English:
+ * Schema of the form validation
+ * of the name, description, price,
+ * characteristics, photos, address,
+ * baths and rooms.
+ */
 const schema = yup.object({
   nombre: yup.string(),
   direccion: yup.string(),
@@ -30,17 +48,45 @@ const schema = yup.object({
   descripcion: yup.string().min(25).max(255),
 });
 /**
+ * Componente de la seccion de edicion
+ * de un anuncio publicado por un
+ * usuario logueado.
+ * English:
+ * Edit announcement section component
+ * of a published announcement by a
+ * logged user.
+ *
+ * user - Usuario logueado
+ * English:
+ * user - Logged user
  * @returns {JSX} Página de edición de anuncios
  */
 export default function Edit({ user }) {
   /**
-   * Use router para redireccionar a la página de anuncios
+   * Use router para redireccionar a la
+   * página de anuncios
+   * English:
+   * Use router to redirect to the
+   * announcement page
    * @type {Router}
    */
   const router = useRouter();
+  /**
+   * Deesctructurar el query para
+   * obtener la ruta del id de
+   * la taarjeta de alojamiento.
+   * English:
+   * Destructure the query to get
+   * the route of the accommodation
+   * card id.
+   */
   const { cardID } = router.query;
   /**
    * Hook para manejar el formulario
+   * de edición de anuncios
+   * English:
+   * Hook to handle the edit announcement
+   * form
    * @type {object}
    * @param {object} register Funciones para manejar el formulario
    * @param {object} handleSubmit Funcion para enviar el formulario
@@ -54,18 +100,29 @@ export default function Edit({ user }) {
   } = useForm({ resolver: yupResolver(schema) });
 
   /**
-   * useState para manejar el estado de las imagenes de los anuncios
+   * useState para manejar el
+   * estado de las imagenes de los anuncios
+   * English:
+   * useState to handle the state of
+   * the announcement images
    * @type {array}
    */
   const [fileImage, setFileImage] = useState(null);
   const [features, setFeatures] = useState(null);
   /**
-   * useState para manejar el estado los alojamientos
+   * useState para manejar
+   * el estado los alojamientos
+   * del usuario logueado
+   * English:
+   * useState to handle the state
+   * of the user's accommodations
    * @type {array}
    */
   const [tipoAlojamientos, setTipoAlojamientos] = useState([]);
   /**
    * Manejo de imagenes de los anuncios
+   * English:
+   * Handle images of the announcements
    * @param {object} e
    * @param {*} field
    * @param {*} setFile
@@ -75,12 +132,30 @@ export default function Edit({ user }) {
     setFile(_file);
     register(field).onChange(e);
   };
+  /**
+   * Funcion para manejar el formulario
+   * rellenar los campos del formulario
+   * con los datos del anuncio
+   * seleccionado.
+   * English:
+   * Function to handle the form
+   * to fill the form fields with
+   * the announcement data
+   */
   const populateFormDataArray = (formData, field, object) => {
     Object.keys(object).forEach((key) => {
       formData.append(`${field}[${key}]`, object[key]);
     });
   };
 
+  /**
+   * useEffect para obtener los
+   * tipos de alojamientos y establecerlos
+   * en el estado.
+   * English:
+   * useEffect to get the accommodation
+   * types and set them in the state.
+   */
   useEffect(() => {
     if (user)
       window
@@ -100,6 +175,12 @@ export default function Edit({ user }) {
 
   /**
    * useEffect para obtener los datos del anuncio
+   * seleccionado y rellenar los campos del formulario
+   * con los datos del anuncio.
+   * English:
+   * useEffect to get the announcement data
+   * selected and fill the form fields with
+   * the announcement data.
    * @param {object} cardID ID del anuncio
    * @param {object} user Token del usuario
    */
@@ -142,7 +223,13 @@ export default function Edit({ user }) {
     }
   }, [user, cardID]);
   /**
-   * Función asincrona para convertir la imagen a base64
+   * Función asincrona para convertir
+   * la imagen a base64
+   * y enviarla al servidor.
+   * English:
+   * Asynchronous function to convert
+   * the image to base64
+   * and send it to the server.
    * @param {object} data Dato de URL de la imagen
    */
   const onSubmit = async (data) => {
@@ -185,10 +272,40 @@ export default function Edit({ user }) {
       ],
       imagen: data?.file?.[0] || fileImage,
     };
+    /**
+     * Se crea un formData
+     * English:
+     * We create a formData
+     */
     const formDataObject = new FormData();
 
+    /**
+     * Se agregan los datos del formulario
+     * al formData creado anteriormente del
+     * alojamiento
+     * English:
+     * We add the form data to the formData
+     * created previously
+     */
     populateFormDataArray(formDataObject, "alojamiento", formData.alojamiento);
+    /**
+     * Se agregan los datos del formulario
+     * al formData creado anteriormente del
+     * alojamiento
+     * English:
+     * We add the form data to the formData
+     * created previously
+     */
     populateFormDataArray(formDataObject, "anuncio", formData.anuncio);
+    /**
+     * Se itera sobre los datos de caracteristicas
+     * para agregarlos al formData creado anteriormente
+     * del alojamiento y anuncio.
+     * English:
+     * We iterate over the characteristics data
+     * to add them to the formData created previously
+     * of the accommodation and announcement.
+     */
     formData.caracteristicas.forEach((caracteristica, index) => {
       formDataObject.append(
         `caracteristicas[${index}][cantidad]`,
@@ -205,8 +322,21 @@ export default function Edit({ user }) {
         })?.id
       );
     });
+    /**
+     * Se agrega la imagen al formData creado anteriormente
+     * del alojamiento y anuncio.
+     * English:
+     * We add the image to the formData created previously
+     * of the accommodation and announcement.
+     */
     formDataObject.append("imagen", formData.imagen);
-
+    /**
+     * Se crea una petición para actualizar el alojamiento
+     * con los datos del formulario
+     * English:
+     * We create a request to update the accommodation
+     * with the form data
+     */
     window
       .fetch(`${process.env.NEXT_PUBLIC_HOMY_URL}/alojamiento/${cardID}`, {
         method: "PUT",
@@ -224,9 +354,26 @@ export default function Edit({ user }) {
   };
   /**
    * useEffect para obtener los alojamientos
+   * English:
+   * useEffect to get the accommodations
    */
 
   return (
+    /**
+     * Contenido del componente donde se encuentra
+     * un formulario que contiene campos para
+     * el nombre del alojamiento, direccion,
+     * descripcion, precio, huespedes, habitaciones,
+     * baños, piscina, estacionamiento, jaccuzi,
+     * tipo de alojamiento y una imagen.
+     * English:
+     * Content of the component where it is
+     * a form containing fields for
+     * the name of the accommodation, address,
+     * description, price, guests, rooms,
+     * bathrooms, pool, parking, jaccuzi,
+     * type of accommodation and an image.
+     */
     <main className="flex flex-col items-center justify-center h-almost-screen">
       <div className="flex flex-row items-center w-11/12 pb-2 mb-5 border-b-2 md:w-4/6 lg:w-5/6 xl:w-8/12">
         <i>
@@ -332,5 +479,22 @@ export default function Edit({ user }) {
         </div>
       </form>
     </main>
+    /**
+     * Contenido del componente donde
+     * se encuentra un formulario
+     * que contiene campos para el
+     * nombre del alojamiento, direccion,
+     * descripcion, precio, huespedes,
+     * habitaciones, baños, piscina,
+     * estacionamiento, jaccuzi,
+     * tipo de alojamiento y una imagen.
+     * English:
+     * Content of the component where
+     * it is a form containing fields for the name
+     * of the accommodation, address, description,
+     * price, guests, rooms, bathrooms,
+     * pool, parking, jaccuzi, type of
+     * accommodation and an image.
+     */
   );
 }

@@ -1,10 +1,36 @@
 /**
- * Logotipo de la aplicación
+ * Logotipo de la aplicación que
+ * se utiliza en el layout de la
+ * aplicación. También se usa en
+ * la vistas de registro e inicio
+ * de sesión del usuario del sistema.
+ * English:
+ * Logo of the application that
+ * is used in the layout of the
+ * application. It is also used in
+ * the registration and login
+ * views of the user system.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
  * @param {props} props - Props recibidos por el componente
  * @returns {JSX} Logo
  */
 export default function Logo(props, className) {
   return (
+    /**
+     * Logotipo de la página, donde
+     * se le pasa los props para poder
+     * modificarlo por className desde
+     * el componente donde se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Logo page, where it passes the props
+     * to be modified by className from
+     * the component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -1,5 +1,34 @@
+/**
+ * Icono de piscina, se usa en ver
+ * detalles del anuncio, se usa para
+ * indicar al usuarioque se cuenta con
+ * una facilidad de piscina en el alojamiento.
+ * English:
+ * Icon Pool, used in view details of
+ * the advertisement, used to indicate
+ * to the user that he has a facility
+ * of pool in the accommodation.
+ *
+ * props son las propiedades del icono
+ * English:
+ * props are the properties of the icon
+ * @param {props} props - Props recibidos por el componente
+ * @returns {JSX} Pool
+ */
 export default function Pool(props) {
   return (
+    /**
+     * Icono de piscina, donde se le
+     * pasa los props para poder modificarlo
+     * por className desde el componente donde
+     * se utiliza.
+     * (SVG convertido JSX)
+     * English:
+     * Pool icon, where it passes the props
+     * to be modified by className from the
+     * component where it is used.
+     * (SVG converted JSX)
+     */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
