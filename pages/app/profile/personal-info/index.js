@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import { screenSizes } from "utils/responsive";
 import ProfileInput from "ui/ProfileInput";
@@ -18,13 +20,19 @@ import Select from "ui/Select";
  * Esquema de validación de los
  * datos del formulario
  * se tiene el nombre, apellido
- * sexo, fecha de nacimiento,
+ * genero, fecha de nacimiento,
  * correo, dni.
  * English:
  * Schema of the form validation
  * has the name, last name,
  * gender, birthday,
  * email, dni.
+ * Francais:
+ * Schéma de validation du
+ * Données de formulaire
+ * vous avez le nom, prénom
+ * sexe, date de naissance,
+ * e-mail, pièce d'identité.
  */
 const schema = yup.object().shape({
   nombre: yup.string().required("El nombre es requerido"),
@@ -46,6 +54,8 @@ export default function PersonalInfo() {
    * del usuario.
    * English:
    * State to save the user's data.
+   * Francais:
+   * Etat pour enregistrer les données
    */
   const [user, setUser] = useState(null);
   /**
@@ -56,6 +66,10 @@ export default function PersonalInfo() {
    * Use yup resolver to
    * validate the form data and
    * get the errors.
+   * Francais:
+   * Utiliser yup resolver pour
+   * valider les données du formulaire
+   * et obtenir les erreurs.
    */
   const {
     register,
@@ -74,6 +88,10 @@ export default function PersonalInfo() {
    * Get the user from the session
    * and set the changes of data
    * that are made in the form.
+   * Francais:
+   * Etre obtenu l'utilisateur de la session
+   * et les changements de données
+   * qui sont effectués dans le formulaire.
    */
   useEffect(() => {
     const userLocal = JSON.parse(window.localStorage.getItem("user"));
@@ -105,6 +123,10 @@ export default function PersonalInfo() {
    * English:
    * Function to update the user's data
    * when the update button is pressed.
+   * Francais:
+   * Fonction pour mettre à jour les données
+   * de l'utilisateur lorsque le bouton
+   * de mise à jour est pressé.
    */
   const onSubmit = async (formData) => {
     console.log(formData);
@@ -159,6 +181,26 @@ export default function PersonalInfo() {
      * last name, gender, birtday,
      * It has a icon to show the data
      * from the user.
+     * Francais:
+     * Contenu de la page, où
+     * vous avez les champs pour
+     * mettre à jour les données de l'utilisateur, le nom
+     * nom, sexe, date de naissance,
+     * courrier et pièce d'identité.
+     * Il y a un bouton pour mettre à jour les données
+     * et un bouton pour revenir à la page d'accueil.
+     * Il y a une icône pour afficher les données
+     * de l'utilisateur.
+     * Português:
+     * Conteúdo da página, onde
+     * tem os campos para
+     * atualizar os dados do usuário,
+     * o nome, sobrenome, sexo,
+     * data de nascimento, correio e
+     * documento de identidade.
+     * Tem um botão para atualizar os dados
+     * e um botão para voltar para a página
+     * de início.
      */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto xl:h-almost-screen mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-0">
       <div className={screenSizes}>
@@ -255,6 +297,26 @@ export default function PersonalInfo() {
      * last name, gender, birtday,
      * It has a icon to show the data
      * from the user.
+     * Francais:
+     * Contenu de la page, où
+     * vous avez les champs pour
+     * mettre à jour les données de l'utilisateur, le nom
+     * nom, sexe, date de naissance,
+     * courrier et pièce d'identité.
+     * Il y a un bouton pour mettre à jour les données
+     * et un bouton pour revenir à la page d'accueil.
+     * Il y a une icône pour afficher les données
+     * de l'utilisateur.
+     * Português:
+     * Conteúdo da página, onde
+     * tem os campos para
+     * atualizar os dados do usuário,
+     * o nome, sobrenome, sexo,
+     * data de nascimento, correio e
+     * documento de identidade.
+     * Tem um botão para atualizar os dados
+     * e um botão para voltar para a página
+     * de início.
      */
   );
 }

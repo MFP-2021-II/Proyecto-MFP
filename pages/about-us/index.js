@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import LandingCard from "components/Card/LandingCard";
 
@@ -15,6 +17,18 @@ import LandingCard from "components/Card/LandingCard";
  * it shows a background image and
  * a card with information about the
  * company with the mission and vision.
+ * Francais:
+ * Composant de la page a propos de nous
+ * où il affiche une image de fond et
+ * une carte avec des informations
+ * sur la société avec la mission et
+ * la vision.
+ * Portugues:
+ * Componente da página sobre nós
+ * onde ele mostra uma imagem de
+ * fundo e uma carta com informações
+ * sobre a empresa com a missão e
+ * visão.
  * @returns {JSX} Acerca de nosotros
  */
 export default function aboutUs() {
@@ -25,6 +39,16 @@ export default function aboutUs() {
    * English:
    * Component used as About us page
    * in the system Homy.
+   * Francais:
+   * Composant utilisé comme page
+   * a propos de nous dans
+   * le système Homy.
+   * Portugues:
+   * Componente usado como página
+   * sobre nós no sistema Homy.
+   * Italiano:
+   * Componente usado como página
+   * sobre nós no sistema Homy.
    */
   return (
     <main>
@@ -66,7 +90,19 @@ export default function aboutUs() {
      * de Homy.
      * English:
      * Component used as About
-     * us page in the system Homy.
+     * us page
+     * in the system Homy.
+     * Francais:
+     * Composant utilisé comme
+     * page a propos de
+     * nous dans
+     * le système Homy.
+     * Portugues:
+     * Componente usado como página
+     * sobre nós no sistema Homy.
+     * Italiano:
+     * Componente usado como página
+     * sobre nós no sistema Homy.
      */
   );
 }

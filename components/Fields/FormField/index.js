@@ -15,6 +15,13 @@
  * innerText is the inner text
  * children is the field content
  * className is the field class
+ *
+ * Francais:
+ * type est le type de champ
+ * upperText est le texte supérieur
+ * innerText est le texte interne
+ * children est le contenu du champ
+ * className est la classe du champ
  * @param {string} type Tipo de campo
  * @param {string} upperText Texto superior
  * @param {string} innerText Texto interno
@@ -31,14 +38,22 @@ export default function FormField({
 }) {
   return (
     /**
-     * Componente para campos de formulario
-     *  constituido por un label superior,
-     * un input para el texto interno y
-     * un children.
+     * Componente para campos
+     * de formulario constituido
+     * por un label superior,
+     * un input para el texto
+     * interno y un children.
      * English:
      * Form field component composed by
-     * a label upper, an input for the inner text
+     * a label upper, an input for the
+     * inner text
      * and a children.
+     * Francais:
+     * Componente pour les champs
+     * de formulaire constitué
+     * d'un label supérieur,
+     * d'un input pour le texte
+     *  interne et
      */
     <div className="flex flex-col">
       <label className="font-medium text-gray-500 pb-2">{upperText}</label>
@@ -49,5 +64,23 @@ export default function FormField({
       />
       {children}
     </div>
+    /**
+     * Componente para campos
+     * de formulario constituido
+     * por un label superior,
+     * un input para el texto
+     * interno y un children.
+     * English:
+     * Form field component composed by
+     * a label upper, an input for the
+     * inner text
+     * and a children.
+     * Francais:
+     * Componente pour les champs
+     * de formulaire constitué
+     * d'un label supérieur,
+     * d'un input pour le texte
+     *  interne et
+     */
   );
 }

@@ -6,6 +6,8 @@
  * register - funcion de registro
  * English:
  * register - registration function
+ * Francais:
+ * register - fonction de register
  * @param {object} register Referencia al register
  * @returns {JSX} CheckBox
  */
@@ -18,6 +20,12 @@ export default function CheckBox({ register }) {
      * English:
      * Input component type checkbox
      * that supports react hook form and errors.
+     * Francais:
+     * Input component type checkbox
+     * qui supporte react hook form et erreurs.
+     * Português:
+     * Componente de input tipo checkbox
+     * que suporta o react hook form e erros.
      */
     <>
       <span className="font-medium text-gray-500 pb-1">Facilidades</span>
@@ -58,6 +66,18 @@ export default function CheckBox({ register }) {
      * English:
      * Input component type checkbox
      * that supports react hook form and errors.
+     * Francais:
+     * Input component type checkbox
+     * qui supporte react hook form et erreurs.
+     * Português:
+     * Componente de input tipo checkbox
+     * que suporta o react hook form e erros.
+     * Italiano:
+     * Componente di input di tipo checkbox
+     * che supporta il react hook form e gli errori.
+     * Deutsch:
+     * Eingabekomponente von Typ Checkbox
+     * die React Hook Form und Fehler unterstützt.
      */
   );
 }

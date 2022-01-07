@@ -13,6 +13,23 @@
  * list of options that can be accessed from
  * the menu, Home, About us, Contact, Login,
  * Registration, etc.
+ * Francais:
+ * Icon Menu, cet icone fournit une vue
+ * d'éléments qui sont affichés depuis
+ * les écrans de dispositifs mobiles, cette
+ * option affiche une liste d'options qui
+ * peuvent être accédées depuis le menu,
+ * Accueil, A propos de nous, Contact,
+ * Connexion, Inscription, etc.
+ * Portuguese:
+ * Menu de ícone, este ícone proporciona
+ * uma vista de elementos desplegados aos
+ * usuários que o estão vendo de telas
+ * de dispositivos móveis, esta opção
+ * exibe uma lista de opções que podem ser
+ * acessadas a partir do menu, Início,
+ * Sobre nós, Contato, Entrar, Registro,
+ * etc.
  *
  * props son las propiedades del icono
  * English:
@@ -32,6 +49,16 @@ export default function Menu(props) {
      * to be modified by className from the
      * component where it is used.
      * (SVG converted JSX)
+     * Francais:
+     * Icon Menu, où il passe les props
+     * pour pouvoir les modifier par className
+     * depuis le composant où il est utilisé.
+     * (SVG converti JSX)
+     * Português:
+     * Ícone do menu, onde ele passa as props
+     * para poder modificá-lo por className do
+     * componente onde ele está sendo usado.
+     * (SVG convertido JSX)
      */
     <svg
       xmlns="http://www.w3.org/2000/svg"

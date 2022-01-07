@@ -32,6 +32,26 @@
  * arrivalDate - arrival date
  * departureDate - departure date
  * cardStatus - card status
+ * Francais:
+ * type - type de transaction
+ * paymentDate - date de paiement
+ * accommodation - alojamiento
+ * host - anfitrion
+ * guest - huesped
+ * amount - montant
+ * arrivalDate - date d'arrivee
+ * departureDate - date de depart
+ * cardStatus - etat de la carte
+ * Portugues:
+ * tipo - tipo de transacao
+ * dataPagamento - data de pagamento
+ * alojamento - alojamento
+ * anfitriao - anfitriao
+ * hospede - hospede
+ * valor - valor
+ * dataEntrada - data de entrada
+ * dataSaida - data de saida
+ * statusCartao - status do cartao
  */
 export default function TransactionItem({
   tipo,
@@ -58,6 +78,13 @@ export default function TransactionItem({
      * It has as parameter the type, payment date,
      * accommodation, host, guest, amount,
      * arrival date, departure date, card status.
+     * Francais:
+     * Composant pour afficher les transactions
+     * de un usuario realizadas et reçues.
+     * Il a comme parametre le type, la date de paiement,
+     * l'alojamiento, l'anfitrion, l'hôte, le hôte,
+     * le montant, la date d'arrivée, la date de départ,
+     * le statut de la carte.
      */
     <div
       className={`w-full ${
@@ -104,6 +131,19 @@ export default function TransactionItem({
      * It has as parameter the type, payment
      * date, accommodation, host, guest, amount,
      * arrival date, departure date, card status.
+     * Francais:
+     * Composant pour afficher les transactions
+     * de un usuario realizadas et reçues.
+     * Il a comme parametre le type, la date de paiement,
+     * l'alojamiento, l'anfitrion, l'hôte, le hôte,
+     * le montant, la date d'arrivée, la date de départ,
+     * le statut de la carte.
+     * Portugues:
+     * Componente para mostrar as transações
+     * de um usuario realizadas e recebidas.
+     * Tem como parametro o tipo, a data de pagamento,
+     * o alojamento, o anfitriao, o hóspede, o valor,
+     * a data de entrada, a data de saída, o status da cartão.
      */
   );
 }

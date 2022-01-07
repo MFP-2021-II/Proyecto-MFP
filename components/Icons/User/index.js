@@ -6,6 +6,18 @@
  * Icon user by default,
  * is shown as a default user photo
  * in the application.
+ * Francais:
+ * Icon usuaire par defaut,
+ * est affiche comme une photo de usuaire
+ * par defaut dans l'application.
+ * Português:
+ * Icono de usuário por padrão,
+ * é mostrado como uma foto de usuário
+ * padrão na aplicação.
+ * Italiano:
+ * Icono utente di default,
+ * è mostrato come foto di utente
+ * di default nell'applicazione.
  *
  * props son las propiedades del icono
  * English:
@@ -26,6 +38,18 @@ export default function User(props) {
      * props to be modified by className from
      * the component where it is used.
      * (SVG converted JSX)
+     * Francais:
+     * Icon photo de usuaire, où il passe les
+     * props pour pouvoir les modifier par
+     * className depuis le composant où il
+     * est utilisé.
+     * (SVG converti JSX)
+     * Português:
+     * Ícone de foto de usuário, onde ele
+     * passa as props para poder modificá-lo
+     * por className do componente onde ele
+     * está sendo usado.
+     * (SVG convertido JSX)
      */
     <svg
       xmlns="http://www.w3.org/2000/svg"

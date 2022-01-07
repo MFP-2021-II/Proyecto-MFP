@@ -2,6 +2,8 @@
  * Importaciones de librerias o componentes
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importation de librairies ou composants.
  */
 import { screenSizes } from "utils/responsive";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +21,8 @@ import * as yup from "yup";
  * datos del formulario
  * English:
  * Schema of the form validation
+ * Francais:
+ * Schema de validation du formulaire
  */
 const schema = yup.object().shape({
   fecha_reserva: yup.string().required("La fecha de reserva es requerida"),
@@ -35,7 +39,7 @@ const schema = yup.object().shape({
 });
 
 /**
- * Componete Reservar es una
+ * Componente Reservar es una
  * seccion de la pagina
  * que muestra el formulario de
  * reserva de una habitacion,
@@ -45,11 +49,25 @@ const schema = yup.object().shape({
  * ademas de un boton para reservar la
  * habitacion.
  * English:
- * Reservar component is a section of the page
- * that shows the form of reservation of a room,
- * with the data of the credit card and the
- * expiration date, arrival date and departure date,
- * as well as a button to reserve the room.
+ * Reservar component is a section
+ * of the page that shows the
+ * form of reservation of a room,
+ * with the data of the credit card
+ * and the expiration date, arrival
+ * date and departure date, as well
+ * as a button to reserve the room.
+ * Francais:
+ * Composant Reservar est une
+ * section de la page
+ * qui affiche le formulaire
+ * de reservation d'une
+ * chambre, avec les données
+ * de la carte de crédit
+ * et la date d'expiration,
+ * date d'arrivée et date
+ * de départ, ainsi que un
+ * bouton pour réserver la
+ * chambre.
  */
 export default function Reservar() {
   /**
@@ -57,6 +75,8 @@ export default function Reservar() {
    * a otra pagina
    * English:
    * Router to redirect to another page
+   * Francais:
+   * Router pour rediriger vers une autre page
    */
   const router = useRouter();
   /**
@@ -67,6 +87,10 @@ export default function Reservar() {
    * Destructuring the query to get
    * the route of the accommodation
    * card id.
+   * Francais:
+   * Désctructuration de la requête
+   * pour obtenir la route de la
+   * carte d'allocation d'hébergement.
    */
   const { cardID } = router.query;
   /**
@@ -75,6 +99,9 @@ export default function Reservar() {
    * English:
    * State to save the accommodation
    * data.
+   * Francais:
+   * Etat pour sauvegarder les données
+   * des hébergements.
    */
   const [alojamientoId, setAlojamientoId] = useState(null);
   /**
@@ -84,6 +111,10 @@ export default function Reservar() {
    * English:
    * Use of yup resolver to validate
    * the form data and get the errors.
+   * Francais:
+   * Utilisation de yup resolver pour
+   * valider les données du formulaire
+   * et obtenir les erreurs.
    */
   const {
     register,
@@ -100,6 +131,9 @@ export default function Reservar() {
    * English:
    * To get the data of the reservation
    * date.
+   * Francais:
+   * Pour obtenir les données
+   * de la date de réservation.
    */
   const fechaReserva = watch("fecha_reserva");
   const fechaFin = watch("fecha_fin");
@@ -108,12 +142,17 @@ export default function Reservar() {
    * de la fecha de fin.
    * English:
    * To get the data of the end date.
+   * Francais:
+   * Pour obtenir les données
+   * de la date de fin.
    */
   const fechaCaducidad = watch("fecha_caducidad");
   /**
    * Estado para establecer un error.
    * English:
    * State to set an error.
+   * Francais:
+   * Etat pour définir un erreur.
    */
   const [error, setError] = useState(null);
   /**
@@ -122,6 +161,9 @@ export default function Reservar() {
    * English:
    * useEffect to get the data,
    * reservation dates and end dates.
+   * Francais:
+   * useEffect pour obtenir les données,
+   * dates de réservation et dates de fin.
    */
   useEffect(() => {
     if (fechaReserva && fechaFin) {
@@ -141,6 +183,9 @@ export default function Reservar() {
    * English:
    * useEffect to get the current date
    * and set the expiration date.
+   * Francais:
+   * useEffect pour obtenir la date actuelle
+   * et définir la date d'expiration.
    */
   useEffect(() => {
     if (fechaCaducidad && fechaReserva) {
@@ -167,6 +212,9 @@ export default function Reservar() {
    * useEffect to get the accommodation id
    * and set it in the state.
    * and redirect the user to the history page.
+   * Francais:
+   * useEffect pour obtenir l'id de l'hébergement
+   * et le définir dans l'état.
    */
   useEffect(() => {
     const fetchOneAnnouncement = async () => {
@@ -209,6 +257,9 @@ export default function Reservar() {
    * in case there are no errors
    * the user is redirected to the
    * history page.
+   * Francais:
+   * Fonction pour envoyer les données
+   * du formulaire.
    */
   const onSubmit = async (data) => {
     if (!error) {
@@ -264,6 +315,16 @@ export default function Reservar() {
      * Set the style of the history button.
      * Use the form components.
      * Use the error component.
+     * Francais:
+     * Définir le layout de réservation d'hébergement
+     * avec le formulaire de réservation.
+     * Définir le style des éléments du formulaire.
+     * Définir le style du bouton de réservation.
+     * Définir le style du bouton de annulation.
+     * Définir le style du bouton de retour.
+     * Définir le style du bouton de l'historique.
+     * Utiliser les composants du formulaire.
+     * Utiliser le composant d'erreur.
      */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto xl:h-almost-screen mt-10 sm:mt-12 md:mt-14 lg:mt-16 xl:mt-0">
       <div className={screenSizes}>
@@ -393,6 +454,17 @@ export default function Reservar() {
      * style of the history button.
      * Use the form components.
      * Use the error component.
+     * Francais:
+     * Définir le layout de réservation
+     * d'hébergement avec le formulaire
+     * de réservation. Définir le style des
+     * éléments du formulaire. Définir le
+     * style du bouton de réservation.
+     * Définir le style du bouton de annulation.
+     * Définir le style du bouton de retour.
+     * Définir le style du bouton de l'historique.
+     * Utiliser les composants du formulaire.
+     * Utiliser le composant d'erreur.
      */
   );
 }

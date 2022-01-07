@@ -10,6 +10,10 @@ import LandingButton from "components/Buttons/LandingButton";
  * Componente del Landing page
  * English:
  * Landing page component
+ * Francais:
+ * Composant de la landing page
+ * Portugues:
+ * Componente da landing page
  * @returns {JSX} LandingPage
  */
 export default function LandingPage() {
@@ -23,6 +27,15 @@ export default function LandingPage() {
      * Container of the landing page
      * shows information of the application
      * and a button to start making reservations.
+     * Francais:
+     * Conteneur de la landing page
+     * montre les informations de l'application
+     * et un bouton pour commencer a faire des
+     * reservations.
+     * Portugues:
+     * Conteiner da landing page
+     * mostra informações da aplicação
+     * e um botão para começar a fazer reservas.
      */
     <main className="flex justify-center h-almost-screen lg:justify-around bg-gradient-to-r from-yellow-100 to-red-200">
       <section className="flex flex-col items-center justify-center pb-20">
@@ -58,6 +71,15 @@ export default function LandingPage() {
      * Container of the landing page
      * shows information of the application
      * and a button to start making reservations.
+     * Francais:
+     * Conteneur de la landing page
+     * montre les informations de l'application
+     * et un bouton pour commencer a faire des
+     * reservations.
+     * Portugues:
+     * Conteiner da landing page
+     * mostra informações da aplicação
+     * e um botão para começar a fazer reservas.
      */
   );
 }

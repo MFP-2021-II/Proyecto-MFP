@@ -28,6 +28,9 @@ import ModalItem from "ui/ModalItem";
  * English:
  * pageProps - Page props
  * Component - Component that is rendered
+ * Francais:
+ * pageProps - Props de la page
+ * Component - Component qui est rendu
  * @param {pageProps} pageProps Propiedades de la página
  * @param {Component} Componente Componente que se renderiza
  * @returns {JSX} AppLayout
@@ -173,6 +176,9 @@ export default function AppLayout({ Component, pageProps }) {
    * English:
    * Allows you to not be able to access
    * the app from the url without being logged in
+   * Francais:
+   * Permet de ne pas acceder a l'app depuis
+   * l'url sans etre connecté
    */
   useEffect(() => {
     const userFunction = localStorage.getItem("user");
@@ -189,6 +195,9 @@ export default function AppLayout({ Component, pageProps }) {
    * English:
    * UseEffect to get the user favorites
    * without parameters.
+   * Francais:
+   * UseEffect pour obtenir les favoris du
+   * utilisateur.
    */
   useEffect(async () => {
     if (user) {
@@ -218,6 +227,9 @@ export default function AppLayout({ Component, pageProps }) {
    * English:
    * UseEffect to get the payments made
    * without parameters.
+   * Francais:
+   * UseEffect pour obtenir les paiements effectués
+   * sans paramètres.
    */
   useEffect(() => {
     const userNoti = JSON.parse(window.localStorage.getItem("user"));
@@ -248,6 +260,9 @@ export default function AppLayout({ Component, pageProps }) {
      * English:
      * UseEffect to get the payments received
      * without parameters.
+     * Francais:
+     * UseEffect pour obtenir les paiements reçus
+     * sans paramètres.
      */
     const fetchPaymentsReceived = async () => {
       try {
@@ -296,6 +311,33 @@ export default function AppLayout({ Component, pageProps }) {
      * of the user, the name of the user,
      * the option to view profile and
      * a dropdown view.
+     * Francais:
+     * Component de la page d'accueil
+     * qui encapsule le layout de la barre
+     * de navigation et contient le contenu
+     * de la page, la barre de navigation
+     * de l'application contient le logo,
+     * le nom de la page, une photo de
+     * l'utilisateur prédéfinie, le nom
+     * de l'utilisateur, l'option de voir
+     * le profil et une vue déroulante.
+     * Portugais:
+     * Componente da página inicial que
+     * encapsula o layout da barra de navegação
+     * e contém o conteúdo da página, a barra
+     * de navegação da aplicação contém o logotipo,
+     * o nome da página, uma foto do usuário
+     * pré-definida, o nome do usuário, a opção
+     * de ver perfil e uma vista deslizante.
+     * Italiano:
+     * Componente della pagina iniziale che
+     * contiene il layout della barra di navigazione
+     * e contiene il contenuto della pagina, la barra
+     * di navigazione dell'applicazione contiene il logo,
+     * il nome della pagina, una foto predefinita
+     * dell'utente, il nome dell'utente, l'opzione
+     * di visualizzare il profilo e una vista
+     * a discesa.
      */
     <>
       <nav className="flex justify-center p-7 pr-7  w-full text-lg font-sans font-bold shadow-lg bg-[#FBEADC]">
@@ -456,6 +498,7 @@ export default function AppLayout({ Component, pageProps }) {
      * predefinida, nombre del usuario, la opción
      * de ver perfil y una vista desplegable.
      *
+     * English:
      * Home page component
      * containing the layout of the bar
      * navigation and encapsulates content
@@ -465,6 +508,37 @@ export default function AppLayout({ Component, pageProps }) {
      * predefined username, username,
      * the option to view profile and
      * a drop down view.
+     *
+     * Francais:
+     * Component de la page d'accueil
+     * qui encapsule le layout de la barre
+     * de navigation et contient le contenu
+     * de la page, la barre de navigation
+     * de l'application contient le logo,
+     * le nom de la page, une photo de
+     * l'utilisateur prédéfinie, le nom
+     * de l'utilisateur, l'option de voir
+     * le profil et une vue déroulante.
+     *
+     * Portugais:
+     * Componente da página inicial que
+     * encapsula o layout da barra de navegação
+     * e contém o conteúdo da página, a barra
+     * de navegação da aplicação contém o logotipo,
+     * o nome da página, uma foto do usuário
+     * pré-definida, o nome do usuário, a opção
+     * de ver perfil e uma vista deslizante.
+     *
+     * Italiano:
+     * Componente della pagina iniziale che
+     * contiene il layout della barra di
+     * navigazione e contiene il contenuto
+     * della pagina, la barra di navigazione
+     * dell'applicazione contiene il logo,
+     * il nome della pagina, una foto predefinita
+     * dell'utente, il nome dell'utente, l'opzione
+     * di visualizzare il profilo e una vista
+     * a discesa.
      */
   );
 }

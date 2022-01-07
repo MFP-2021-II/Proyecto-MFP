@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import "tailwindcss/tailwind.css";
 import "styles/global.css";
@@ -21,6 +23,9 @@ import { useRouter } from "next/router";
  * English:
  * /register - Register
  * /login - Login
+ * Francais:
+ * /register - Inscription
+ * /login - Connexion
  * @type {{'/register': string, '/login': string}}
  */
 const AUTH_PAGES = {
@@ -39,6 +44,10 @@ const AUTH_PAGES = {
  * English:
  * / - Home
  * /about - About
+ * /contact - Contact
+ * Francais:
+ * / - Accueil
+ * /about - A propos de nous
  * /contact - Contact
  * @type {{'/': string, '/about-us': string, '/contact': string}}
  */
@@ -70,6 +79,15 @@ const LANDING_PAGES = {
  * /app/profile/personal-info - Personal data
  * /app/profile/security - Change password
  * /app/profile/record - Reservation history
+ * Francais:
+ * /app - App
+ * /app/profile - Profile
+ * /app/announcements - Annonces
+ * /app/announcements/create - Nouvelle annonce
+ * /app/announcements/edit - Modifier annonce
+ * /app/profile/personal-info - Informations personnelles
+ * /app/profile/security - Changer mot de passe
+ * /app/profile/record - Historique des reservations
  * @type {{'/app': string, 'app/announcement': string, '/app/announcement/create': string, '/app/announcement/edit': string}}
  */
 const APP_PAGES = {
@@ -87,6 +105,8 @@ const APP_PAGES = {
  * Componente principal de la aplicacion
  * English:
  * Main component of the application
+ * Francais:
+ * Composant principal de l'application
  * @param {Component} Component Componente a renderizar
  * @param {Object} pageProps Propiedades de la pagina
  * @returns {JSX} Renderizado de la pagina

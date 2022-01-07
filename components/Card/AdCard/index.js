@@ -1,3 +1,10 @@
+/**
+ * Importar librerias o componentes.
+ * English:
+ * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
+ */
 import Star from "components/Icons/Star";
 import Edit from "components/Icons/Edit";
 import Delete from "components/Icons/Delete";
@@ -22,6 +29,13 @@ import Link from "next/link";
  * price of the card
  * rating of the card
  * edit icon to change the mode of the card
+ * Francais:
+ * image de la carte
+ * nom de la carte
+ * emplacement de la carte
+ * prix de la carte
+ * note de la carte
+ * edit icon pour changer le mode de la carte
  * @param {string} image Imagen del anuncio
  * @param {string} name Nombre del anuncio
  * @param {string} location Ubicacion del anuncio
@@ -44,11 +58,19 @@ export default function AdCard({
 }) {
   /**
    * Agrega animación a la tarjeta
+   * English:
+   * Add animation to the card
+   * Francais:
+   * Ajouter une animation à la carte
    * @type {string}
    */
   const event_card = "transition duration-500 ease-in-out hover:shadow-md";
   /**
    * Agrega estilos responsive a las tarjetas
+   * English:
+   * Add responsive styles to the cards
+   * Francais:
+   * Ajouter des styles responsive aux cartes
    * @type {{u_text: string, m_text: string, b_text: string, r_text: string}}
    */
   const text_size = {
@@ -75,6 +97,23 @@ export default function AdCard({
    * a request is made to the server to delete it
    * from the database and the state reload is changed
    * to update the list of ads.
+   * Francais:
+   * Montre les annonces pour confirmation à supprimer ou
+   * modifier des cartes une fonction asynchrone qui est
+   * exécutée lorsque vous cliquez sur le bouton d'une alerte
+   * montre un message si vous confirmez la suppression ou
+   * modifier si vous confirmez la suppression de l'annonce,
+   * une requête est exécutée au serveur pour la supprimer
+   * de la base de données et l'état reload est changé
+   * pour mettre à jour la liste des annonces.
+   * Portuguese:
+   * Mostra anúncios para confirmação para eliminar ou
+   * editar cartas uma função assíncrona que é executada
+   * ao clicar no botão de uma alerta mostra um
+   * mensagem se você confirmar a eliminação ou
+   * editar se você confirmar a eliminação do anúncio,
+   * uma requisição é feita ao servidor para eliminar
+   * de forma a atualizar a lista de anúncios.
    **/
   const handleDelete = async () => {
     if (window.confirm("¿Estas seguro de eliminar el anuncio?")) {
@@ -102,6 +141,35 @@ export default function AdCard({
   };
 
   return (
+    /**
+     * Retorna una tarjeta de anuncio
+     * que permite cambiar entre dos modos
+     * de visualización, uno para editar,
+     * el modo para visualización corresponde
+     * a la vista /app y el modo para edicion
+     * corresponde a la vista /app/announcement
+     * English:
+     * Returns a card of an ad
+     * that allows you to change between two
+     * modes of visualization, one for editing,
+     * the mode for visualization corresponds to
+     * the view /app and the mode for editing
+     * corresponds to the view /app/announcement
+     * Francais:
+     * Retourne une carte d'annonce
+     * qui permet de changer entre deux modes
+     * de visualisation, un pour modifier,
+     * le mode de visualisation correspond à
+     * la vue /app et le mode pour modifier
+     * correspond à la vue /app/annonce
+     * Portuguese:
+     * Retorna uma tarjeta de anúncio
+     * que permite mudar entre dois modos
+     * de visualização, um para editar,
+     * o modo de visualização corresponde
+     * à vista /app e o modo para edição
+     * corresponde à vista /app/anúncio
+     */
     <div
       className={`bg-white rounded-md border-solid border-2 p-4 max-w-md md:max-w-xl cursor-pointer ${event_card} ${
         edit ? "max-h-md" : "max-h-md md:max-h-80 md:h-64"
@@ -161,5 +229,34 @@ export default function AdCard({
         )}
       </div>
     </div>
+    /**
+     * Retorna una tarjeta de anuncio
+     * que permite cambiar entre dos modos
+     * de visualización, uno para editar,
+     * el modo para visualización corresponde
+     * a la vista /app y el modo para edicion
+     * corresponde a la vista /app/announcement
+     * English:
+     * Returns a card of an ad
+     * that allows you to change between two
+     * modes of visualization, one for editing,
+     * the mode for visualization corresponds to
+     * the view /app and the mode for editing
+     * corresponds to the view /app/announcement
+     * Francais:
+     * Retourne une carte d'annonce
+     * qui permet de changer entre deux modes
+     * de visualisation, un pour modifier,
+     * le mode de visualisation correspond à
+     * la vue /app et le mode pour modifier
+     * correspond à la vue /app/annonce
+     * Portuguese:
+     * Retorna uma tarjeta de anúncio
+     * que permite mudar entre dois modos
+     * de visualização, um para editar,
+     * o modo de visualização corresponde
+     * à vista /app e o modo para edição
+     * corresponde à vista /app/anúncio
+     */
   );
 }

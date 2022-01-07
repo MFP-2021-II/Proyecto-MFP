@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import { useEffect, useState } from "react";
 import { screenSizes } from "utils/responsive";
@@ -16,6 +18,9 @@ export default function Record() {
    * English:
    * State to save the payments made
    * by the user.
+   * Francais:
+   * Etat pour enregistrer les paiements
+   * effectues par l'utilisateur.
    */
   const [made, setMade] = useState([]);
   /**
@@ -24,6 +29,9 @@ export default function Record() {
    * English:
    * State to save the payments received
    * by the user.
+   * Francais:
+   * Etat pour enregistrer les paiements
+   * recus par l'utilisateur.
    */
   const [received, setReceived] = useState([]);
 
@@ -35,6 +43,10 @@ export default function Record() {
    * useEffect to get the reservations
    * made by the user and the reservations
    * received by the user.
+   * Francais:
+   * Utiliser useEffect pour obtenir les
+   * reservations effectues par l'utilisateur
+   * et les reservations recues par l'utilisateur.
    */
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
@@ -99,6 +111,16 @@ export default function Record() {
      * They are shown in cards that indicate
      * if the payment was made or not
      * according to their color.
+     * Francais:
+     * Section pour montrer les paiements
+     * effectues, recus et les paiements
+     * en attente.
+     * Português:
+     * Seção para mostrar os pagamentos
+     * feitos, recebidos e os pagamentos
+     * pendentes.
+     * Eles são mostrados em cartões que
+     * indicam se o pagamento foi feito
      */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-almost-screen">
       <div className={screenSizes}>
@@ -159,6 +181,37 @@ export default function Record() {
      * They are shown in cards that indicate
      * if the payment was made or not
      * according to their color.
+     * Francais:
+     * Section pour montrer les paiements
+     * effectues, recus et les paiements
+     * en attente.
+     * Se montrent dans des cartes qui indiquent
+     * si le paiement a ete effectue ou non
+     * en fonction de leur couleur.
+     * Português:
+     * Seção para mostrar os pagamentos feitos,
+     * recebidos e os pagamentos pendentes.
+     * Eles são mostrados em cartões que indicam
+     * se o pagamento foi realizado ou não
+     * de acordo com sua cor.
+     * Italiano:
+     * Sezione per mostrare i pagamenti effettuati,
+     * ricevuti e i pagamenti in sospeso.
+     * Vengono mostrati in cartelle che indicano
+     * se il pagamento è stato effettuato o no
+     * in base alla loro colore.
+     * Deutsch:
+     * Sektion zum Anzeigen der gemachten Zahlungen,
+     * erhaltenen und zu bezahlenden Zahlungen.
+     * Sie werden in Karten angezeigt, die angeben,
+     * ob die Zahlung erfolgt oder nicht
+     * anhand ihres Farbwerts.
+     * Nederlands:
+     * Sectie om de betaalde betalingen, gekregen en
+     * te betalen betalingen te laten zien.
+     * Ze zijn getoond in kaarten die aangeven
+     * of de betaling is uitgevoerd of niet
+     * in de kleur van de kleur.
      */
   );
 }

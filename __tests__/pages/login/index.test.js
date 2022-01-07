@@ -12,12 +12,12 @@ test("Validate if the pathname changes the title of the page", () => {
   expect(getByText("Inicia sesión")).toBeInTheDocument();
 });
 
-test("Validate if useRouter() is defined", () => {
-  const mockHandler = jest.fn(() => ({
-    __esModule: true,
-    useRouter: jest.fn(),
-  }));
-});
+// atest("Validate if useRouter() is defined", () => {
+//   aconst mockHandler = jest.fn(() => ({
+//     __esModule: true,
+//     useRouter: jest.fn(),
+//   }));
+// });
 
 test("Test onSubmit() with real data", async () => {
   const data = {

@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import AdCard from "components/Card/AdCard";
 import Ballot from "components/Icons/Ballot";
@@ -16,6 +18,8 @@ import { useEffect, useState } from "react";
  * users - Usuarios de la aplicación
  * English:
  * users - Users of the application
+ * Francais:
+ * users - Utilisateurs de l'application
  * @param {object} user Usuario de la aplicación
  * @returns {JSX} Página de anuncios del usuario
  */
@@ -26,6 +30,9 @@ export default function Announcement({ user }) {
    * English:
    * Use router to redirect to the
    * announcement creation page
+   * Francais:
+   * Utiliser le routeur pour rediriger vers
+   * la page de création d'annonces
    * @type {Router}
    */
   const router = useRouter();
@@ -35,6 +42,9 @@ export default function Announcement({ user }) {
    * English:
    * Use state to handle the announcement
    * state
+   * Francais:
+   * Utiliser le state pour gérer l'état
+   * des annonces
    * @type {Array}
    * @default []
    */
@@ -47,6 +57,9 @@ export default function Announcement({ user }) {
    * English:
    * Use effect to get the user's
    * announcements
+   * Francais:
+   * Utiliser l'effet pour obtenir les
+   * annonces de l'utilisateur
    * @param {object} user Usuario de la aplicación
    * @returns {void}
    */
@@ -77,6 +90,11 @@ export default function Announcement({ user }) {
      * content of the page where the list of
      * user's announcements is shown and a button
      * to create a new announcement.
+     * Francais:
+     * contenu de la page où la liste des
+     * annonces de l'utilisateur est affichée
+     * et un bouton pour créer une nouvelle
+     * annonce.
      */
     <main className="flex flex-col items-center justify-center h-almost-screen ">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
@@ -130,6 +148,11 @@ export default function Announcement({ user }) {
      * of user's announcements is shown
      * and a button to create a new
      * announcement.
+     * Francais:
+     * contenu de la page où la liste des
+     * annonces de l'utilisateur est
+     * affichée et un bouton pour créer
+     * une nouvelle annonce.
      */
   );
 }

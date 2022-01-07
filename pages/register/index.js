@@ -216,6 +216,20 @@ export default function Register() {
      * mot de passe, confirmer le mot
      * de passe, bouton d'enregistrement et
      * bouton d'annulation.
+     * Portuguese:
+     * Componente da página de registro de usuarios
+     * onde os dados do formulário são
+     * nome, sobrenome, email,
+     * senha, confirmar senha,
+     * botão de registro e botão de cancelar.
+     * Italian:
+     * Componente della pagina di registrazione
+     * degli utenti dove i dati del
+     * modulo sono
+     * nome, cognome, email,
+     * password, conferma password,
+     * pulsante di registrazione e
+     * pulsante di annullamento.
      */
     <>
       <form
@@ -367,6 +381,20 @@ export default function Register() {
      * Italiano:
      * Componente della pagina di registrazione
      * degli utenti in cui i dati del
+     * Portuguese:
+     * Componente da página de registro de usuarios
+     * onde os dados do formulário são
+     * nome, sobrenome, email,
+     * senha, confirmar senha,
+     * botão de registro e botão de cancelar.
+     * Italian:
+     * Componente della pagina di registrazione
+     * degli utenti dove i dati del
+     * modulo sono
+     * nome, cognome, email,
+     * password, conferma password,
+     * pulsante di registrazione e
+     * pulsante di annullamento.
      */
   );
 }

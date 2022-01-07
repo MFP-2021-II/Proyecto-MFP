@@ -27,6 +27,30 @@
  * white - Background color
  * light - Background color
  * outline - No border
+ *
+ * Francais:
+ * Types de variables:
+ * primary - Couleur primaire
+ * secondary - Couleur secondaire
+ * copy - Couleur de texte
+ * terciary - Couleur de fond et bordure
+ * quaternary - Couleur de bordure et fond
+ * quinary - Couleur de bordure et fond
+ * white - Couleur de fond
+ * light - Couleur de fond
+ * outline - Sans bordure
+ *
+ * Português:
+ * Types de variables:
+ * primary - Cor primária
+ * secondary - Cor secundária
+ * copy - Cor do texto
+ * terciary - Cor de fundo e borda
+ * quaternary - Cor de borda e fundo
+ * quinary - Cor de borda e fundo
+ * white - Cor de fundo
+ * light - Cor de fundo
+ * outline - Sem borda
  * @type {{primary: string, cancel: string, copy: string, terciary: string, quaternary: string, quinary: string, white: string, light: string, outline: string}}
  */
 const theme = {
@@ -48,6 +72,10 @@ const theme = {
  * Estilo para el estado de los botones
  * English:
  * Style for the button state
+ * Francais:
+ * Style for the button state
+ * Português:
+ * Style for the button state
  * @type {{primary: string, cancel: string, copy: string, terciary: string}}
  */
 const disabledStyle = {
@@ -60,6 +88,10 @@ const disabledStyle = {
  * Tamaños para los botones
  * English:
  * Sizes for the buttons
+ * Francais:
+ * Sizes for the buttons
+ * Português:
+ * Sizes for the buttons
  * @type {{small: string, medium: string, large: string}}
  */
 const sizes = {
@@ -71,6 +103,10 @@ const sizes = {
 /**
  * Componente boton por defecto de la aplicación
  * English:
+ * Default button component of the application
+ * Francais:
+ * Default button component of the application
+ * Português:
  * Default button component of the application
  * @param {string} className Clase de estilo
  * @param {string} variant Tipo de botón
@@ -88,11 +124,19 @@ export default function Button({
   ...props
 }) {
   return (
-    /**Etiqueta boton que contiene propiedades
+    /**
+     * Etiqueta boton que contiene propiedades
      * que deshabilita el botón, estilos, variantes y tamaños
      * English:
      * Button tag that contains properties that
      * disable the button, styles, variants and sizes
+     * Francais:
+     * Étiquette de bouton contenant des propriétés
+     * qui désactive le bouton, les styles, variantes
+     * et tailles
+     * Português:
+     * Button do tag que contém propriedades que
+     * desabilita o botão, estilos, variantes e tamanhos
      */
     <button
       disabled={disabled}
@@ -104,5 +148,21 @@ export default function Button({
     >
       {children}
     </button>
+    /**Etiqueta boton que contiene propiedades
+     * que deshabilita el botón, estilos,
+     * variantes y tamaños
+     * English:
+     * Button tag that contains properties
+     * that disable the button, styles,
+     * variants and sizes
+     * Francais:
+     * Étiquette de bouton contenant des propriétés
+     * qui désactive le bouton, les styles,
+     * variantes et tailles
+     * Português:
+     * Button do tag que contém propriedades que
+     * desabilita o botão, estilos,
+     * variantes e tamanhos
+     */
   );
 }

@@ -17,6 +17,14 @@
  * onChange is the event of change
  * fileImage is the field image
  * errors is the field error
+ *
+ * Francais:
+ * type est le type du champ
+ * name est le nom du champ
+ * register est le champ enregistre
+ * onChange est l'evenement de changement
+ * fileImage est l'image du champ
+ * errors est l'erreur du champ
  * @param {string} type Tipo de campo
  * @param {string} name Nombre del campo
  * @param {object} register Registro del formulario
@@ -45,6 +53,18 @@ export default function FormPhoto({
      * a label upper, inside a div to create
      * the box of the image and an input to
      * save the image.
+     * Francais:
+     * Componente pour le champ de l'image
+     * constitué par un label supérieur,
+     * à l'intérieur d'un div pour créer la
+     * boîte de l'image et un input pour
+     * enregistrer l'image.
+     * Portugues:
+     * Componente para o campo de imagem
+     * constituido por um label superior,
+     * dentro de um div para criar a caixa
+     * da imagem e um input para salvar
+     * a imagem.
      */
     <>
       <div className="grid grid-cols-1 m-2 w-[80%]">
@@ -102,11 +122,33 @@ export default function FormPhoto({
       <span className="text-xs text-red-500">{errors && errors?.message}</span>
     </>
     /**
+     * Componente para el campo de imagen
+     * constituido por un label superior,
+     * dentro un div para crear la caja de
+     * la imagen y un input para guardar
+     * la imagen.
      * English:
      * Image field component composed by
      * a label upper, inside a div to create
      * the box of the image and an input to
      * save the image.
+     * Francais:
+     * Componente pour le champ de l'image
+     * constitué par un label supérieur,
+     * à l'intérieur d'un div pour créer la
+     *
+     * Italien:
+     * Componente per il campo dell'immagine
+     * composto da un label superiore,
+     * dentro un div per creare la casella
+     * dell'immagine e un input per salvare
+     * l'immagine.
+     * Portugues:
+     * Componente para o campo de imagem
+     * constituido por um label superior,
+     * dentro de um div para criar a caixa
+     * da imagem e um input para salvar
+     * a imagem.
      */
   );
 }

@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -28,6 +30,9 @@ import Empty from "components/Icons/Empty";
  * English:
  * Schema to validate the form of
  * react-hook-form type object.
+ * Francais:
+ * Schema et valider le formulaire de
+ * type objet de react-hook-form.
  */
 const schema = yup.object().shape({
   contenido: yup.string().required("Este campo es requerido"),
@@ -51,6 +56,12 @@ const schema = yup.object().shape({
  * setReloadFavorites - Function to
  * update the favorites state
  * reloadFavorites - Favorites state
+ *
+ * Francais:
+ * Utilisateur connecte
+ * setReloadFavorites - Fonction pour
+ * mettre a jour l'etat des favoris
+ * reloadFavorites - Etat des favoris
  */
 export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
   /**
@@ -59,6 +70,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * Router to get the current url
    * Type object
+   * Francais:
+   * Router pour obtenir
+   * l'url actuelle
+   * Type objet
    */
   const router = useRouter();
   /**
@@ -69,6 +84,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * Destructuring the query to
    * get the route of the id of
    * the accommodation card.
+   * Francais:
+   * Deconstruction de la requete
+   * pour obtenir la route de l'id
+   * de la carte d'alojamient.
    */
   const { cardID } = router.query;
   /**
@@ -78,12 +97,18 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * useState to set the accommodation
    * favorite for the user.
+   * Francais:
+   * useState pour mettre a jour
+   * l'etat des favoris
    */
   const [isFavorite, setIsFavorite] = useState(false);
   /**
    * useState para establecer la data.
    * English:
    * useState to set the data.
+   * Francais:
+   * useState pour mettre a jour
+   * les donnees.
    */
   const [dato, setDato] = useState(null);
   /**
@@ -92,6 +117,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * useState to load the user's
    * publications.
+   * Francais:
+   * useState pour charger les
+   * publications de l'utilisateur.
    */
   const [reloadPublications, setReloadPublications] = useState(false);
   /**
@@ -102,6 +130,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * Utilization of the yup resolver
    * to validate the form and get
    * the errors of the fields.
+   * Francais:
+   * Utilisation de yup resolver
+   * pour valider le formulaire et
+   * obtenir les erreurs des champs.
    */
   const {
     register,
@@ -119,6 +151,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * constant to get the user's
    * rating.
+   * Francais:
+   * constante pour obtenir la
+   * note de l'utilisateur.
    */
   const calification = watch("calificacion");
 
@@ -127,6 +162,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * del usuario.
    * English:
    * UseEffect to get the user's favorites.
+   * Francais:
+   * UseEffect pour obtenir les favoris
+   * de l'utilisateur.
    */
   useEffect(async () => {
     if (user && cardID) {
@@ -163,6 +201,11 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * UseEffect to make a handle of
    * the favorites, update them and
    * load them.
+   * Remove and set.
+   * Francais:
+   * UseEffect pour faire un handle
+   * des favoris, les mettre a jour
+   * et les charger.
    */
   const handleToggleFavorite = async () => {
     try {
@@ -191,6 +234,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * UseEffect to get the user's rating
    * by accommodation.
+   * Francais:
+   * UseEffect pour obtenir la note
+   * de l'utilisateur par alojamient.
    */
   useEffect(() => {
     register("calificacion");
@@ -217,6 +263,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * Function to send the comments posted
    * by the user.
+   * Francais:
+   * Fonction pour envoyer
+   * les commentaires
+   * postes par l'utilisateur.
    */
   const onSubmit = async (data) => {
     try {
@@ -247,6 +297,8 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * Rating del alojamiento.
    * English:
    * Rating of the accommodation.
+   * Francais:
+   * Note de l'alojamient.
    */
   const rating = [1, 2, 3, 4, 5];
 
@@ -256,6 +308,9 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * Render of the facilities of
    * the accommodation.
+   * Francais:
+   * Render des facilités de
+   * l'alojamient.
    */
   const IconosFacilidades = {
     Piscina: <Pool className="w-8 h-8 my-2 mx-2 sm:mx-0" />,
@@ -269,6 +324,10 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
    * English:
    * Logic to select stars for the
    * rating by points.
+   * Francais:
+   * Logique pour selectionner des
+   * etoiles pour la note par
+   * points.
    */
   const calificacion = (
     dato?.anuncio[0]?.comentarios?.reduce(
@@ -316,6 +375,25 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
      * number of people who have made a
      * reservation and the number of people
      * who have made a visit.
+     *
+     * * Francais:
+     * Le contenu principal de la vue d'un
+     * logement par son id, avec ses
+     * publications et commentaires. Il
+     * affiche le nom du logement,
+     * sa description, la note, l'image, la
+     * localisation, les facilités, le
+     * prix, le nombre d'étoiles, le
+     * nombre de commentaires, le nombre
+     * de favoris, le nombre de visites,
+     * le nombre de réservations, le nombre
+     * de personnes qui ont réservé, le nombre
+     * de personnes qui ont visité, le nombre
+     * de personnes qui ont fait une réservation,
+     * le nombre de personnes qui ont fait une
+     * visite, le nombre de personnes qui ont
+     * fait une réservation et le nombre de
+     * personnes qui ont fait une visite.
      */
     <main className="flex flex-col items-center justify-center overflow-y-auto h-auto mt-10">
       {/* {mostrarPago &&aa modalPago}*/}
@@ -585,6 +663,25 @@ export default function IDCard({ user, setReloadFavorites, reloadFavorites }) {
      * number of people who have made a
      * reservation and the number of people who
      * have made a visit.
+     *
+     * Francais:
+     * Le contenu principal de la vue
+     * d'un logement par son id, avec
+     * ses publications et commentaires.
+     * Il affiche le nom du logement,
+     * sa description, la note, l'image,
+     * la localisation, les facilités,
+     * le prix, le nombre d'étoiles,
+     * le nombre de commentaires, le nombre
+     * de favoris, le nombre de visites,
+     * le nombre de réservations, le nombre
+     * de personnes qui ont réservé, le nombre
+     * de personnes qui ont visité, le nombre
+     * de personnes qui ont fait une réservation,
+     * le nombre de personnes qui ont fait une
+     * visite, le nombre de personnes qui ont
+     * fait une réservation et le nombre de
+     * personnes qui ont fait une visite.
      */
   );
 }

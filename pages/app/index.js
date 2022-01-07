@@ -2,6 +2,8 @@
  * Importar librerias o componentes.
  * English:
  * Import libraries or components.
+ * Francais:
+ * Importer des librairies ou des composants.
  */
 import AdCard from "components/Card/AdCard";
 import IconButton from "components/Buttons/IconButton";
@@ -34,6 +36,8 @@ export default function App({ user }) {
    * useState para establecer nuevos anuncios
    * English:
    * useState to set new announcements
+   * Francais:
+   * Utiliser useState pour definir des nouveaux annonces
    * @type {Array}
    * @param {Array} anuncios Anuncios
    */
@@ -44,6 +48,9 @@ export default function App({ user }) {
    * English:
    * State to show or not the filter
    * of the view of accommodations.
+   * Francais:
+   * Etat pour montrer ou non le filtre
+   * de la vue des logements.
    */
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
   /**
@@ -52,6 +59,9 @@ export default function App({ user }) {
    * English:
    * UseState to show the search by text
    * in the view of accommodations.
+   * Francais:
+   * Utiliser useState pour montrer la recherche par texte
+   * dans la vue des logements.
    */
   const [mostrarBuscar, setMostrarBuscar] = useState(false);
   /**
@@ -60,6 +70,9 @@ export default function App({ user }) {
    * English:
    * Use router to redirect to the
    * announcement creation page
+   * Francais:
+   * Utiliser le router pour rediriger
+   * vers la page de création d'annonces
    */
   const router = useRouter();
 
@@ -67,6 +80,8 @@ export default function App({ user }) {
    * useEffect para obtener los anuncios del API
    * English:
    * Use effect to get the announcements from the API
+   * Francais:
+   * Utiliser useEffect pour obtenir les annonces de l'API
    */
   useEffect(() => {
     if (user) {
@@ -93,6 +108,10 @@ export default function App({ user }) {
    * Constant to extract
    * the current user's route
    * as string
+   * Francais:
+   * Constante pour extraire
+   * la route actuelle de l'utilisateur
+   * en tant que chaîne de caractères
    */
   const CardID = router.query;
   console.log(CardID);
@@ -103,6 +122,9 @@ export default function App({ user }) {
    * English:
    * Function to show or not
    * the filter of the view of accommodations
+   * Francais:
+   * Fonction pour montrer ou non
+   * le filtre de la vue des logements
    */
   const toggleFiltros = () => {
     setMostrarFiltros(!filtroContainer);
@@ -114,6 +136,9 @@ export default function App({ user }) {
    * English:
    * Function to show or not
    * the searcher of the view of accommodations
+   * Francais:
+   * Fonction pour montrer ou non
+   * le rechercheur de la vue des logements
    */
   const toggleBuscar = () => {
     setMostrarBuscar(!mostrarBuscar);
@@ -127,6 +152,9 @@ export default function App({ user }) {
    * English:
    * State to show or not
    * the filter of the view of accommodations
+   * Francais:
+   * Etat pour montrer ou non
+   * le filtre de la vue des logements
    */
   const [searchValue, setSearchValue] = useState("");
   let searchedCards = [];
@@ -137,6 +165,9 @@ export default function App({ user }) {
    * English:
    * Logic for bi-searching the announcements
    * in the view of accommodations.
+   * Francais:
+   * Logique pour bi-rechercher les annonces
+   * dans la vue des logements.
    */
   if (!searchValue.length >= 1) {
     searchedCards = [...anuncios];
@@ -153,6 +184,10 @@ export default function App({ user }) {
    * English:
    * Event of change of text in the searcher
    * of the view of accommodations.
+   * Francais:
+   * Evenement de changement de
+   * texte dans le rechercheur
+   * de la vue des logements.
    */
   const onsearchValueChange = (e) => {
     setSearchValue(e.target.value);
@@ -175,6 +210,24 @@ export default function App({ user }) {
    * fields for entering the price range
    * and 3 switches for indicating the presence
    * of facilities in the accommodation.
+   * Francais:
+   * Afficher les filtres de la vue des logements
+   * lorsque l'état de montrerFiltres est vrai.
+   * Dans les filtres, il y a la date d'arrivée
+   * et la date de départ.
+   * Un select pour le nombre d'invités, de chambres
+   * des champs pour entrer le prix de la plage
+   * et 3 interrupteurs pour indiquer la présence
+   * des facilités dans le logement.
+   * Português:
+   * Mostrar os filtros da vista de alojamentos
+   * quando o estado de mostrarFiltros é verdadeiro.
+   * Nos filtros há a data de entrada
+   * e a data de saída.
+   * Um select para o número de convidados, de quartos
+   * campos para inserir o intervalo de preços
+   * e 3 interruptores para indicar a presença
+   * de facilidades no alojamento.
    */
   if (mostrarFiltros) {
     filtroContainer = (
@@ -300,6 +353,24 @@ export default function App({ user }) {
    * entering the price range and 3 switches
    * for indicating the presence
    * of facilities in the accommodation.
+   * Francais:
+   * Afficher les filtres de la vue des logements
+   * lorsque l'état de montrerFiltres est vrai.
+   * Dans les filtres, il y a la date d'arrivée
+   * et la date de départ.
+   * Un select pour le nombre d'invités, de chambres
+   * des champs pour entrer le prix de la plage
+   * et 3 interrupteurs pour indiquer la présence
+   * des facilités dans le logement.
+   * Português:
+   * Mostrar os filtros da vista de alojamentos
+   * quando o estado de mostrarFiltros é verdadeiro.
+   * Nos filtros há a data de entrada
+   * e a data de saída.
+   * Um select para o número de convidados, de quartos
+   * campos para inserir o intervalo de preços
+   * e 3 interruptores para indicar a presença
+   * de facilidades no alojamento.
    */
 
   return (
@@ -319,6 +390,17 @@ export default function App({ user }) {
      * You can filter by the number of guests, rooms
      * the date of arrival and the date of departure, and by the price.
      * You can filter by the presence of facilities in the accommodation.
+     * Francais:
+     * Contenu de la page où les logements sont affichés
+     * sont affichés dans une liste de cartes avec une image et une description
+     * de chaque un.
+     * Vous pouvez filtrer par le nombre de convives, de chambres
+     * la date d'arrivée et la date de départ, et par le prix.
+     * Vous pouvez filtrer par la présence de facilités dans le logement.
+     * Português:
+     * Conteúdo da página onde os alojamentos são exibidos
+     * são exibidos em uma lista de cartões com uma imagem e uma descrição
+     * de cada um.
      */
     <main className="flex flex-col items-center justify-center h-auto mt-10">
       <div className="flex justify-between w-11/12 mb-5 md:w-4/6 lg:w-5/6 xl:w-8/12">
@@ -407,6 +489,22 @@ export default function App({ user }) {
      * the date of arrival and the date of departure, and
      * by the price. You can filter by the presence of
      * facilities in the accommodation.
+     * Francais:
+     * Contenu de la page où les logements sont affichés
+     * sont affichés dans une liste de cartes avec une
+     * image et une description de chaque un.
+     * Vous pouvez filtrer par le nombre de convives, de
+     * chambres la date d'arrivée et la date de départ,
+     * et par le prix. Vous pouvez filtrer par la présence
+     * de facilités dans le logement.
+     * Português:
+     * Conteúdo da página onde os alojamentos são exibidos
+     * são exibidos em uma lista de cartões com uma imagem
+     * e uma descrição de cada um.
+     * Você pode filtrar por o número de convidados, de
+     * quartos a data de entrada e de saída, e por o preço.
+     * Você pode filtrar por a presença de facilitades no
+     * alojamento.
      */
   );
 }

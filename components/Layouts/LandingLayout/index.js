@@ -2,6 +2,8 @@
  * Sección donde se importa los componentes y librerias.
  * English:
  * Section where the components and libraries are imported.
+ * Francais:
+ * Section où les composants et les librairies sont importes.
  */
 import Logo from "components/Icons/Logo";
 import LandingButton from "components/Buttons/LandingButton";
@@ -20,6 +22,8 @@ import { useState } from "react";
  * children - Contenido del layout
  * English:
  * children - Content of the layout
+ * Francais:
+ * children - Contenu du layout
  * @param {children} children Contenido del layout
  * @returns {JSX} LandingLayout
  */
@@ -75,6 +79,20 @@ export default function LandingLayout({ children }) {
      * system user, this constitutes text
      * that redirects to the section of
      * login or registration, we and contact.
+     * Francais:
+     * Il s'agit d'un composant qui est utilisé
+     * comme barre de navigation dans les routes
+     * en dehors d'une session active d'un
+     * utilisateur du système, cela constitue
+     * du texte qui redirige vers la section
+     * de connexion ou d'inscription, nous et contact.
+     * Português:
+     * É um componente que é utilizado
+     * como barra de navegação nas rotas
+     * fora de uma sessão ativa de um
+     * usuário do sistema, isto constitui
+     * texto que redireciona para a seção
+     * de login ou registro, nós e contato.
      */
     <>
       <nav
@@ -146,6 +164,20 @@ export default function LandingLayout({ children }) {
      * user, this constitutes text that
      * redirects to the section of login
      *  or registration, we and contact.
+     * Francais:
+     * Il s'agit d'un composant qui est utilisé
+     * comme barre de navigation dans les routes
+     * en dehors d'une session active d'un
+     * utilisateur du système, cela constitue
+     * du texte qui redirige vers la section
+     * de connexion ou d'inscription, nous et contact.
+     * Português:
+     * É um componente que é utilizado
+     * como barra de navegação nas rotas
+     * fora de uma sessão ativa de um
+     * usuário do sistema, isto constitui
+     * texto que redireciona para a seção
+     * de login ou registro, nós e contato.
      */
   );
 }
