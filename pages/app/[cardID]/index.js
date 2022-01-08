@@ -14,7 +14,7 @@ import Map from "components/Icons/Map";
 import Button from "components/Buttons/Button";
 import TextArea from "ui/TextArea";
 import Comment from "components/InfoBoxes/Comment";
-import UserVariant from "@/components/Icons/UserVariant";
+import UserVariant from "components/Icons/UserVariant";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

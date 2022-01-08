@@ -1,5 +1,6 @@
-import { constants } from "utils/constants";
+import { diccionarioCaracteristicas } from "utils/constants";
 
-test("Debe los elementos del select", () => {
-  expect(constants).toBeDefined();
+test("Debe contener los elementos del select", () => {
+  //Make a test to check if the array contains the elements of the select
+  expect(diccionarioCaracteristicas).toContain("Habitaciones");
 });

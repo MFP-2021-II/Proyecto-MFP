@@ -3,5 +3,10 @@ import ProfileInput from "ui/ProfileInput";
 
 test("Validate if the ProfileInput renders", () => {
   const mockHandler = jest.fn(() => null);
-  render(<ProfileInput register={mockHandler} />);
+  //make mock for an error type object from yup
+  const mockError = {
+    type: "required",
+    message: "El campo es requerido",
+  };
+  render(<ProfileInput register={mockHandler} errors={mockError} />);
 });

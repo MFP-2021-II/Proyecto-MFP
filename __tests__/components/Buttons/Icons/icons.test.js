@@ -35,194 +35,193 @@ import Robot from "components/Icons/Robot";
 /**
  * Comprueba si el componente RedirectArrow se renderiza correctamente
  */
-const estilos = jest.fn("w-10 h-10");
 
 test("Valida si el icono RedirectArrow se renderiza correctamente", async () => {
-  render(<RedirectArrow className={estilos} />);
+  render(<RedirectArrow />);
 });
 /**
  * Comprueba si el Logo se renderiza correctamente
  */
 test("Valida si el Logotipo se renderiza correctamente", async () => {
-  render(<Logo className={estilos} />);
+  render(<Logo />);
 });
 /**
  * Comprueba si el icono VisibilityOn se renderiza correctamente
  */
 test("Valida si el icono VisibilityOn se renderiza correctamente", async () => {
-  render(<VisibilityOn className={estilos} />);
+  render(<VisibilityOn />);
 });
 /**
  * Comprueba si el icono VisibilityOff se renderiza correctamente
  */
 test("Valida si el icono VisibilityOff se renderiza correctamente", async () => {
-  render(<VisibilityOff className={estilos} />);
+  render(<VisibilityOff />);
 });
 /**
  * Comprueba si el icono Add se renderiza correctamente
  */
 test("Valida si el icono Add se renderiza correctamente", async () => {
-  render(<Add className={estilos} />);
+  render(<Add />);
 });
 /**
  * Comprueba si el icono ArrowDown se renderiza correctamente
  */
 test("Valida si el icono ArrowDown se renderiza correctamente", async () => {
-  render(<ArrowDown className={estilos} />);
+  render(<ArrowDown />);
 });
 /**
  * Comprueba si el icono Ballot se renderiza correctamente
  */
 test("Valida si el icono Ballot se renderiza correctamente", async () => {
-  render(<Ballot className={estilos} />);
+  render(<Ballot />);
 });
 /**
  * Comprueba si el icono Close se renderiza correctamente
  */
 test("Valida si el icono Close se renderiza correctamente", async () => {
-  render(<Close className={estilos} />);
+  render(<Close />);
 });
 /**
  * Comprueba si el icono Delete se renderiza correctamente
  */
 test("Valida si el icono Delete se renderiza correctamente", async () => {
-  render(<Delete className={estilos} />);
+  render(<Delete />);
 });
 /**
  * Comprueba si el icono Edit se renderiza correctamente
  */
 test("Valida si el icono Edit se renderiza correctamente", async () => {
-  render(<Edit className={estilos} />);
+  render(<Edit />);
 });
 /**
  * Comprueba si el icono Filter se renderiza correctamente
  */
 test("Valida si el icono Filter se renderiza correctamente", async () => {
-  render(<Filter className={estilos} />);
+  render(<Filter />);
 });
 /**
  * Comprueba si el icono House se renderiza correctamente
  */
 test("Valida si el icono House se renderiza correctamente", async () => {
-  render(<House className={estilos} />);
+  render(<House />);
 });
 /**
  * Comprueba si el icono Map se renderiza correctamente
  */
 test("Valida si el icono Map se renderiza correctamente", async () => {
-  render(<Map className={estilos} />);
+  render(<Map />);
 });
 /**
  * Comprueba si el icono Menu se renderiza correctamente
  */
 test("Valida si el icono Menu se renderiza correctamente", async () => {
-  render(<Menu className={estilos} />);
+  render(<Menu />);
 });
 /**
  * Comprueba si el icono Search se renderiza correctamente
  */
 test("Valida si el icono Search se renderiza correctamente", async () => {
-  render(<Search className={estilos} />);
+  render(<Search />);
 });
 /**
  * Comprueba si el icono Star se renderiza correctamente
  */
 test("Valida si el icono Star se renderiza correctamente", async () => {
-  render(<Star className={estilos} />);
+  render(<Star />);
 });
 /**
  * Comprueba si el icono User se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<User className={estilos} />);
+  render(<User />);
 });
 /**
  * Comprueba si el icono BorderFav se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<BorderFav className={estilos} />);
+  render(<BorderFav />);
 });
 /**
  * Comprueba si el icono Empty se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Empty className={estilos} />);
+  render(<Empty />);
 });
 /**
  * Comprueba si el icono Fav se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Fav className={estilos} />);
+  render(<Fav />);
 });
 /**
  * Comprueba si el icono FilterOff se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<FilterOff className={estilos} />);
+  render(<FilterOff />);
 });
 /**
  * Comprueba si el icono Jaccuzi se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Jaccuzi className={estilos} />);
+  render(<Jaccuzi />);
 });
 /**
  * Comprueba si el icono LandingIllustration se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<LandingIllustration className={estilos} />);
+  render(<LandingIllustration />);
 });
 /**
  * Comprueba si el icono Lock se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Lock className={estilos} />);
+  render(<Lock />);
 });
 /**
  * Comprueba si el icono Parking se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Parking className={estilos} />);
+  render(<Parking />);
 });
 /**
  * Comprueba si el icono Payment se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Payment className={estilos} />);
+  render(<Payment />);
 });
 /**
  * Comprueba si el icono PersonalInfor se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<PersonalInfo className={estilos} />);
+  render(<PersonalInfo />);
 });
 /**
  * Comprueba si el icono Pool se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Pool className={estilos} />);
+  render(<Pool />);
 });
 /**
  * Comprueba si el icono Profile se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Profile className={estilos} />);
+  render(<Profile />);
 });
 /**
  * Comprueba si el icono Robot se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Robot className={estilos} />);
+  render(<Robot />);
 });
 /**
  * Comprueba si el icono Security se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<Security className={estilos} />);
+  render(<Security />);
 });
 /**
  * Comprueba si el icono UserVariant se renderiza correctamente
  */
 test("Valida si el icono User se renderiza correctamente", async () => {
-  render(<UserVariant className={estilos} />);
+  render(<UserVariant />);
 });

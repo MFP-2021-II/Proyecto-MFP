@@ -5,7 +5,7 @@ test("Valida si el componente Dropdown se renderiza correctamente", async () => 
   const mockProps = jest.fn("String");
   render(
     <Dropdown
-      children={mockProps}
+      children="children"
       open={true}
       className={mockProps}
       setOpen={true}
